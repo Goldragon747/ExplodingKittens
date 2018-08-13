@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.0
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens", "ExplodingKittens\ExplodingKittens.csproj", "{F8CC3100-2BDA-4A31-827C-4000A2646352}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens.Tests", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens.Enums", "ExplodingKittens.Enums\ExplodingKittens.Enums.csproj", "{2B7CCB7B-22EB-48DE-880C-23974D766A08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensWPF", "ExplodingKittensWPF\ExplodingKittensWPF.csproj", "{682D52E6-1542-4409-9CA3-3E91CC00CAD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensLib", "ExplodingKittensLib\ExplodingKittensLib.csproj", "{149A6ED1-3E91-46BE-B751-430346A68FB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,15 +29,15 @@ Global
 		{2B7CCB7B-22EB-48DE-880C-23974D766A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B7CCB7B-22EB-48DE-880C-23974D766A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B7CCB7B-22EB-48DE-880C-23974D766A08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {563B8C0E-4DBE-469D-990B-27B68AF261E1}
+		SolutionGuid = {B2A7357F-89E0-4298-87B4-5804D3647DC4}
 	EndGlobalSection
 EndGlobal
