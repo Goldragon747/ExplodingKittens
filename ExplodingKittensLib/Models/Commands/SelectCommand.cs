@@ -1,0 +1,36 @@
+﻿
+using ExplodingKittensLib.Models.Players;
+
+namespace ExplodingKittensLib.Models.Commands
+{
+	public class SelectCommand : ICommand
+	{
+		public Player CurrentPlayer { get; set; }
+		public int CurrentCardIndex { get; set; }
+
+		public string Description
+		{
+			get { return string.Format("\"{0} <card id>\": Select the given card.", CommandType); }
+		}
+
+		public Enums.Command CommandType
+		{
+			get { return Enums.Command.Select; }
+		}
+
+		public SelectCommand()
+		{
+		}
+
+		public SelectCommand(Player player, int index)
+		{
+			CurrentPlayer = player;
+			CurrentCardIndex = index;
+		}
+
+		public ActionResponse Execute()
+		{
+			return CurrentPlayer.SelectCard(CurrentCardIndex);
+		}
+	}
+}
