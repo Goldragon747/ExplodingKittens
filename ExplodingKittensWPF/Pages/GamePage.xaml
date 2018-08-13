@@ -1,0 +1,37 @@
+﻿<Page x:Class="ExplodingKittensWPF.Pages.GamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ExplodingKittensWPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="525"
+      Title="GamePage">
+
+    <Grid Background="LightSeaGreen">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Width="300px">Messages:</Label>
+                <Label>Turns Remaining:</Label>
+                </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button>Draw</Button>
+                <Label>Active Card</Label>
+                <Button>Play</Button>
+            </StackPanel>
+            <StackPanel x:Name="HandDisplay">
+                <Label>This is where the cards go</Label>
+            </StackPanel>
+            <StackPanel x:Name="NopeTrack" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label>Nope: </Label>
+                <Button>P1</Button>
+                <Button>P2</Button>
+                <Button>P3</Button>
+                <Button>P4</Button>
+                <Button>P5</Button>
+            </StackPanel>
+            
+          
+        </StackPanel>
+    </Grid>
+</Page>
