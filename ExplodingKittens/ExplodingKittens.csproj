@@ -32,8 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Card.cs">
+      <DependentUpon>KittenModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Cards\Attack.cs" />
     <Compile Include="Cards\BikiniCat.cs" />
     <Compile Include="Cards\Card.cs" />
@@ -70,15 +82,40 @@
     <Compile Include="Commands\SelectCommand.cs" />
     <Compile Include="Commands\StatusCommand.cs" />
     <Compile Include="Commands\UnknownCommand.cs" />
+    <Compile Include="KittenModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KittenModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KittenModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KittenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KittenModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KittenModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Message.cs" />
+    <Compile Include="Player.cs">
+      <DependentUpon>KittenModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Players\NullPlayer.cs" />
     <Compile Include="ActionResponse.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>KittenModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utilities.cs" />
     <Compile Include="Writers\ConsoleWriter.cs" />
     <Compile Include="Deck.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="Game.cs">
+      <DependentUpon>KittenModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="GameLoop.cs" />
-    <Compile Include="Hand.cs" />
+    <Compile Include="Hand.cs">
+      <DependentUpon>KittenModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Writers\IOutputWriter.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Program.cs" />
@@ -87,12 +124,35 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="KittenModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KittenModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="KittenModel.edmx.diagram">
+      <DependentUpon>KittenModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExplodingKittens.Enums\ExplodingKittens.Enums.csproj">
       <Project>{2b7ccb7b-22eb-48de-880c-23974d766a08}</Project>
       <Name>ExplodingKittens.Enums</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KittenModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>KittenModel.Context.cs</LastGenOutput>
+      <DependentUpon>KittenModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="KittenModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KittenModel.edmx</DependentUpon>
+      <LastGenOutput>KittenModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
