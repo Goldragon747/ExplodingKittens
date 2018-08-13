@@ -24,7 +24,7 @@ namespace ExplodingKittensWPF
         public MainWindow()
         {
             InitializeComponent();
-            ExplodingKittensFrame.Navigate(new StartUpPage());
+            ExplodingKittensFrame.Navigate(new GamePage());
         }
     }
 }

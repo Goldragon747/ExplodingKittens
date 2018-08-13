@@ -18,9 +18,9 @@ namespace ExplodingKittensWPF.Pages
     /// <summary>
     /// Interaction logic for StartUpPage.xaml
     /// </summary>
-    public partial class StartUpPage : Page
+    public partial class GamePage : Page
     {
-        public StartUpPage()
+        public GamePage()
         {
             InitializeComponent();
         }
