@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F8CC3100-2BDA-4A31-827C-4000A2646352}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExplodingKittens</RootNamespace>
+    <AssemblyName>ExplodingKittens</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cards\Attack.cs" />
+    <Compile Include="Cards\BikiniCat.cs" />
+    <Compile Include="Cards\Card.cs" />
+    <Compile Include="Cards\Defuse.cs" />
+    <Compile Include="Cards\ExplodingKitten.cs" />
+    <Compile Include="Cards\Favor.cs" />
+    <Compile Include="Cards\ICard.cs" />
+    <Compile Include="Cards\MommaCat.cs" />
+    <Compile Include="Cards\Nope.cs" />
+    <Compile Include="Cards\NullCard.cs" />
+    <Compile Include="Cards\Pair.cs" />
+    <Compile Include="Cards\SeeTheFuture.cs" />
+    <Compile Include="Cards\ShrodingerCat.cs" />
+    <Compile Include="Cards\Shuffle.cs" />
+    <Compile Include="Cards\ShyBladderCat.cs" />
+    <Compile Include="Cards\Skip.cs" />
+    <Compile Include="Cards\ZombieCat.cs" />
+    <Compile Include="Commands\DeckCommand.cs" />
+    <Compile Include="Commands\DeselectCommand.cs" />
+    <Compile Include="Commands\DrawCommand.cs" />
+    <Compile Include="Commands\GiveCommand.cs" />
+    <Compile Include="Commands\HandCommand.cs" />
+    <Compile Include="Commands\HelpCommand.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\PlayCommand.cs" />
+    <Compile Include="Commands\QuitCommand.cs" />
+    <Compile Include="Commands\SelectCommand.cs" />
+    <Compile Include="Commands\StatusCommand.cs" />
+    <Compile Include="Commands\UnknownCommand.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="Players\NullPlayer.cs" />
+    <Compile Include="ActionResponse.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="Writers\ConsoleWriter.cs" />
+    <Compile Include="Deck.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameLoop.cs" />
+    <Compile Include="Hand.cs" />
+    <Compile Include="Writers\IOutputWriter.cs" />
+    <Compile Include="Players\Player.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Writers\MemoryWriter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExplodingKittens.Enums\ExplodingKittens.Enums.csproj">
+      <Project>{2b7ccb7b-22eb-48de-880c-23974d766a08}</Project>
+      <Name>ExplodingKittens.Enums</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
