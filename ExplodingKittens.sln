@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens", "ExplodingKittens\ExplodingKittens.csproj", "{F8CC3100-2BDA-4A31-827C-4000A2646352}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens.Tests", "ExplodingKittens.Tests\ExplodingKittens.Tests.csproj", "{9B3ED673-3E7E-4886-979D-912204A3F96C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens.Enums", "ExplodingKittens.Enums\ExplodingKittens.Enums.csproj", "{2B7CCB7B-22EB-48DE-880C-23974D766A08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensWPF", "ExplodingKittensWPF\ExplodingKittensWPF.csproj", "{682D52E6-1542-4409-9CA3-3E91CC00CAD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +29,15 @@ Global
 		{2B7CCB7B-22EB-48DE-880C-23974D766A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B7CCB7B-22EB-48DE-880C-23974D766A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B7CCB7B-22EB-48DE-880C-23974D766A08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39A0569E-0ABC-4AC1-A996-B79AB01D9C92}
 	EndGlobalSection
 EndGlobal
