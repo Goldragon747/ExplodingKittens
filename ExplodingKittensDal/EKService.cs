@@ -5,9 +5,9 @@ namespace ExplodingKittensDal
 {
     public class EKService
     {
-        public PlayerModelList GetAllPlayers()
-        {
+        //public PlayerModelList GetAllPlayers()
+        //{
             
-        }
+        //}
     }
 }
