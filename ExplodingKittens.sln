@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens", "ExplodingKittens\ExplodingKittens.csproj", "{F8CC3100-2BDA-4A31-827C-4000A2646352}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensLib", "ExplodingKittensLib\ExplodingKittensLib.csproj", "{149A6ED1-3E91-46BE-B751-430346A68FB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensWPF", "ExplodingKittensWPF\ExplodingKittensWPF.csproj", "{682D52E6-1542-4409-9CA3-3E91CC00CAD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensDal", "ExplodingKittensDal\ExplodingKittensDal.csproj", "{CD7EC039-9CFD-4302-B10F-76FB0EADB2B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD7EC039-9CFD-4302-B10F-76FB0EADB2B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD7EC039-9CFD-4302-B10F-76FB0EADB2B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD7EC039-9CFD-4302-B10F-76FB0EADB2B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD7EC039-9CFD-4302-B10F-76FB0EADB2B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
