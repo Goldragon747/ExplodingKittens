@@ -62,6 +62,7 @@ namespace ExplodingKittensLib.Models
 
         public Stack<Card> GetDefuseCards()
         {
+            //todo change text
             Stack<Card> defuseCards = new Stack<Card>();
             defuseCards.Push(new Defuse(Game, _cardIndex++, "Via nature documentaries"));
             defuseCards.Push(new Defuse(Game, _cardIndex++, "Via porkback riding into the sunset together"));
@@ -89,23 +90,24 @@ namespace ExplodingKittensLib.Models
 
         private void AddSkipCards()
         {
-            DrawPile.Push(new Skip(Game, _cardIndex++, "Evade dirty sasquatch underpants"));
-            DrawPile.Push(new Skip(Game, _cardIndex++, "Sail away on your penis balloon. Be free, little buddy."));
-            DrawPile.Push(new Skip(Game, _cardIndex++, "Play a game of whale boner tetherball"));
-            DrawPile.Push(new Skip(Game, _cardIndex++, "Go base jumping using a pair of old lady boobs"));
+            DrawPile.Push(new Skip(Game, _cardIndex++, "Crab walk with some crabs"));
+            DrawPile.Push(new Skip(Game, _cardIndex++, "Don a portable cheetah butt"));
+            DrawPile.Push(new Skip(Game, _cardIndex++, "Commandeer a Bunnyraptor"));
+            DrawPile.Push(new Skip(Game, _cardIndex++, "Engage the Hypergoat"));
         }
 
         private void AddNopeCards()
         {
-            DrawPile.Push(new Nope(Game, _cardIndex++, "Awaken The Narnope"));
-            DrawPile.Push(new Nope(Game, _cardIndex++, "Feed your opponent some cantanope"));
-            DrawPile.Push(new Nope(Game, _cardIndex++, "Deliver some nope on your jump rope"));
-            DrawPile.Push(new Nope(Game, _cardIndex++, "The Pope of Nope has spoken"));
-            DrawPile.Push(new Nope(Game, _cardIndex++, "Put on your necktie of nope. Holy smokes you look good."));
+            DrawPile.Push(new Nope(Game, _cardIndex++, "Feed your opponent a nope sandwich with extra Nopesause"));
+            DrawPile.Push(new Nope(Game, _cardIndex++, "Win the Nopebell peace prize"));
+            DrawPile.Push(new Nope(Game, _cardIndex++, "A Jackanope bounds into the room"));
+            DrawPile.Push(new Nope(Game, _cardIndex++, "Nopestradamus speaks the truth"));
+            DrawPile.Push(new Nope(Game, _cardIndex++, "A nope ninja delivers a wicked dragon kick"));
         }
 
         private void AddSeeTheFutureCards()
         {
+            //todo change text
             DrawPile.Push(new SeeTheFuture(Game, _cardIndex++, "Attach a butterfly to your genitals and see where it takes you in life"));
             DrawPile.Push(new SeeTheFuture(Game, _cardIndex++, "Drink an entire bottle of bald eagle tears"));
             DrawPile.Push(new SeeTheFuture(Game, _cardIndex++, "Discover a boob wizard living in your boobs. Listen to the secrets he tells."));
@@ -115,6 +117,7 @@ namespace ExplodingKittensLib.Models
 
         private void AddShuffleCards()
         {
+            //todo change text
             DrawPile.Push(new Shuffle(Game, _cardIndex++, "Discover you have a toilet werewolf"));
             DrawPile.Push(new Shuffle(Game, _cardIndex++, "An asparagus bum dragon appears"));
             DrawPile.Push(new Shuffle(Game, _cardIndex++, "A kraken emerges and he's super upset"));
@@ -123,18 +126,18 @@ namespace ExplodingKittensLib.Models
 
         private void AddFavorCards()
         {
-            DrawPile.Push(new Favor(Game, _cardIndex++, "\"Baby Robin\" your best friend"));
-            DrawPile.Push(new Favor(Game, _cardIndex++, "Teach someone a new palindrome"));
-            DrawPile.Push(new Favor(Game, _cardIndex++, "Fall so deeply in love it you gives you both crazy diarrhea"));
-            DrawPile.Push(new Favor(Game, _cardIndex++, "Donate your body to cat science"));
+            DrawPile.Push(new Favor(Game, _cardIndex++, "Take your friends beard-sailing on your beard boat"));
+            DrawPile.Push(new Favor(Game, _cardIndex++, "Ask for a back hair shampoo"));
+            DrawPile.Push(new Favor(Game, _cardIndex++, "Get inslaved by party squirrels"));
+            DrawPile.Push(new Favor(Game, _cardIndex++, "Rub peanut butter on your belly button and make some new friends"));
         }
 
         private void AddAttackCards()
         {
-            DrawPile.Push(new Attack(Game, _cardIndex++, "Whip out your rubber dick collection"));
-            DrawPile.Push(new Attack(Game, _cardIndex++, "Grow a magnificent squid arm and start slapping fat babies"));
-            DrawPile.Push(new Attack(Game, _cardIndex++, "Release the torture bunnies"));
-            DrawPile.Push(new Attack(Game, _cardIndex++, "Unleash some adorable penguin diarrhea"));
+            DrawPile.Push(new Attack(Game, _cardIndex++, "Unleash the catterwocky"));
+            DrawPile.Push(new Attack(Game, _cardIndex++, "Deploy the thousand-year back hair"));
+            DrawPile.Push(new Attack(Game, _cardIndex++, "Awaken the bear-o-dactyl"));
+            DrawPile.Push(new Attack(Game, _cardIndex++, "Fire the crab-a-pult"));
         }
 
         public ActionResponse Print()
