@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bebfb638bff94c2ba166079a003222eb" Name="Diagram1">
-        <EntityTypeShape EntityType="KittensCardGameModel.Card" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="KittensCardGameModel.Game" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KittensCardGameModel.Card" Width="1.5" PointX="5.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KittensCardGameModel.Game" Width="1.5" PointX="4.75" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="KittensCardGameModel.Hand" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="KittensCardGameModel.Player" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="KittensCardGameModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KittensCardGameModel.Player" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KittensCardGameModel.sysdiagram" Width="1.5" PointX="7.125" PointY="2.75" IsExpanded="true" />
         <AssociationConnector Association="KittensCardGameModel.FK_Hand_Card" ManuallyRouted="false" />
         <AssociationConnector Association="KittensCardGameModel.FK_Game_Players" ManuallyRouted="false" />
         <AssociationConnector Association="KittensCardGameModel.FK_Hand_Players" ManuallyRouted="false" />
