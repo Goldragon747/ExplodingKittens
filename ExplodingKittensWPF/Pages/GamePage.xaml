@@ -5,33 +5,97 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ExplodingKittensWPF.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="350" d:DesignWidth="525"
+      d:DesignHeight="600" d:DesignWidth="1050"
       Title="GamePage">
-
-    <Grid Background="LightSeaGreen">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Image  Stretch="Fill" Source="/ExplodingKittensWPF;component/Assets/GameScreen/game_bg.png"/>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Width="300px">Messages:</Label>
-                <Label>Turns Remaining:</Label>
+                <Label FontSize="16" Width="600px">Messages:</Label>
+                <Label FontSize="16">Turns Remaining:</Label>
                 </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button>Draw</Button>
-                <Label>Active Card</Label>
-                <Button>Play</Button>
+                <Button Height="50" Width="150">Draw</Button>
+                <Label Height="150" Width="100" HorizontalContentAlignment="Center">Active Card</Label>
+                <Button Height="50" Width="150">Play</Button>
             </StackPanel>
             <StackPanel x:Name="HandDisplay">
-                <Label>This is where the cards go</Label>
+                <Grid ShowGridLines="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Row0 Column0" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row0 Column1" Grid.Row="0" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row0 Column2" Grid.Row="0" Grid.Column="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row0 Column3" Grid.Row="0" Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row0 Column4" Grid.Row="0" Grid.Column="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row0 Column5" Grid.Row="0" Grid.Column="5" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row1 Column0" Grid.Row="1" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row1 Column1" Grid.Row="1" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row1 Column2" Grid.Row="1" Grid.Column="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row1 Column3" Grid.Row="1" Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row1 Column4" Grid.Row="1" Grid.Column="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row1 Column5" Grid.Row="1" Grid.Column="5" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row2 Column0" Grid.Row="2" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row2 Column1" Grid.Row="2" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row2 Column2" Grid.Row="2" Grid.Column="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row2 Column3" Grid.Row="2" Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row2 Column4" Grid.Row="2" Grid.Column="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row2 Column5" Grid.Row="2" Grid.Column="5" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row3 Column0" Grid.Row="3" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row3 Column1" Grid.Row="3" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row3 Column2" Grid.Row="3" Grid.Column="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row3 Column3" Grid.Row="3" Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row3 Column4" Grid.Row="3" Grid.Column="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row3 Column5" Grid.Row="3" Grid.Column="5" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row4 Column0" Grid.Row="4" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row4 Column1" Grid.Row="4" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row4 Column2" Grid.Row="4" Grid.Column="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row4 Column3" Grid.Row="4" Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row4 Column4" Grid.Row="4" Grid.Column="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row4 Column5" Grid.Row="4" Grid.Column="5" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row5 Column0" Grid.Row="5" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row5 Column1" Grid.Row="5" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row5 Column2" Grid.Row="5" Grid.Column="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row5 Column3" Grid.Row="5" Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row5 Column4" Grid.Row="5" Grid.Column="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Row5 Column5" Grid.Row="5" Grid.Column="5" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                </Grid>
             </StackPanel>
             <StackPanel x:Name="NopeTrack" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label>Nope: </Label>
+                <Label VerticalContentAlignment="Center" FontSize="16">Nope Track:</Label>
                 <Button>P1</Button>
                 <Button>P2</Button>
                 <Button>P3</Button>
                 <Button>P4</Button>
                 <Button>P5</Button>
             </StackPanel>
-            
-          
         </StackPanel>
     </Grid>
 </Page>
