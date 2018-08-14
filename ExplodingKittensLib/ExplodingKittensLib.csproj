@@ -49,6 +49,7 @@
     <Compile Include="Models\Cards\HairyPotatoCat.cs" />
     <Compile Include="Models\Cards\RainbowRalphingCat.cs" />
     <Compile Include="Models\Cards\Tacocat.cs" />
+    <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\Enums\CardType.cs" />
     <Compile Include="Models\Cards\Defuse.cs" />
     <Compile Include="Models\Cards\ExplodingKitten.cs" />
@@ -74,9 +75,7 @@
     <Compile Include="Models\Commands\SelectCommand.cs" />
     <Compile Include="Models\Commands\StatusCommand.cs" />
     <Compile Include="Models\Commands\UnknownCommand.cs" />
-    <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GameLoop.cs" />
     <Compile Include="Models\Hand.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Players\NullPlayer.cs" />
