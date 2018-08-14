@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\VictoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\GamePage.xaml.cs">
@@ -80,6 +84,9 @@
     </Compile>
     <Compile Include="Pages\TitlePage.xaml.cs">
       <DependentUpon>TitlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VictoryPage.xaml.cs">
+      <DependentUpon>VictoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -121,6 +128,9 @@
     <Resource Include="Assets\TitleScreen\title_play.png" />
     <Resource Include="Assets\TitleScreen\title_players.png" />
     <Resource Include="Assets\TitleScreen\title_play_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\VictoryScreen\implodingkittens.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

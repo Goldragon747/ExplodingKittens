@@ -1,5 +1,4 @@
-﻿using ExplodingKittensWPF.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExplodingKittensWPF
+namespace ExplodingKittensWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for VictoryPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class VictoryPage : Page
     {
-        public MainWindow()
+        public VictoryPage()
         {
             InitializeComponent();
-            //ExplodingKittensFrame.Navigate(new GamePage());
-            //ExplodingKittensFrame.Navigate(new TitlePage());
-            ExplodingKittensFrame.Navigate(new VictoryPage());
         }
     }
 }
