@@ -65,8 +65,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\GamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TitlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TitlePage.xaml.cs">
+      <DependentUpon>TitlePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -91,6 +105,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\game_bg.png" />
+    <Resource Include="Assets\TitleScreen\title_bg.png" />
+    <Resource Include="Assets\TitleScreen\title_expansions.png" />
+    <Resource Include="Assets\TitleScreen\title_imploding_checked.png" />
+    <Resource Include="Assets\TitleScreen\title_imploding_checked_hover.png" />
+    <Resource Include="Assets\TitleScreen\title_imploding_unchecked.png" />
+    <Resource Include="Assets\TitleScreen\title_imploding_unchecked_hover.png" />
+    <Resource Include="Assets\TitleScreen\title_instructions.png" />
+    <Resource Include="Assets\TitleScreen\title_instructions_hover.png" />
+    <Resource Include="Assets\TitleScreen\title_load.png" />
+    <Resource Include="Assets\TitleScreen\title_load_hover.png" />
+    <Resource Include="Assets\TitleScreen\title_play.png" />
+    <Resource Include="Assets\TitleScreen\title_players.png" />
+    <Resource Include="Assets\TitleScreen\title_play_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

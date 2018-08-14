@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExplodingKittensWPF"
         mc:Ignorable="d"
-        Title="Exploding Kittens" Height="600" Width="1050">
+        Title="Exploding Kittens" Height="350" Width="525"
+        WindowState="Maximized" ResizeMode="CanMinimize">
     <Frame x:Name="ExplodingKittensFrame"/>
 </Window>
