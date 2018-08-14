@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens.Enums", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensLib", "ExplodingKittensLib\ExplodingKittensLib.csproj", "{149A6ED1-3E91-46BE-B751-430346A68FB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensWPF", "ExplodingKittensWPF\ExplodingKittensWPF.csproj", "{682D52E6-1542-4409-9CA3-3E91CC00CAD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{682D52E6-1542-4409-9CA3-3E91CC00CAD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
