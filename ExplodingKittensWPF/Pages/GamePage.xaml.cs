@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExplodingKittensLib.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace ExplodingKittensWPF.Pages
     /// </summary>
     public partial class GamePage : Page
     {
-        public GamePage()
+        private Game game;
+        public GamePage(int numOfPlayers)
         {
             InitializeComponent();
+            game = new Game(numOfPlayers, false);
+        }
+
+        private void DrawBtn_Click(object sender, RoutedEventArgs e)
+        {
+            game.ActivePlayer.DrawCard();
+        }
+
+        private void PlayBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            game.ActivePlayer.PlayCard();
         }
     }
 }

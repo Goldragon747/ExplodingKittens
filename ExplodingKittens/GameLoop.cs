@@ -52,7 +52,7 @@ namespace ExplodingKittens
 
 				try
 				{
-					Game = new Game(numberOfPlayers, new ConsoleWriter());
+					Game = new Game(numberOfPlayers, new ConsoleWriter(), true);
 
 					Start();
 				}
