@@ -35,8 +35,7 @@ namespace ExplodingKittensWPF.Pages
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            game.ActivePlayer.PlayCard();
+            game.ActivePlayer.PlaySelectedCards();
         }
     }
 }

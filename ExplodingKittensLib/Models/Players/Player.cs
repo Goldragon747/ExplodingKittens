@@ -123,7 +123,13 @@ namespace ExplodingKittensLib.Models.Players
 			return res;
 		}
 
-		public virtual void DiscardCard(Card card)
+        public virtual ActionResponse PlaySelectedCards()
+        {
+            //todo fill this out
+            return null;
+        }
+
+        public virtual void DiscardCard(Card card)
 		{
 			Hand.Cards.Remove(card.Id);
 			_game.Deck.PlayPile.Push(card);
