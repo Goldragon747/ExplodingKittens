@@ -64,5 +64,10 @@ namespace ExplodingKittensWPF.Pages
         {
             ((Image)sender).Source = new BitmapImage(new Uri($"../Assets/TitleScreen/title_load.png", UriKind.Relative));
         }
+
+        private void title_play_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new GamePage());
+        }
     }
 }
