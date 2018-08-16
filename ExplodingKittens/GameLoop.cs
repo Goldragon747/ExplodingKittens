@@ -1,5 +1,6 @@
-﻿using ExplodingKittens.Players;
-using ExplodingKittens.Writers;
+﻿using ExplodingKittensLib.Models.Players;
+using ExplodingKittensLib.Models.Writers;
+using ExplodingKittensLib.Models;
 using System;
 
 namespace ExplodingKittens
@@ -51,7 +52,7 @@ namespace ExplodingKittens
 
 				try
 				{
-					Game = new Game(numberOfPlayers, new ConsoleWriter());
+					Game = new Game(numberOfPlayers, new ConsoleWriter(), true);
 
 					Start();
 				}

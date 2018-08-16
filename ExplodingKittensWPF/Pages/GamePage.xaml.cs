@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExplodingKittensLib.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,41 @@ namespace ExplodingKittensWPF.Pages
     /// </summary>
     public partial class GamePage : Page
     {
-        public GamePage()
+        private Game game;
+        public GamePage(int numOfPlayers)
         {
             InitializeComponent();
+            //game = new Game(numOfPlayers, false);
+            NopeTrack.Visibility = Visibility.Hidden;
+            AddNopeTrackBtns(numOfPlayers);
+        }
+
+        private void AddNopeTrackBtns(int numOfPlayers)
+        {
+            NopeTrack.Children.Clear();
+            for (int i = 0; i < numOfPlayers; i++)
+            {
+                Button b = new Button();
+                b.Content = $"P{i + 1}";
+                b.Click += NopeBtn_Click;
+                NopeTrack.Children.Add(b);
+            }
+        }
+
+        private void DrawBtn_Click(object sender, RoutedEventArgs e)
+        {
+            game.ActivePlayer.DrawCard();
+        }
+
+        private void PlayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            game.ActivePlayer.PlaySelectedCards();
+            NopeTrack.Visibility = Visibility.Visible;
+        }
+
+        private void NopeBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

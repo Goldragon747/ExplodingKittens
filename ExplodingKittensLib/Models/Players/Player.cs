@@ -6,7 +6,7 @@ namespace ExplodingKittensLib.Models.Players
 {
 	public class Player
 	{
-		private Game _game;
+		protected Game _game;
 
 		public Hand Hand { get; set; }
 		public int Id { get; set; }
@@ -22,7 +22,7 @@ namespace ExplodingKittensLib.Models.Players
 			_game = game;
 		}
 
-		public ActionResponse SelectCard(int cardId)
+		public virtual ActionResponse SelectCard(int cardId)
 		{
 			if (cardId <= 0)
 				return new ActionResponse(new Message(Enums.Severity.Error, "You must choose a card to select."));
@@ -40,7 +40,7 @@ namespace ExplodingKittensLib.Models.Players
 			return new ActionResponse(new Message(Enums.Severity.Info, string.Format("Player {0} selected card: {1}", Id, card.ToString())));
 		}
 
-		public ActionResponse DeselectCard(int cardId)
+		public virtual ActionResponse DeselectCard(int cardId)
 		{
 			if (!Hand.Cards.ContainsKey(cardId))
 				return new ActionResponse(new Message(Enums.Severity.Error, "You don't have that card."));
@@ -54,7 +54,7 @@ namespace ExplodingKittensLib.Models.Players
 			return new ActionResponse(new Message(Enums.Severity.Info, string.Format("Player {0} deselected card: {1}", Id, card.ToString())));
 		}
 
-		public void DeselectAllCards()
+		public virtual void DeselectAllCards()
 		{
 			foreach (Card card in Hand.Cards.Values)
 			{
@@ -62,7 +62,7 @@ namespace ExplodingKittensLib.Models.Players
 			}
 		}
 
-		public ActionResponse DrawCard()
+		public virtual ActionResponse DrawCard()
 		{
 			ActionResponse res = new ActionResponse();
 
@@ -84,7 +84,7 @@ namespace ExplodingKittensLib.Models.Players
 			return res;
 		}
 
-		public ActionResponse PlayCard(Card card)
+		public virtual ActionResponse PlayCard(Card card)
 		{
 			return PlayCard(card, new NullPlayer());
 		}
@@ -94,7 +94,7 @@ namespace ExplodingKittensLib.Models.Players
 		/// The effect of the card then takes place.
 		/// </summary>
 		/// <param name="cardId"></param>
-		public ActionResponse PlayCard(Card card, Player player)
+		public virtual ActionResponse PlayCard(Card card, Player player)
 		{
 			ActionResponse res = new ActionResponse();
 
@@ -123,13 +123,19 @@ namespace ExplodingKittensLib.Models.Players
 			return res;
 		}
 
-		public void DiscardCard(Card card)
+        public virtual ActionResponse PlaySelectedCards()
+        {
+            //todo fill this out
+            return null;
+        }
+
+        public virtual void DiscardCard(Card card)
 		{
 			Hand.Cards.Remove(card.Id);
 			_game.Deck.PlayPile.Push(card);
 		}
 
-		public ActionResponse GiveCard(Card card, Player player)
+		public virtual ActionResponse GiveCard(Card card, Player player)
 		{
 			string messageText = string.Format("Player {0} gave player {1} the card {2}", Id, player.Id, card.ToString());
 

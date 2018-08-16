@@ -7,13 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens", "Explodi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens.Tests", "ExplodingKittens.Tests\ExplodingKittens.Tests.csproj", "{9B3ED673-3E7E-4886-979D-912204A3F96C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens.Enums", "ExplodingKittens.Enums\ExplodingKittens.Enums.csproj", "{2B7CCB7B-22EB-48DE-880C-23974D766A08}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensLib", "ExplodingKittensLib\ExplodingKittensLib.csproj", "{149A6ED1-3E91-46BE-B751-430346A68FB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensWPF", "ExplodingKittensWPF\ExplodingKittensWPF.csproj", "{682D52E6-1542-4409-9CA3-3E91CC00CAD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensDal", "ExplodingKittensDal\ExplodingKittensDal.csproj", "{CD7EC039-9CFD-4302-B10F-76FB0EADB2B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExplodingKittensDal", "ExplodingKittensDal\ExplodingKittensDal.csproj", "{CD7EC039-9CFD-4302-B10F-76FB0EADB2B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{9B3ED673-3E7E-4886-979D-912204A3F96C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B3ED673-3E7E-4886-979D-912204A3F96C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B3ED673-3E7E-4886-979D-912204A3F96C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B7CCB7B-22EB-48DE-880C-23974D766A08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B7CCB7B-22EB-48DE-880C-23974D766A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B7CCB7B-22EB-48DE-880C-23974D766A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B7CCB7B-22EB-48DE-880C-23974D766A08}.Release|Any CPU.Build.0 = Release|Any CPU
 		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
