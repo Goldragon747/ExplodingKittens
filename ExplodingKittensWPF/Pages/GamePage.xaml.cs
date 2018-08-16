@@ -25,7 +25,21 @@ namespace ExplodingKittensWPF.Pages
         public GamePage(int numOfPlayers)
         {
             InitializeComponent();
-            game = new Game(numOfPlayers, false);
+            //game = new Game(numOfPlayers, false);
+            NopeTrack.Visibility = Visibility.Hidden;
+            AddNopeTrackBtns(numOfPlayers);
+        }
+
+        private void AddNopeTrackBtns(int numOfPlayers)
+        {
+            NopeTrack.Children.Clear();
+            for (int i = 0; i < numOfPlayers; i++)
+            {
+                Button b = new Button();
+                b.Content = $"P{i + 1}";
+                b.Click += NopeBtn_Click;
+                NopeTrack.Children.Add(b);
+            }
         }
 
         private void DrawBtn_Click(object sender, RoutedEventArgs e)
@@ -36,6 +50,12 @@ namespace ExplodingKittensWPF.Pages
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
             game.ActivePlayer.PlaySelectedCards();
+            NopeTrack.Visibility = Visibility.Visible;
+        }
+
+        private void NopeBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

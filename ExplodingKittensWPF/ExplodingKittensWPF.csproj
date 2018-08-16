@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\VictoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +88,9 @@
     </Compile>
     <Compile Include="Pages\TitlePage.xaml.cs">
       <DependentUpon>TitlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VictoryPage.xaml.cs">
       <DependentUpon>VictoryPage.xaml</DependentUpon>
