@@ -77,7 +77,7 @@ namespace ExplodingKittensLib.Models.Players
 
         public override ActionResponse PlaySelectedCards()
         {
-            //todo fill this out
+            //todo fill out this method
             return null;
         }
 
