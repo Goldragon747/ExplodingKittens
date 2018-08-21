@@ -16,6 +16,7 @@ namespace ExplodingKittensLib.Models
 
         public override Stack<Card> GetDefuseCards()
         {
+            //todo fill out this method
             throw new NotImplementedException();
         }
     }

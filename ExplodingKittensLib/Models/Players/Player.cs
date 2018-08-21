@@ -125,7 +125,7 @@ namespace ExplodingKittensLib.Models.Players
 
         public virtual ActionResponse PlaySelectedCards()
         {
-            //todo fill this out
+            //todo fill out this method
             return null;
         }
 
