@@ -15,6 +15,19 @@
             <Image x:Name="title_instructions" Source="/ExplodingKittensWPF;component/Assets/TitleScreen/title_instructions.png" Width="300" Height="150" Canvas.Left="179" Canvas.Top="321" Stretch="Fill" MouseEnter="title_instructions_MouseEnter" MouseLeave="title_instructions_MouseLeave"/>
             <Image x:Name="title_play" Source="/ExplodingKittensWPF;component/Assets/TitleScreen/title_play.png" Width="300" Height="150" Canvas.Left="806" Canvas.Top="210" Stretch="Fill" MouseEnter="title_play_MouseEnter" MouseLeave="title_play_MouseLeave" MouseLeftButtonDown="title_play_MouseLeftButtonDown"/>
             <Image x:Name="title_load" Source="/ExplodingKittensWPF;component/Assets/TitleScreen/title_load.png" Width="300" Stretch="Fill" Canvas.Left="809" Canvas.Top="319" MouseEnter="title_load_MouseEnter" MouseLeave="title_load_MouseLeave"/>
+
+            <StackPanel Canvas.Left="482" Canvas.Top="435">
+                <StackPanel Orientation="Horizontal" Width="320">
+                    <Label Foreground="White" FontSize="16px" HorizontalAlignment="Left" Width="300"># of Players:</Label>
+                    <Label Foreground="White" FontSize="16px" HorizontalAlignment="Right" Width="20" Content="{Binding ElementName=title_slider_players, Path=Value}"></Label>
+                </StackPanel>
+                <Slider x:Name="title_slider_players" TickFrequency="1" TickPlacement="TopLeft" Width="320" IsSnapToTickEnabled="True" Maximum="5" Minimum="2" ValueChanged="title_slider_players_ValueChanged" AutoToolTipPlacement="TopLeft" ToolTip="2 3 4 5" ></Slider>
+                <TextBox x:Name="title_textbox_player_1" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
+                <TextBox x:Name="title_textbox_player_2" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
+                <TextBox x:Name="title_textbox_player_3" Visibility="Collapsed" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
+                <TextBox x:Name="title_textbox_player_4" Visibility="Collapsed" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
+                <TextBox x:Name="title_textbox_player_5" Visibility="Collapsed" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
+            </StackPanel>
         </Canvas>
     </Grid>
 </Page>
