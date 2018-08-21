@@ -117,5 +117,10 @@ namespace ExplodingKittensWPF.Pages
             }
             this.NavigationService.Navigate(new GamePage(playerCount, players));
         }
+
+        private void title_instructions_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new InstructionsPage());
+        }
     }
 }

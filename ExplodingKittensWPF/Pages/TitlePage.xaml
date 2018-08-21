@@ -12,7 +12,7 @@
         <Canvas>
             <Image x:Name="title_expansions" Source="/ExplodingKittensWPF;component/Assets/TitleScreen/title_expansions.png" Stretch="Fill" Canvas.Left="181" Canvas.Top="180" Width="300" Height="150"/>
             <Image x:Name="title_imploding" Source="/ExplodingKittensWPF;component/Assets/TitleScreen/title_imploding_unchecked.png" Stretch="Fill" Width="300" Height="150" Canvas.Left="187" Canvas.Top="228" MouseEnter="title_imploding_MouseEnter" MouseLeave="title_imploding_MouseLeave"/>
-            <Image x:Name="title_instructions" Source="/ExplodingKittensWPF;component/Assets/TitleScreen/title_instructions.png" Width="300" Height="150" Canvas.Left="179" Canvas.Top="321" Stretch="Fill" MouseEnter="title_instructions_MouseEnter" MouseLeave="title_instructions_MouseLeave"/>
+            <Image x:Name="title_instructions" Source="/ExplodingKittensWPF;component/Assets/TitleScreen/title_instructions.png" Width="300" Height="150" Canvas.Left="179" Canvas.Top="321" Stretch="Fill" MouseEnter="title_instructions_MouseEnter" MouseLeave="title_instructions_MouseLeave" MouseDown="title_instructions_MouseDown"/>
             <Image x:Name="title_play" Source="/ExplodingKittensWPF;component/Assets/TitleScreen/title_play.png" Width="300" Height="150" Canvas.Left="806" Canvas.Top="210" Stretch="Fill" MouseEnter="title_play_MouseEnter" MouseLeave="title_play_MouseLeave" MouseLeftButtonDown="title_play_MouseLeftButtonDown"/>
             <Image x:Name="title_load" Source="/ExplodingKittensWPF;component/Assets/TitleScreen/title_load.png" Width="300" Stretch="Fill" Canvas.Left="809" Canvas.Top="319" MouseEnter="title_load_MouseEnter" MouseLeave="title_load_MouseLeave"/>
 
