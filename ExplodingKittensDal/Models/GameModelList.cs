@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExplodingKittensDal.Models
+namespace ExpKittensDAL
 {
-    class GameModelList
+    public class GameModelList
     {
         public List<Game> GameList { get; set; }
         public GameModelList()

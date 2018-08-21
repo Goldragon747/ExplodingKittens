@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExplodingKittensDal.Models
+namespace ExpKittensDAL
 {
     public class Card
     {

@@ -67,7 +67,7 @@ namespace ExplodingKittensWPF.Pages
 
         private void title_play_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.NavigationService.Navigate(new GamePage());
+            this.NavigationService.Navigate(new GamePage(2));
         }
     }
 }
