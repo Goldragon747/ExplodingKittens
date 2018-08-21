@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ExplodingKittens</RootNamespace>
     <AssemblyName>ExplodingKittens</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -41,57 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cards\Attack.cs" />
-    <Compile Include="Cards\BikiniCat.cs" />
-    <Compile Include="Cards\Card.cs" />
-    <Compile Include="Cards\Defuse.cs" />
-    <Compile Include="Cards\ExplodingKitten.cs" />
-    <Compile Include="Cards\Favor.cs" />
-    <Compile Include="Cards\ICard.cs" />
-    <Compile Include="Cards\MommaCat.cs" />
-    <Compile Include="Cards\Nope.cs" />
-    <Compile Include="Cards\NullCard.cs" />
-    <Compile Include="Cards\Pair.cs" />
-    <Compile Include="Cards\SeeTheFuture.cs" />
-    <Compile Include="Cards\ShrodingerCat.cs" />
-    <Compile Include="Cards\Shuffle.cs" />
-    <Compile Include="Cards\ShyBladderCat.cs" />
-    <Compile Include="Cards\Skip.cs" />
-    <Compile Include="Cards\ZombieCat.cs" />
-    <Compile Include="Commands\DeckCommand.cs" />
-    <Compile Include="Commands\DeselectCommand.cs" />
-    <Compile Include="Commands\DrawCommand.cs" />
-    <Compile Include="Commands\GiveCommand.cs" />
-    <Compile Include="Commands\HandCommand.cs" />
-    <Compile Include="Commands\HelpCommand.cs" />
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\PlayCommand.cs" />
-    <Compile Include="Commands\QuitCommand.cs" />
-    <Compile Include="Commands\SelectCommand.cs" />
-    <Compile Include="Commands\StatusCommand.cs" />
-    <Compile Include="Commands\UnknownCommand.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="Players\NullPlayer.cs" />
-    <Compile Include="ActionResponse.cs" />
-    <Compile Include="Utilities.cs" />
-    <Compile Include="Writers\ConsoleWriter.cs" />
-    <Compile Include="Deck.cs" />
-    <Compile Include="Game.cs" />
     <Compile Include="GameLoop.cs" />
-    <Compile Include="Hand.cs" />
-    <Compile Include="Writers\IOutputWriter.cs" />
-    <Compile Include="Players\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Writers\MemoryWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExplodingKittens.Enums\ExplodingKittens.Enums.csproj">
-      <Project>{2b7ccb7b-22eb-48de-880c-23974d766a08}</Project>
-      <Name>ExplodingKittens.Enums</Name>
+    <ProjectReference Include="..\ExplodingKittensLib\ExplodingKittensLib.csproj">
+      <Project>{149a6ed1-3e91-46be-b751-430346a68fb8}</Project>
+      <Name>ExplodingKittensLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\VictoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\GamePage.xaml.cs">
@@ -80,6 +84,9 @@
     </Compile>
     <Compile Include="Pages\TitlePage.xaml.cs">
       <DependentUpon>TitlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VictoryPage.xaml.cs">
+      <DependentUpon>VictoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -124,6 +131,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Cards\demo-card.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExplodingKittensLib\ExplodingKittensLib.csproj">
+      <Project>{149A6ED1-3E91-46BE-B751-430346A68FB8}</Project>
+      <Name>ExplodingKittensLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

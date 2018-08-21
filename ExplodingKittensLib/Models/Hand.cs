@@ -9,8 +9,9 @@ namespace ExplodingKittensLib.Models
 	public class Hand
 	{
 		public Dictionary<int, Card> Cards { get; set; }
+		public Dictionary<int, Card> SelectedCards { get; set; }
 
-		public int CardsInHand { get { return Cards.Count; } }
+        public int CardsInHand { get { return Cards.Count; } }
 
 		public bool HasSelectedCard
 		{

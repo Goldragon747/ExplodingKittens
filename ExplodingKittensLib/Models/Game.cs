@@ -74,8 +74,8 @@ namespace ExplodingKittensLib.Models
 			return (Players.Find(player).Next ?? Players.First).Value;
 		}
 
-		public Game(int numberOfPlayers)
-			: this(numberOfPlayers, new ConsoleWriter())
+		public Game(int numberOfPlayers, bool isConsoleApp)
+			: this(numberOfPlayers, new ConsoleWriter(), isConsoleApp)
 		{
 		}
 
@@ -83,7 +83,7 @@ namespace ExplodingKittensLib.Models
 		/// Create the only instance of the game class
 		/// </summary>
 		/// <param name="numberOfPlayers">The number of players in the game (between 2 and 5 inclusive)</param>
-		public Game(int numberOfPlayers, IOutputWriter writer)
+		public Game(int numberOfPlayers, IOutputWriter writer, bool isConsoleApp)
 		{
 			if (numberOfPlayers < 2)
 				throw new ArgumentException("The number of players must be at least two.");
@@ -91,7 +91,7 @@ namespace ExplodingKittensLib.Models
 				throw new ArgumentException("The number of players must be at most five.");
 
 			Writer = writer;
-			Setup(numberOfPlayers);
+			Setup(numberOfPlayers, isConsoleApp);
 			ListHands();
 			Writer.WriteLine(Deck.ToString());
 			CommandList = GetCommandList();
@@ -219,7 +219,6 @@ namespace ExplodingKittensLib.Models
 			Deck.Shuffle();
 			DealInitialCards();
 			DealDefuseCards();
-			Deck.AddExplodingKittenCards();
 			Deck.Shuffle();
 		}
 
@@ -245,7 +244,7 @@ namespace ExplodingKittensLib.Models
 		private void DealInitialCards()
 		{
 			int initialCards = 4;
-
+            //todo check if exploding kitten card
 			foreach (Player player in Players)
 			{
 				for (int dealIndex = 0; dealIndex < initialCards; dealIndex++)
@@ -280,11 +279,18 @@ namespace ExplodingKittensLib.Models
 		/// Add the players, new up the deck and deal the cards
 		/// </summary>
 		/// <param name="numberOfPlayers">The number of players in the game</param>
-		private void Setup(int numberOfPlayers)
+		private void Setup(int numberOfPlayers, bool isConsoleApp)
 		{
 			AddPlayers(numberOfPlayers);
-			Deck = new Deck(this, numberOfPlayers);
-			Deal();
+            if (isConsoleApp)
+            {
+			    Deck = new ConsoleDeck(this, numberOfPlayers);
+            }
+            else
+            {
+                Deck = new WpfDeck(this, numberOfPlayers);
+            }
+            Deal();
 		}
 
 		/// <summary>
