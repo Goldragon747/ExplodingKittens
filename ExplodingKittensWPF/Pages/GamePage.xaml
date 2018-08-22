@@ -19,7 +19,7 @@
             <StackPanel Orientation="Horizontal">
                 <Label FontSize="16" Width="600px">Messages:</Label>
                 <Label FontSize="16">Turns Remaining:</Label>
-                </StackPanel>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="DrawBtn" Height="50" Width="150" Margin="0 0 20 0" Click="DrawBtn_Click">Draw</Button>
                 <Grid Margin="20 0 20 0">
@@ -36,7 +36,7 @@
                 <Button x:Name="PlayBtn" Height="50" Width="150" Margin="20 0 0 0" Click="PlayBtn_Click">Play</Button>
             </StackPanel>
             <StackPanel x:Name="HandDisplay">
-                <Grid ShowGridLines="True">
+                <Grid x:Name="playerHand" ShowGridLines="True">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
