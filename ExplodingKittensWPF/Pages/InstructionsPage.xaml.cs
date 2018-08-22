@@ -1,5 +1,4 @@
-﻿using ExplodingKittensWPF.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExplodingKittensWPF
+namespace ExplodingKittensWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for InstructionsPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class InstructionsPage : Page
     {
-        public MainWindow()
+        public InstructionsPage()
         {
             InitializeComponent();
-            //ExplodingKittensFrame.Navigate(new GamePage(3));
-            ExplodingKittensFrame.Navigate(new TitlePage());
-            //ExplodingKittensFrame.Navigate(new VictoryPage());
+        }
+        private void instructions_back_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new TitlePage());
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using ExplodingKittensLib.Models;
+﻿
+using ExplodingKittensLib.Models;
+using ExplodingKittensLib.Models.Cards;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +24,7 @@ namespace ExplodingKittensWPF.Pages
     public partial class GamePage : Page
     {
         private Game game;
-        public GamePage(int numOfPlayers)
+        public GamePage(int numOfPlayers, string[] playerNames)
         {
             InitializeComponent();
             //game = new Game(numOfPlayers, false);
@@ -55,7 +57,16 @@ namespace ExplodingKittensWPF.Pages
 
         private void NopeBtn_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private void showHand()
+        {
+            Hand activePlayerHand = game.ActivePlayer.Hand;
+            foreach (KeyValuePair<int, Card> card in activePlayerHand.Cards)
+            {
+               
+            }
         }
     }
 }

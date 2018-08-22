@@ -65,9 +65,62 @@ namespace ExplodingKittensWPF.Pages
             ((Image)sender).Source = new BitmapImage(new Uri($"../Assets/TitleScreen/title_load.png", UriKind.Relative));
         }
 
+        private void title_slider_players_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            try
+            {
+                Slider slider = (Slider)sender;
+                switch (slider.Value)
+                {
+                    case 2:
+                        title_textbox_player_3.Visibility = Visibility.Collapsed;
+                        title_textbox_player_4.Visibility = Visibility.Collapsed;
+                        title_textbox_player_5.Visibility = Visibility.Collapsed;
+                        break;
+                    case 3:
+                        title_textbox_player_3.Visibility = Visibility.Visible;
+                        title_textbox_player_4.Visibility = Visibility.Collapsed;
+                        title_textbox_player_5.Visibility = Visibility.Collapsed;
+                        break;
+                    case 4:
+                        title_textbox_player_3.Visibility = Visibility.Visible;
+                        title_textbox_player_4.Visibility = Visibility.Visible;
+                        title_textbox_player_5.Visibility = Visibility.Collapsed;
+                        break;
+                    case 5:
+                        title_textbox_player_3.Visibility = Visibility.Visible;
+                        title_textbox_player_4.Visibility = Visibility.Visible;
+                        title_textbox_player_5.Visibility = Visibility.Visible;
+                        break;
+
+                }
+            }
+            catch (Exception) { }
+        }
         private void title_play_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.NavigationService.Navigate(new GamePage());
+            int playerCount = (int)title_slider_players.Value;
+            string[] players = new string[playerCount];
+            players[0] = title_textbox_player_1.Text == "" ? "Player 1" : title_textbox_player_1.Text;
+            players[1] = title_textbox_player_2.Text == "" ? "Player 2" : title_textbox_player_2.Text;
+            if(playerCount > 2)
+            {
+                players[2] = title_textbox_player_3.Text == "" ? "Player 3" : title_textbox_player_3.Text;
+            }
+            if(playerCount > 3)
+            {
+                players[3] = title_textbox_player_4.Text == "" ? "Player 4" : title_textbox_player_4.Text;
+            }
+            if(playerCount > 3)
+            {
+                players[4] = title_textbox_player_5.Text == "" ? "Player 5" : title_textbox_player_5.Text;
+            }
+            this.NavigationService.Navigate(new GamePage(playerCount, players));
+        }
+
+        private void title_instructions_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new InstructionsPage());
         }
     }
 }

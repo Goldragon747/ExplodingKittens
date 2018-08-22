@@ -1,13 +1,16 @@
-﻿using System;
+﻿using ExpKittensDAL;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace ExplodingKittensDal.Models
+namespace ServiceLayer.Models
 {
-    class PlayerModelList
+    public class EKPlayerModelList
     {
         public List<Player> PlayerList { get; set; }
-        public PlayerModelList()
+        public EKPlayerModelList()
         {
             PlayerList = new List<Player>();
         }
