@@ -14,7 +14,12 @@ namespace ExplodingKittensLib.Models.Cards
 		{
 			return string.Format("{0:00}. {1} {{{2}}}", Id, Name, Explanation);
 		}
-
+        /// <summary>
+        /// checks to see if the card has been defused this turn or not
+        /// If it has then  allows player to put the card back
+        /// else Player is eliminted
+        /// </summary>
+        /// <returns>An actionResponse called res</returns>
 		public override ActionResponse Play()
 		{
 			ActionResponse res = new ActionResponse();
@@ -37,7 +42,11 @@ namespace ExplodingKittensLib.Models.Cards
 
 			return res;
 		}
-
+        /// <summary>
+        /// Prevents the wrong ActionReponse from being done
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>an Excepton</returns>
 		public override ActionResponse Play(Player player)
 		{
 			throw new System.NotImplementedException();
