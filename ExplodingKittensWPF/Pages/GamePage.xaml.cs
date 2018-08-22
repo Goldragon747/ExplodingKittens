@@ -72,10 +72,8 @@ namespace ExplodingKittensWPF.Pages
                         convertedImage = new System.Windows.Controls.Image { Source = decoder.Frames[0] };
                     }
                 }
-                catch (Exception ex)
-                {
-
-                }
+                catch (Exception) { }
+               
                 playerHand.Children.Add(convertedImage);
                 if (column == 5)
                 {
