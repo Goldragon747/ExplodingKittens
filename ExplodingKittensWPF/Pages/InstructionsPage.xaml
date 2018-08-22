@@ -9,7 +9,8 @@
       Title="InstructionsPage">
 
     <Grid>
-        <ScrollViewer>
+        <Button VerticalAlignment="Top" x:Name="instructions_back" MinWidth="200" Height="50" Background="DarkRed" Foreground="White" PreviewMouseDown="instructions_back_MouseDown">Back</Button>
+        <ScrollViewer Margin="0 50 0 0" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
             <Image Source="/ExplodingKittensWPF;component/Assets/InstructionsScreen/instructions.png"></Image>
         </ScrollViewer>
     </Grid>

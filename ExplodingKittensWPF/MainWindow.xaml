@@ -7,5 +7,5 @@
         mc:Ignorable="d"
         Title="Exploding Kittens" Height="350" Width="525"
         WindowState="Maximized" ResizeMode="CanMinimize">
-    <Frame x:Name="ExplodingKittensFrame"/>
+    <Frame x:Name="ExplodingKittensFrame" NavigationUIVisibility="Hidden"/>
 </Window>
