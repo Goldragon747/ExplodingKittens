@@ -218,7 +218,7 @@ namespace ExplodingKittensLib.Models
 			Console.WriteLine("Dealing cards...\n");
 			Deck.Shuffle();
 			DealInitialCards();
-			DealDefuseCards();
+			//DealDefuseCards();
 			Deck.Shuffle();
 		}
 
