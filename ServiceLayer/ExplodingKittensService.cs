@@ -47,28 +47,29 @@ namespace ServiceLayer
                 return false;
             }
         }
-            public void addToTable(string id, string tag, string content)
+        public void addCardToTable(int cardID, string flavorText, string text, string title)
+        {
+            using (var db = new Pro250_KittensEntities())
             {
-                //using (var db = new Pro250_KittensEntities())
-                //{
-                //    db.Stored_Elements.Add(new Stored_Elements()
-                //    {
-                //        TagIndex = id,
-                //        Tag = tag,
-                //        TagContent = content
-                //    });
-                //    db.SaveChanges();
-                //}
-            }
-            public void Update(string id, string content)
-            {
-                //using (var db = new Pro250_KittensEntities())
-                //{
-                //    var element = db.Stored_Elements.Where(x => x.TagIndex == id).First();
-                //    element.TagContent = content;
-                //    db.SaveChanges();
-                //}
+                db.Cards.Add(new Card()
+                {
+                    CardID = cardID,
+                    Flavor_Text = flavorText,
+                    Text = text,
+                    Title = title
+                });
+                db.SaveChanges();
             }
         }
+        public void Update(string id, string content)
+        {
+            //using (var db = new Pro250_KittensEntities())
+            //{
+            //    var element = db.Stored_Elements.Where(x => x.TagIndex == id).First();
+            //    element.TagContent = content;
+            //    db.SaveChanges();
+            //}
+        }
     }
+}
 
