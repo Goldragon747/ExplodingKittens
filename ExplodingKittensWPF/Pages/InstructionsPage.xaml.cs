@@ -24,5 +24,9 @@ namespace ExplodingKittensWPF.Pages
         {
             InitializeComponent();
         }
+        private void instructions_back_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new TitlePage());
+        }
     }
 }

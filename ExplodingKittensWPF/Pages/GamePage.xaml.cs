@@ -1,4 +1,5 @@
-﻿using ExplodingKittensLib.Models;
+﻿
+using ExplodingKittensLib.Models;
 using ExplodingKittensLib.Models.Cards;
 using System;
 using System.Collections.Generic;
