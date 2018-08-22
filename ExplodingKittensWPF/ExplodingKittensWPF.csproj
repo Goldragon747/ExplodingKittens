@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Assets\favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -70,18 +73,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\InstructionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\TitlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\VictoryPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InstructionsPage.xaml.cs">
+      <DependentUpon>InstructionsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TitlePage.xaml.cs">
       <DependentUpon>TitlePage.xaml</DependentUpon>
@@ -134,10 +144,13 @@
     <Resource Include="Assets\Cards\demo-card.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExplodingKittensLib\ExplodingKittensLib.csproj">
-      <Project>{149A6ED1-3E91-46BE-B751-430346A68FB8}</Project>
-      <Name>ExplodingKittensLib</Name>
-    </ProjectReference>
+    <Resource Include="Assets\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\VictoryScreen\implodingkittens.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\InstructionsScreen\instructions.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,4 @@
-﻿using ExpKittensDAL;
+﻿using ExplodingKittensDAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +11,19 @@ namespace ExplodingKittensDAL
     {
         public CardModelList GetAllCards()
         {
-            CardModelList editableList = new CardModelList();
+            CardModelList cardList = new CardModelList();
             using (var db = new Pro250_KittensEntities())
             {
-                var query = db.Stored_Elements.Select(x => x);
-                var Stored_Elements_List = query.ToList();
-                Stored_Elements_List.ForEach(editableDetail =>
-                   editableList.EditableDetailsList.Add(
-                        new EditableModel()
+                var query = db.Cards.Select(x => x);
+                var Cards_List = query.ToList();
+                Cards_List.ForEach(cardDetail =>
+                   cardList.CardList.Add(
+                        new Card()
                         {
-                            Tag = editableDetail.Tag,
-                            TagContent = editableDetail.TagContent,
-                            TagIndex = editableDetail.TagIndex
+                            CardID = cardDetail.CardID
                         }));
             }
-            return editableList;
+            return cardList;
         }
     }
 

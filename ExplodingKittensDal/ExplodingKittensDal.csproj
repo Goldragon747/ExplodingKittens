@@ -53,19 +53,19 @@
       <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ExplodingKittensEntities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>ExplodingKittensEntities.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ExplodingKittensEntities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ExplodingKittensEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ExplodingKittensService.cs" />
     <Compile Include="Game.cs">
@@ -74,14 +74,6 @@
     <Compile Include="Hand.cs">
       <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Card.cs" />
-    <Compile Include="Models\CardModelList.cs" />
-    <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GameModelList.cs" />
-    <Compile Include="Models\Hand.cs" />
-    <Compile Include="Models\HandModelList.cs" />
-    <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\PlayerModelList.cs" />
     <Compile Include="Player.cs">
       <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
     </Compile>
@@ -91,12 +83,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ExplodingKittensEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ExplodingKittensEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
     <None Include="ExplodingKittensEntities.edmx.diagram">
       <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
@@ -104,19 +90,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExplodingKittensEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ExplodingKittensEntities.Context.cs</LastGenOutput>
-      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
-    </Content>
-    <Content Include="ExplodingKittensEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
-      <LastGenOutput>ExplodingKittensEntities.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <EntityDeploy Include="ExplodingKittensEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ExplodingKittensEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExplodingKittensEntities.Context.tt">
+      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ExplodingKittensEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ExplodingKittensEntities.tt">
+      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ExplodingKittensEntities.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
