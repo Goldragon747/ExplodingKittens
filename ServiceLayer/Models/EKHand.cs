@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace ExpKittensDAL
+namespace ServiceLayer.Models
 {
-    public class Hand
+    public class EKHand
     {
         public int HandID { get; set; }
         public int PlayerID { get; set; }

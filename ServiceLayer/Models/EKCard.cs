@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace ExpKittensDAL
+namespace ServiceLayer.Models
 {
-    public class Card
+    public class EKCard
     {
         public int CardID { get; set; }
         public string Title { get; set; }

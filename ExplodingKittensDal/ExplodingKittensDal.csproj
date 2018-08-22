@@ -53,21 +53,20 @@
       <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ExplodingKittensEntities.Context.cs">
-      <DependentUpon>ExplodingKittensEntities.Context.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExplodingKittensEntities.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="ExplodingKittensEntities.cs">
-      <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ExplodingKittensEntities.Designer.cs">
-      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ExplodingKittensService.cs" />
     <Compile Include="Game.cs">
       <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
     </Compile>
@@ -84,6 +83,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="ExplodingKittensEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ExplodingKittensEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="ExplodingKittensEntities.edmx.diagram">
       <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
     </None>
@@ -93,20 +96,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ExplodingKittensEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ExplodingKittensEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ExplodingKittensEntities.Context.tt">
-      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
       <LastGenOutput>ExplodingKittensEntities.Context.cs</LastGenOutput>
     </Content>
     <Content Include="ExplodingKittensEntities.tt">
-      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
       <LastGenOutput>ExplodingKittensEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>

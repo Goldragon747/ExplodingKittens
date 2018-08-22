@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace ExpKittensDAL
+namespace ServiceLayer.Models
 {
-    public class Game
+    public class EKGame
     {
         public int GameID { get; set; }
         public int CurrentPlayer { get; set; }
