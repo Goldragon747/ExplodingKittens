@@ -17,6 +17,7 @@ namespace ExplodingKittensWPF.Pages
     public partial class GamePage : Page
     {
         private Game game;
+
         public GamePage(int numOfPlayers, string[] playerNames)
         {
             InitializeComponent();
@@ -121,7 +122,6 @@ namespace ExplodingKittensWPF.Pages
             {
                 ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
             }
-            
         }
 
         private void PlayerCard_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
