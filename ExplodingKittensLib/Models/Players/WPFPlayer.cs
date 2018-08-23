@@ -9,8 +9,9 @@ namespace ExplodingKittensLib.Models.Players
 {
     public class WPFPlayer : Player
     {
-        public WPFPlayer(int number, Game game) : base(number, game)
+        public WPFPlayer(int number, Game game, string name) : base(number, game)
         {
+            Name = name;
         }
 
         public override ActionResponse SelectCard(int cardId)

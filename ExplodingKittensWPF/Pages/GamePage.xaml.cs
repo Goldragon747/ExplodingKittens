@@ -42,6 +42,8 @@ namespace ExplodingKittensWPF.Pages
         private void DrawBtn_Click(object sender, RoutedEventArgs e)
         {
             game.ActivePlayer.DrawCard();
+            //todo Add check to see if they drew an exploding kitten and it they had a defuse
+            //todo If exploding kiten /w defuse, then allow player to choose where to put bomb in deck
             ShowHand();
             if (!game.ActivePlayer.IsUnderAttack)
             {
@@ -53,6 +55,7 @@ namespace ExplodingKittensWPF.Pages
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
+            //todo Finsh Implementing PlayBtn_Click
             game.ActivePlayer.PlaySelectedCards();
             ShowHand();
             NopeTrack.Visibility = Visibility.Visible;
@@ -65,6 +68,7 @@ namespace ExplodingKittensWPF.Pages
 
         private void ShowHand()
         {
+            //todo Make player hand either scroll-able or stacked so the cards don't run off the screen
             Hand activePlayerHand = game.ActivePlayer.Hand;
             playerHand.Children.Clear();
             int row = 0;
@@ -117,6 +121,8 @@ namespace ExplodingKittensWPF.Pages
 
         private void Update()
         {
+            //todo Clear board between turns
+            //todo Ask player, by name, if they are ready to begin their turn
             ShowHand();
             if (game.ActivePlayer.Hand.HasSelectedCard)
             {
