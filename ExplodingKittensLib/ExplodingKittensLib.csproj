@@ -76,6 +76,7 @@
     <Compile Include="Models\Commands\SelectCommand.cs" />
     <Compile Include="Models\Commands\StatusCommand.cs" />
     <Compile Include="Models\Commands\UnknownCommand.cs" />
+    <Compile Include="Models\ConsoleGame.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Hand.cs" />
     <Compile Include="Models\Message.cs" />

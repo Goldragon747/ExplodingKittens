@@ -73,7 +73,7 @@ namespace ExplodingKittensWPF.Pages
                     }
                 }
                 catch (Exception) { }
-               
+
                 playerHand.Children.Add(convertedImage);
                 if (column == 5)
                 {

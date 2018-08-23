@@ -5,15 +5,11 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens", "ExplodingKittens\ExplodingKittens.csproj", "{F8CC3100-2BDA-4A31-827C-4000A2646352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittens.Tests", "ExplodingKittens.Tests\ExplodingKittens.Tests.csproj", "{9B3ED673-3E7E-4886-979D-912204A3F96C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensLib", "ExplodingKittensLib\ExplodingKittensLib.csproj", "{149A6ED1-3E91-46BE-B751-430346A68FB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensWPF", "ExplodingKittensWPF\ExplodingKittensWPF.csproj", "{682D52E6-1542-4409-9CA3-3E91CC00CAD3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplodingKittensDAL", "ExplodingKittensDAL\ExplodingKittensDAL.csproj", "{B250CB50-FEDC-4CA9-9823-D3CB1B4BE3DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLayer", "ServiceLayer\ServiceLayer.csproj", "{E98B15C9-6467-460C-9DCB-3F0CC979F569}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +21,6 @@ Global
 		{F8CC3100-2BDA-4A31-827C-4000A2646352}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8CC3100-2BDA-4A31-827C-4000A2646352}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8CC3100-2BDA-4A31-827C-4000A2646352}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B3ED673-3E7E-4886-979D-912204A3F96C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B3ED673-3E7E-4886-979D-912204A3F96C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B3ED673-3E7E-4886-979D-912204A3F96C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B3ED673-3E7E-4886-979D-912204A3F96C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{149A6ED1-3E91-46BE-B751-430346A68FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,10 +33,6 @@ Global
 		{B250CB50-FEDC-4CA9-9823-D3CB1B4BE3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B250CB50-FEDC-4CA9-9823-D3CB1B4BE3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B250CB50-FEDC-4CA9-9823-D3CB1B4BE3DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E98B15C9-6467-460C-9DCB-3F0CC979F569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E98B15C9-6467-460C-9DCB-3F0CC979F569}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E98B15C9-6467-460C-9DCB-3F0CC979F569}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E98B15C9-6467-460C-9DCB-3F0CC979F569}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
