@@ -9,6 +9,12 @@ namespace ExplodingKittensLib.Models.Cards
 			: base(game, id, "Skip", tagLine, "End your turn without drawing a card")
 		{
 		}
+
+        public Skip(Game game, int id)
+    : base(game, id, "Skip", "End your turn without drawing a card")
+        {
+        }
+
         /// <summary>
         /// Informs that a player has been skipped
         /// Changes who the active player is

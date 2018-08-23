@@ -9,6 +9,12 @@ namespace ExplodingKittensLib.Models.Cards
 			: base(game, id, "See The Future", tagline, "Privately view the top three cards of the deck.")
 		{
 		}
+
+        public SeeTheFuture(Game game, int id)
+    : base(game, id, "See The Future", "Privately view the top three cards of the deck.")
+        {
+        }
+
         /// <summary>
         /// Reveals the first 3 cards to the player
         /// Puts the first 3 cards back onto the deck

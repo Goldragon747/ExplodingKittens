@@ -9,6 +9,12 @@ namespace ExplodingKittensLib.Models.Cards
 			: base(game, id, "Favor", tagline, "One player must give you a card of their choice.")
 		{
 		}
+
+        public Favor(Game game, int id)
+    : base(game, id, "Favor", "One player must give you a card of their choice.")
+        {
+        }
+
         /// <summary>
         /// Prevents the wrong ActionReponse from being done
         /// </summary>

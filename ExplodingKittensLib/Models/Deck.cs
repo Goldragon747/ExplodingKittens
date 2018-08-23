@@ -6,7 +6,7 @@ using System.Text;
 namespace ExplodingKittensLib.Models
 {
     public abstract class Deck
-    {
+    { 
         protected int _cardIndex { get; set; }
 
         public int NumberOfPlayers { get; set; }
@@ -73,5 +73,7 @@ namespace ExplodingKittensLib.Models
         }
 
         public abstract Stack<Card> GetDefuseCards();
+
+        public abstract void AddExplodingKittenCards();
     }
 }

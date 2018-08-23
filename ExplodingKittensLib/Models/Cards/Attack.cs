@@ -10,6 +10,11 @@ namespace ExplodingKittensLib.Models.Cards
 		{
 		}
 
+        public Attack(Game game, int id)
+    : base(game, id, "Attack", "End your turn without drawing a card. Force the next player to take two turns.")
+        {
+        }
+
         /// <summary>
         /// informs the users who is getting attacked
         /// changes the active players under attack to false

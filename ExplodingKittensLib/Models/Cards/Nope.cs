@@ -9,6 +9,12 @@ namespace ExplodingKittensLib.Models.Cards
 			: base(game, id, "Nope", tagline, "Stop the action of another player. You can play this at any time.")
 		{
 		}
+
+        public Nope(Game game, int id)
+    : base(game, id, "Nope", "Stop the action of another player. You can play this at any time.")
+        {
+        }
+
         /// <summary>
         /// Informs that a Nope has happened
         /// </summary>

@@ -20,10 +20,9 @@ namespace ExplodingKittensLib.Models
             AddNopeCards();
             AddSkipCards();
             AddPairCards();
-            AddExplodingKittenCards();
         }
 
-        public void AddExplodingKittenCards()
+        public override void AddExplodingKittenCards()
         {
             for (int playerIndex = 0; playerIndex < NumberOfPlayers - 1; playerIndex++)
             {

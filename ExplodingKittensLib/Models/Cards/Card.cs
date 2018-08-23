@@ -1,5 +1,6 @@
 ﻿using ExplodingKittensLib.Models.Players;
 using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace ExplodingKittensLib.Models.Cards
 {
@@ -11,7 +12,7 @@ namespace ExplodingKittensLib.Models.Cards
 		public string TagLine { get; set; }
 		public string Explanation { get; set; }
 		public bool IsSelected { get; set; }
-        public Image CardImage { get; set; }
+        public BitmapImage CardImage { get; set; }
 
 		public Card() { }
 

@@ -3,7 +3,7 @@ namespace ExplodingKittensLib.Models.Commands
 {
 	public class HelpCommand : ICommand
 	{
-		public Game Game { get; set; }
+		public ConsoleGame Game { get; set; }
 
 		public string Description
 		{
@@ -19,7 +19,7 @@ namespace ExplodingKittensLib.Models.Commands
 		{
 		}
 
-		public HelpCommand(Game game)
+		public HelpCommand(ConsoleGame game)
 		{
 			Game = game;
 		}

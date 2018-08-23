@@ -14,8 +14,9 @@ namespace ExplodingKittensLib.Models.Players
 		public bool IsUnderAttack { get; set; }
 		public bool IsAskedForFavor { get; set; }
 		public bool IsBeingStolenFrom { get; set; }
-		
-		public Player(int number, Game game)
+        public string Name { get; set; }
+
+        public Player(int number, Game game)
 		{
 			Id = number;
 			Hand = new Hand();
@@ -125,7 +126,7 @@ namespace ExplodingKittensLib.Models.Players
 
         public virtual ActionResponse PlaySelectedCards()
         {
-            //todo fill out this method
+            //todo fill out PlaySelectedCards method
             return null;
         }
 

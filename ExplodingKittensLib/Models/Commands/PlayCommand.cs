@@ -6,7 +6,7 @@ namespace ExplodingKittensLib.Models.Commands
 {
 	public class PlayCommand : ICommand
 	{
-		public Game Game { get; set; }
+		public ConsoleGame Game { get; set; }
 		public Player CurrentPlayer { get; set; }
 		public int CurrentTargetPlayerIndex { get; set; }
 
@@ -24,7 +24,7 @@ namespace ExplodingKittensLib.Models.Commands
 		{
 		}
 
-		public PlayCommand(Game game, Player player, int index)
+		public PlayCommand(ConsoleGame game, Player player, int index)
 		{
 			Game = game;
 			CurrentPlayer = player;

@@ -3,12 +3,18 @@ using ExplodingKittensLib.Models.Players;
 
 namespace ExplodingKittensLib.Models.Cards
 {
-	public class Defuse : Card
-	{
-		public Defuse(Game game, int id, string tagline)
-			: base(game, id, "Defuse", tagline, "Put your last drawn card back into the deck.")
-		{
-		}
+    public class Defuse : Card
+    {
+        public Defuse(Game game, int id, string tagline)
+            : base(game, id, "Defuse", tagline, "Put your last drawn card back into the deck.")
+        {
+        }
+
+        public Defuse(Game game, int id)
+            : base(game, id, "Defuse", "Put your last drawn card back into the deck.")
+        {
+        }
+
         /// <summary>
         /// Tells how severe the message is
         /// </summary>

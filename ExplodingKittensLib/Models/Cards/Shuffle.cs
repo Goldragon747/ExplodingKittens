@@ -9,6 +9,12 @@ namespace ExplodingKittensLib.Models.Cards
 			: base(game, id, "Shuffle", tagline, "Shuffle the draw pile.")
 		{
 		}
+
+        public Shuffle(Game game, int id)
+    : base(game, id, "Shuffle", "Shuffle the draw pile.")
+        {
+        }
+
         /// <summary>the deck has been shuffled
         /// Informs the player 
         /// </summary>
