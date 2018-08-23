@@ -25,7 +25,10 @@ namespace ExplodingKittensLib.Models.Commands
 		{
 			CurrentPlayer = player;
 		}
-
+        /// <summary>
+        /// calls the drawCard method
+        /// </summary>
+        /// <returns></returns>
 		public ActionResponse Execute()
 		{
 			return CurrentPlayer.DrawCard();
