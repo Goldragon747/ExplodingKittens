@@ -103,7 +103,7 @@ namespace ExplodingKittensLib.Models
             Shuffle three = new Shuffle(Game, id++);
             three.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_shuffle_3.jpg", UriKind.Absolute));
             Shuffle four = new Shuffle(Game, id++);
-            four.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_shuffle_4", UriKind.Absolute));
+            four.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_shuffle_4.jpg", UriKind.Absolute));
             cards.Push(one);
             cards.Push(two);
             cards.Push(three);
