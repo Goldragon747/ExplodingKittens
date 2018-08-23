@@ -10,7 +10,12 @@ namespace ExplodingKittensLib.Models.Cards
 		{
 		}
 
-		public override ActionResponse Play()
+        public Attack(Game game, int id)
+    : base(game, id, "Attack", "End your turn without drawing a card. Force the next player to take two turns.")
+        {
+        }
+
+        public override ActionResponse Play()
 		{
 			ActionResponse res = new ActionResponse();
 			res.AddMessage(string.Format("Player {0} is under attack!", Game.NextPlayer.Id));

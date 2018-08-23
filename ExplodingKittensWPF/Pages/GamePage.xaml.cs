@@ -7,6 +7,7 @@ using System.IO;
 using ExplodingKittensLib.Models;
 using ExplodingKittensLib.Models.Cards;
 using ExplodingKittensLib.Models.Players;
+using System.Windows.Input;
 
 namespace ExplodingKittensWPF.Pages
 {
@@ -22,7 +23,7 @@ namespace ExplodingKittensWPF.Pages
             game = new Game(numOfPlayers, false);
             NopeTrack.Visibility = Visibility.Hidden;
             AddNopeTrackBtns(numOfPlayers);
-            Setup();
+            Update();
         }
 
         private void AddNopeTrackBtns(int numOfPlayers)
@@ -40,11 +41,19 @@ namespace ExplodingKittensWPF.Pages
         private void DrawBtn_Click(object sender, RoutedEventArgs e)
         {
             game.ActivePlayer.DrawCard();
+            ShowHand();
+            if (!game.ActivePlayer.IsUnderAttack)
+            {
+                MessageBox.Show("Your turn is now over.");
+            }
+            game.EndTurn();
+            Update();
         }
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
             game.ActivePlayer.PlaySelectedCards();
+            ShowHand();
             NopeTrack.Visibility = Visibility.Visible;
         }
 
@@ -56,25 +65,21 @@ namespace ExplodingKittensWPF.Pages
         private void ShowHand()
         {
             Hand activePlayerHand = game.ActivePlayer.Hand;
+            playerHand.Children.Clear();
             int row = 0;
             int column = 0;
             foreach (KeyValuePair<int, Card> card in activePlayerHand.Cards)
             {
-                System.Drawing.Image img = card.Value.CardImage;
-                System.Windows.Controls.Image convertedImage = null;
-                try
-                {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-                        ms.Seek(0, SeekOrigin.Begin);
-                        var decoder = BitmapDecoder.Create(ms, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                        convertedImage = new System.Windows.Controls.Image { Source = decoder.Frames[0] };
-                    }
-                }
-                catch (Exception) { }
+                BitmapImage img = card.Value.CardImage;
+                Image cImg = new Image();
+                cImg.Uid = card.Value.Id.ToString();
+                cImg.MouseDown += PlayerCard_MouseDown;
+                playerHand.Children.Add(cImg);
+                cImg.Source = img;
+                Grid.SetRow(cImg, row);
+                Grid.SetColumn(cImg, column);
+                Grid.SetZIndex(cImg, row);
 
-                playerHand.Children.Add(convertedImage);
                 if (column == 5)
                 {
                     column = 0;
@@ -84,24 +89,49 @@ namespace ExplodingKittensWPF.Pages
             }
         }
 
-        private void AttachCards()
+        private void ShowSelected()
         {
-            foreach (Card card in game.Deck.DrawPile)
+            Hand activePlayerHand = game.ActivePlayer.Hand;
+            playerHand.Children.Clear();
+            int row = 0;
+            int column = 0;
+            foreach (KeyValuePair<int, Card> card in activePlayerHand.Cards)
             {
-                card.CardImage = System.Drawing.Image.FromFile("Assets/demo-card.jpg");
-            }
-            foreach (WPFPlayer p in game.Players)
-            {
-                foreach (Card card in p.Hand.Cards.Values)
+                BitmapImage img = card.Value.CardImage;
+                Image cImg = new Image();
+                playerHand.Children.Add(cImg);
+                cImg.Source = img;
+                Grid.SetRow(cImg, row);
+                Grid.SetColumn(cImg, column);
+                Grid.SetZIndex(cImg, row);
+
+                if (column == 5)
                 {
-                    card.CardImage = System.Drawing.Image.FromFile("Assets/demo-card.jpg");
+                    column = 0;
+                    row++;
                 }
+                else { column++; }
             }
         }
 
-        private void Setup()
+        private void Update()
         {
-            AttachCards();
+            ShowHand();
+            if (game.ActivePlayer.Hand.HasSelectedCard)
+            {
+                ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
+            }
+            
+        }
+
+        private void PlayerCard_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Image _img = sender as Image;
+            game.ActivePlayer.Hand.SelectedCard.IsSelected = false;
+            int.TryParse(_img.Uid, out int num);
+            game.ActivePlayer.Hand.Cards[num].IsSelected = true;
+            ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
+
         }
     }
 }

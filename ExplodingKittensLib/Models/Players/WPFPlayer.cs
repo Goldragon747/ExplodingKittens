@@ -70,14 +70,14 @@ namespace ExplodingKittensLib.Models.Players
             else
                 res.AddMessage(string.Format("Player {0} picked up card {1}", _game.ActivePlayer.Id, card.ToString()));
 
-            _game.EndTurn();
+            
 
             return res;
         }
 
         public override ActionResponse PlaySelectedCards()
         {
-            //todo fill out this method
+            //todo fill out PlaySelectedCards method
             return null;
         }
 

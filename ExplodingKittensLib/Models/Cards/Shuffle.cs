@@ -10,7 +10,12 @@ namespace ExplodingKittensLib.Models.Cards
 		{
 		}
 
-		public override ActionResponse Play()
+        public Shuffle(Game game, int id)
+    : base(game, id, "Shuffle", "Shuffle the draw pile.")
+        {
+        }
+
+        public override ActionResponse Play()
 		{
 			Game.Deck.Shuffle();
 

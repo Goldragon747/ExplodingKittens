@@ -7,7 +7,7 @@ namespace ExplodingKittens
 {
 	public class GameLoop
 	{
-		public Game Game { get; set; }
+		public ConsoleGame Game { get; set; }
 		public Player CurrentPlayer { get; set; }
 		public ActionResponse CurrentActionResponse { get; set; }
 

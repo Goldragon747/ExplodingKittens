@@ -26,7 +26,7 @@ namespace ExplodingKittensLib.Models
         /// <param name="numberOfPlayers">The number of players in the game (between 2 and 5 inclusive)</param>
         public Game(int numberOfPlayers, bool isConsoleApp)//, IOutputWriter writer)
 		{
-			if (numberOfPlayers < 2)
+			//if (numberOfPlayers < 2)
 			//	throw new ArgumentException("The number of players must be at least two.");
 			//if (numberOfPlayers > 5)
 			//	throw new ArgumentException("The number of players must be at most five.");
@@ -143,10 +143,10 @@ namespace ExplodingKittensLib.Models
 
 		public virtual void Deal()
 		{
-			Console.WriteLine("Dealing cards...\n");
 			Deck.Shuffle();
 			DealInitialCards();
 			DealDefuseCards();
+            Deck.AddExplodingKittenCards();
 			Deck.Shuffle();
 		}
 
@@ -171,8 +171,7 @@ namespace ExplodingKittensLib.Models
 
 		protected void DealInitialCards()
 		{
-			int initialCards = 4;
-            //todo check if exploding kitten card
+			int initialCards = 7;
 			foreach (Player player in Players)
 			{
 				for (int dealIndex = 0; dealIndex < initialCards; dealIndex++)
@@ -199,7 +198,7 @@ namespace ExplodingKittensLib.Models
             }
             else
             {
-                Deck = new WpfDeck(this, numberOfPlayers);
+                Deck = new WPFDeck(this, numberOfPlayers);
             }
             Deal();
 		}

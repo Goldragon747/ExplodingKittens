@@ -10,7 +10,12 @@ namespace ExplodingKittensLib.Models.Cards
 		{
 		}
 
-		public override ActionResponse Play()
+        public Skip(Game game, int id)
+    : base(game, id, "Skip", "End your turn without drawing a card")
+        {
+        }
+
+        public override ActionResponse Play()
 		{
 			string messageText = string.Format("Player {0}'s turn was skipped.", Game.NextPlayer.Id);
 

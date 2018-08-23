@@ -39,11 +39,6 @@ namespace ExplodingKittensLib.Models
             CommandList = GetCommandList();
         }
 
-        public Player GetNextPlayer(Player player)
-        {
-            return (Players.Find(player).Next ?? Players.First).Value;
-        }
-
         /// <summary>
         /// Complete the game by writing the winning message
         /// </summary>
@@ -66,27 +61,6 @@ namespace ExplodingKittensLib.Models
             Writer.WriteLine(string.Format("Player {0}, you've been asked for a favor. Please select a card:\n", playerId));
         }
 
-        ///// <summary>
-        ///// Get the player who has been selected by another player (for giving a card to or playing a card on)
-        ///// </summary>
-        ///// <param name="playerIndex"></param>
-        ///// <returns></returns>
-        //public Player GetSelectedPlayer(int playerIndex)
-        //{
-        //    return Players.Where(p => (p.Id == playerIndex)).DefaultIfEmpty(new NullPlayer()).First();
-        //}
-
-        ///// <summary>
-        ///// Remove a player from the game when thay pick up an exploding kitten they can't defuse
-        ///// </summary>
-        ///// <param name="player"></param>
-        //public ActionResponse EliminatePlayer(Player player)
-        //{
-        //    NextPlayer.IsActive = true;
-        //    Players.Remove(player);
-
-        //    return new ActionResponse(new Message(Severity.Info, string.Format("Player {0} has been eliminated!", player.Id)));
-        //}
 
         /// <summary>
         /// Get all the available actions that can be played by the player
@@ -150,48 +124,8 @@ namespace ExplodingKittensLib.Models
         public override void Deal()
         {
             Console.WriteLine("Dealing cards...\n");
-            
-            Deck.Shuffle();
-            DealInitialCards();
-            DealDefuseCards();
-            Deck.Shuffle();
+            base.Deal();
         }
-
-        ///// <summary>
-        ///// Deal a defuse card to each player then add the remaining cards to the deck and shuffle
-        ///// </summary>
-        //private void DealDefuseCards()
-        //{
-        //    Stack<Card> defuseCards = Deck.GetDefuseCards();
-
-        //    foreach (Player player in Players)
-        //    {
-        //        Card card = defuseCards.Pop();
-        //        player.Hand.Cards.Add(card.Id, card);
-        //    }
-
-        //    foreach (Card defuseCard in defuseCards)
-        //    {
-        //        Deck.DrawPile.Push(defuseCard);
-        //    }
-        //}
-
-        //private void DealInitialCards()
-        //{
-        //    int initialCards = 4;
-        //    //todo check if exploding kitten card
-        //    foreach (Player player in Players)
-        //    {
-        //        for (int dealIndex = 0; dealIndex < initialCards; dealIndex++)
-        //        {
-        //            if (Deck.DrawPile.Count > 0)
-        //            {
-        //                Card card = Deck.DrawPile.Pop();
-        //                player.Hand.Cards.Add(card.Id, card);
-        //            }
-        //        }
-        //    }
-        //}
 
         private List<Commands.ICommand> GetCommandList()
         {
@@ -217,5 +151,64 @@ namespace ExplodingKittensLib.Models
                 Console.WriteLine(string.Format("Player {0}'s hand:\n----------------\n{1}\n", player.Id, player.Hand.ToString()));
             }
         }
+        
+        ///// <summary>
+        ///// Get the player who has been selected by another player (for giving a card to or playing a card on)
+        ///// </summary>
+        ///// <param name="playerIndex"></param>
+        ///// <returns></returns>
+        //public Player GetSelectedPlayer(int playerIndex)
+        //{
+        //    return Players.Where(p => (p.Id == playerIndex)).DefaultIfEmpty(new NullPlayer()).First();
+        //}
+
+        ///// <summary>
+        ///// Remove a player from the game when thay pick up an exploding kitten they can't defuse
+        ///// </summary>
+        ///// <param name="player"></param>
+        //public ActionResponse EliminatePlayer(Player player)
+        //{
+        //    NextPlayer.IsActive = true;
+        //    Players.Remove(player);
+
+        //    return new ActionResponse(new Message(Severity.Info, string.Format("Player {0} has been eliminated!", player.Id)));
+        //}
+
+        ///// <summary>
+        ///// Deal a defuse card to each player then add the remaining cards to the deck and shuffle
+        ///// </summary>
+        //private void DealDefuseCards()
+        //{
+        //    Stack<Card> defuseCards = Deck.GetDefuseCards();
+
+        //    foreach (Player player in Players)
+        //    {
+        //        Card card = defuseCards.Pop();
+        //        player.Hand.Cards.Add(card.Id, card);
+        //    }
+
+        //    foreach (Card defuseCard in defuseCards)
+        //    {
+        //        Deck.DrawPile.Push(defuseCard);
+        //    }
+        //}
+
+        //private void DealInitialCards()
+        //{
+        //    int initialCards = 4;
+        //   
+        //    foreach (Player player in Players)
+        //    {
+        //        for (int dealIndex = 0; dealIndex < initialCards; dealIndex++)
+        //        {
+        //            if (Deck.DrawPile.Count > 0)
+        //            {
+        //                Card card = Deck.DrawPile.Pop();
+        //                player.Hand.Cards.Add(card.Id, card);
+        //            }
+        //        }
+        //    }
+        //}
+
     }
 }
