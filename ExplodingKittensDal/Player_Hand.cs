@@ -12,20 +12,11 @@ namespace ExplodingKittensDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Card
+    public partial class Player_Hand
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Card()
-        {
-            this.Hands = new HashSet<Hand>();
-        }
-    
+        public int PlayerID { get; set; }
         public int CardID { get; set; }
-        public string Title { get; set; }
-        public string Text { get; set; }
-        public string Flavor_Text { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Hand> Hands { get; set; }
+        public virtual Player Player { get; set; }
     }
 }

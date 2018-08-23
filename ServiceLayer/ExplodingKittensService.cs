@@ -1,6 +1,6 @@
 ﻿using ExplodingKittensDAL;
-using ServiceLayer.Models;
 using ExplodingKittensLib;
+using ExplodingKittensLib.Models.Cards;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,55 +65,51 @@ namespace ServiceLayer
         public void SaveGame(ExplodingKittensLib.Models.Game myGame)
         {
             var currentPlayers = myGame.Players;
-            using(var db = new Pro250_KittensEntities())
+            using(var db = new Pro250_KittensEntities1())
             {
                 //Save Players
                 for (int i = 0; i < currentPlayers.Count; i++)
                 {
-
+                    //savePlayer(currentPlayers.ElementAt(i), i, myGame.ID);
                 }
                 //Saves Hands
                 for (int i = 0; i < currentPlayers.Count; i++)
                 {
-                    
+                    //SaveHand(currentPlayers.ElementAt(i));
                 }
+                //Save DrawDeck
+                //saveDeck(myGame.Deck.DrawPile);
             }
             
         }
-        public void savePlayers(ExplodingKittensLib.Models.Players.WPFPlayer myPlayer, int playerPosition, int gameID)
+        public void savePlayer(ExplodingKittensLib.Models.Players.WPFPlayer myPlayer, int playerPosition, int gameID)
         {
-            using (var db = new Pro250_KittensEntities())
+            using (var db = new Pro250_KittensEntities1())
             {
                 var playerQuery = db.Players.Where(x => x.PlayerID == myPlayer.Id).First();
                 if (playerQuery != null)
                 {
                     db.Players.Remove(playerQuery);
                 }
-                else
+                db.Players.Add(new Player
                 {
-                    db.Players.Add(new Player
-                    {
-                        PlayerID = myPlayer.Id,
-                        Player_Name = myPlayer,
-                        Position = playerPosition,
-                        GameID = gameID
-                    });
-                }
-                //var getPlayersQuery = db.Players.Where(x => x)
-                //db.Players.Add( new Player{
-
-                //});
+                    PlayerID = myPlayer.Id,
+                    Player_Name = myPlayer.Name,
+                    Position = playerPosition,
+                    GameID = gameID
+                });
+                db.SaveChanges();
             }
         }
         public void SaveHand(ExplodingKittensLib.Models.Players.WPFPlayer myPlayer)
         {
-            using (var db = new Pro250_KittensEntities())
+            using (var db = new Pro250_KittensEntities1())
             {
-                var getPlayerHandQuery = db.Hands.Where(x => x.PlayerID == myPlayer.Id).ToList();
-                db.Hands.RemoveRange(getPlayerHandQuery);
+                var getPlayerHandQuery = db.Player_Hand.Where(x => x.PlayerID == myPlayer.Id).ToList();
+                db.Player_Hand.RemoveRange(getPlayerHandQuery);
                 for (int i = 0; i < myPlayer.Hand.Cards.Count; i++)
                 {
-                    db.Hands.Add(new Hand
+                    db.Player_Hand.Add(new Player_Hand
                     {
                         CardID = myPlayer.Hand.Cards[i].Id,
                         PlayerID = myPlayer.Id
@@ -121,14 +117,12 @@ namespace ServiceLayer
                 }               
             }
         }
-        public void Update(string id, string content)
+        public void saveDeck(Stack<Card> drawDeck, int gameID)
         {
-            //using (var db = new Pro250_KittensEntities())
-            //{
-            //    var element = db.Stored_Elements.Where(x => x.TagIndex == id).First();
-            //    element.TagContent = content;
-            //    db.SaveChanges();
-            //}
+            using (var db = new Pro250_KittensEntities1())
+            {
+                var getPlayDeckQuery = db.PlayDecks.Where(x => x.GameID == gameID);
+            }
         }
     }
 }

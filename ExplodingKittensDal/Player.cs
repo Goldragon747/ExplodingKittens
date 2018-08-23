@@ -18,16 +18,18 @@ namespace ExplodingKittensDAL
         public Player()
         {
             this.Games = new HashSet<Game>();
-            this.Hands = new HashSet<Hand>();
+            this.Player_Hand = new HashSet<Player_Hand>();
         }
     
         public int PlayerID { get; set; }
-        public string PlayerName { get; set; }
-        public Nullable<int> PlayerPosition { get; set; }
+        public int GameID { get; set; }
+        public string Player_Name { get; set; }
+        public int Position { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Game> Games { get; set; }
+        public virtual Game Game { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Hand> Hands { get; set; }
+        public virtual ICollection<Player_Hand> Player_Hand { get; set; }
     }
 }

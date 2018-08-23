@@ -14,10 +14,24 @@ namespace ExplodingKittensDAL
     
     public partial class Game
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Game()
+        {
+            this.DrawDecks = new HashSet<DrawDeck>();
+            this.PlayDecks = new HashSet<PlayDeck>();
+            this.Players = new HashSet<Player>();
+        }
+    
         public int GameID { get; set; }
-        public Nullable<int> CurrentPlayer { get; set; }
+        public int Current_Player { get; set; }
         public string Game_Name { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DrawDeck> DrawDecks { get; set; }
         public virtual Player Player { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlayDeck> PlayDecks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Player> Players { get; set; }
     }
 }

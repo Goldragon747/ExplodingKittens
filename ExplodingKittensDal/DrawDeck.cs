@@ -12,13 +12,11 @@ namespace ExplodingKittensDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Hand
+    public partial class DrawDeck
     {
-        public int HandID { get; set; }
-        public Nullable<int> PlayerID { get; set; }
-        public Nullable<int> CardID { get; set; }
+        public int GameID { get; set; }
+        public int CardID { get; set; }
     
-        public virtual Card Card { get; set; }
-        public virtual Player Player { get; set; }
+        public virtual Game Game { get; set; }
     }
 }

@@ -13,7 +13,9 @@ namespace ExplodingKittensLib.Models
 		public Deck Deck { get; set; }
 		//public IOutputWriter Writer { get; set; }
 		public LinkedList<Player> Players { get; set; }
-		//public List<Commands.ICommand> CommandList { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+                                           //public List<Commands.ICommand> CommandList { get; set; }
 
         //public Game(int numberOfPlayers, bool isConsoleApp)
         //	: this(numberOfPlayers, isConsoleApp, new ConsoleWriter())

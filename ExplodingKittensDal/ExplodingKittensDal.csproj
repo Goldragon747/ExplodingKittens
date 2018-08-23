@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Card.cs">
+    <Compile Include="DrawDeck.cs">
       <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ExplodingKittensEntities.Context.cs">
@@ -70,10 +70,13 @@
     <Compile Include="Game.cs">
       <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Hand.cs">
+    <Compile Include="PlayDeck.cs">
       <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Player.cs">
+      <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Player_Hand.cs">
       <DependentUpon>ExplodingKittensEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,8 +101,8 @@
   <ItemGroup>
     <Content Include="ExplodingKittensEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
       <LastGenOutput>ExplodingKittensEntities.Context.cs</LastGenOutput>
+      <DependentUpon>ExplodingKittensEntities.edmx</DependentUpon>
     </Content>
     <Content Include="ExplodingKittensEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
