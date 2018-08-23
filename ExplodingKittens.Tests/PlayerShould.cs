@@ -4,8 +4,8 @@ using NUnit.Framework;
 
 namespace ExplodingKittens.Tests
 {
-    //todo fix tests
-	[TestClass]
+    //todo fix PlayerShould test 4 left
+    [TestClass]
     public class PlayerShould
 	{
 		//[TestMethod]

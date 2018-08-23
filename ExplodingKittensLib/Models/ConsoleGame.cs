@@ -39,7 +39,7 @@ namespace ExplodingKittensLib.Models
             CommandList = GetCommandList();
         }
 
-        /// <summary>
+          /// <summary>
         /// Complete the game by writing the winning message
         /// </summary>
         public override void EndGame()
