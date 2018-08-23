@@ -9,8 +9,9 @@ namespace ExplodingKittensLib.Models.Players
 {
     public class WPFPlayer : Player
     {
-        public WPFPlayer(int number, Game game) : base(number, game)
+        public WPFPlayer(int number, Game game, string name) : base(number, game)
         {
+            Name = name;
         }
 
         public override ActionResponse SelectCard(int cardId)
@@ -70,14 +71,14 @@ namespace ExplodingKittensLib.Models.Players
             else
                 res.AddMessage(string.Format("Player {0} picked up card {1}", _game.ActivePlayer.Id, card.ToString()));
 
-            _game.EndTurn();
+            
 
             return res;
         }
 
         public override ActionResponse PlaySelectedCards()
         {
-            //todo fill out this method
+            //todo fill out PlaySelectedCards method
             return null;
         }
 

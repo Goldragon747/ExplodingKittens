@@ -10,7 +10,12 @@ namespace ExplodingKittensLib.Models.Cards
 		{
 		}
 
-		public override ActionResponse Play()
+        public Nope(Game game, int id)
+    : base(game, id, "Nope", "Stop the action of another player. You can play this at any time.")
+        {
+        }
+
+        public override ActionResponse Play()
 		{
 			ActionResponse res = new ActionResponse();
 			res.AddMessage("Nope!\n");

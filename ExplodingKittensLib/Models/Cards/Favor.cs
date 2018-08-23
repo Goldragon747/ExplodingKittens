@@ -10,7 +10,12 @@ namespace ExplodingKittensLib.Models.Cards
 		{
 		}
 
-		public override ActionResponse Play()
+        public Favor(Game game, int id)
+    : base(game, id, "Favor", "One player must give you a card of their choice.")
+        {
+        }
+
+        public override ActionResponse Play()
 		{
 			throw new NotImplementedException("You need to choose a player to ask a favor from.");
 		}

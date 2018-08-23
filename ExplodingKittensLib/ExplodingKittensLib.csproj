@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -39,6 +40,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ActionResponse.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Models\Commands\SelectCommand.cs" />
     <Compile Include="Models\Commands\StatusCommand.cs" />
     <Compile Include="Models\Commands\UnknownCommand.cs" />
+    <Compile Include="Models\ConsoleGame.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Hand.cs" />
     <Compile Include="Models\Message.cs" />
@@ -84,12 +87,72 @@
     <Compile Include="Models\Enums\Severity.cs" />
     <Compile Include="Models\Players\WPFPlayer.cs" />
     <Compile Include="Models\Utilities.cs" />
-    <Compile Include="Models\WpfDeck.cs" />
+    <Compile Include="Models\WPFDeck.cs" />
     <Compile Include="Models\Writers\ConsoleWriter.cs" />
     <Compile Include="Models\Writers\IOutputWriter.cs" />
     <Compile Include="Models\Writers\MemoryWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\card_alter_the_future_1.jpg" />
+    <Resource Include="Images\card_alter_the_future_2.jpg" />
+    <Resource Include="Images\card_alter_the_future_3.jpg" />
+    <Resource Include="Images\card_alter_the_future_4.jpg" />
+    <Resource Include="Images\card_attack_1.jpg" />
+    <Resource Include="Images\card_attack_2.jpg" />
+    <Resource Include="Images\card_attack_3.jpg" />
+    <Resource Include="Images\card_attack_4.jpg" />
+    <Resource Include="Images\card_beard_cat.jpg" />
+    <Resource Include="Images\card_cattermelon.jpg" />
+    <Resource Include="Images\card_defuse_1.jpg" />
+    <Resource Include="Images\card_defuse_2.jpg" />
+    <Resource Include="Images\card_defuse_3.jpg" />
+    <Resource Include="Images\card_defuse_4.jpg" />
+    <Resource Include="Images\card_defuse_5.jpg" />
+    <Resource Include="Images\card_defuse_6.jpg" />
+    <Resource Include="Images\card_draw_from_the_bottom_1.jpg" />
+    <Resource Include="Images\card_draw_from_the_bottom_2.jpg" />
+    <Resource Include="Images\card_draw_from_the_bottom_3.jpg" />
+    <Resource Include="Images\card_draw_from_the_bottom_4.jpg" />
+    <Resource Include="Images\card_exploding_kitten_1.jpg" />
+    <Resource Include="Images\card_exploding_kitten_2.jpg" />
+    <Resource Include="Images\card_exploding_kitten_3.jpg" />
+    <Resource Include="Images\card_exploding_kitten_4.jpg" />
+    <Resource Include="Images\card_favor_1.jpg" />
+    <Resource Include="Images\card_favor_2.jpg" />
+    <Resource Include="Images\card_favor_3.jpg" />
+    <Resource Include="Images\card_favor_4.jpg" />
+    <Resource Include="Images\card_feral_cat.jpg" />
+    <Resource Include="Images\card_hairy_potato_cat.jpg" />
+    <Resource Include="Images\card_imploding_kitten.jpg" />
+    <Resource Include="Images\card_nope_1.jpg" />
+    <Resource Include="Images\card_nope_2.jpg" />
+    <Resource Include="Images\card_nope_3.jpg" />
+    <Resource Include="Images\card_nope_4.jpg" />
+    <Resource Include="Images\card_nope_5.jpg" />
+    <Resource Include="Images\card_rainbow_ralphing_cat.jpg" />
+    <Resource Include="Images\card_reverse_1.jpg" />
+    <Resource Include="Images\card_reverse_2.jpg" />
+    <Resource Include="Images\card_reverse_3.jpg" />
+    <Resource Include="Images\card_reverse_4.jpg" />
+    <Resource Include="Images\card_see_the_future_1.jpg" />
+    <Resource Include="Images\card_see_the_future_2.jpg" />
+    <Resource Include="Images\card_see_the_future_3.jpg" />
+    <Resource Include="Images\card_see_the_future_4.jpg" />
+    <Resource Include="Images\card_see_the_future_5.jpg" />
+    <Resource Include="Images\card_shuffle_1.jpg" />
+    <Resource Include="Images\card_shuffle_2.jpg" />
+    <Resource Include="Images\card_shuffle_3.jpg" />
+    <Resource Include="Images\card_shuffle_4.jpg" />
+    <Resource Include="Images\card_skip_1.jpg" />
+    <Resource Include="Images\card_skip_2.jpg" />
+    <Resource Include="Images\card_skip_3.jpg" />
+    <Resource Include="Images\card_skip_4.jpg" />
+    <Resource Include="Images\card_tacocat.jpg" />
+    <Resource Include="Images\card_targeted_attack_1.jpg" />
+    <Resource Include="Images\card_targeted_attack_2.jpg" />
+    <Resource Include="Images\card_targeted_attack_3.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

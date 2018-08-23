@@ -10,7 +10,12 @@ namespace ExplodingKittensLib.Models.Cards
 		{
 		}
 
-		public override ActionResponse Play()
+        public SeeTheFuture(Game game, int id)
+    : base(game, id, "See The Future", "Privately view the top three cards of the deck.")
+        {
+        }
+
+        public override ActionResponse Play()
 		{
 			ActionResponse res = new ActionResponse();
 			Stack<Card> drawPile = Game.Deck.DrawPile;

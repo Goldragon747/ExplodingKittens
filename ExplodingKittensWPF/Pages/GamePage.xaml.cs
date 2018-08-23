@@ -1,20 +1,13 @@
-﻿
-using ExplodingKittensLib.Models;
-using ExplodingKittensLib.Models.Cards;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO;
+using ExplodingKittensLib.Models;
+using ExplodingKittensLib.Models.Cards;
+using ExplodingKittensLib.Models.Players;
+using System.Windows.Input;
 
 namespace ExplodingKittensWPF.Pages
 {
@@ -24,12 +17,14 @@ namespace ExplodingKittensWPF.Pages
     public partial class GamePage : Page
     {
         private Game game;
+
         public GamePage(int numOfPlayers, string[] playerNames)
         {
             InitializeComponent();
-            //game = new Game(numOfPlayers, false);
+            game = new Game(numOfPlayers, false);
             NopeTrack.Visibility = Visibility.Hidden;
             AddNopeTrackBtns(numOfPlayers);
+            Update();
         }
 
         private void AddNopeTrackBtns(int numOfPlayers)
@@ -47,26 +42,102 @@ namespace ExplodingKittensWPF.Pages
         private void DrawBtn_Click(object sender, RoutedEventArgs e)
         {
             game.ActivePlayer.DrawCard();
+            //todo Add check to see if they drew an exploding kitten and it they had a defuse
+            //todo If exploding kiten /w defuse, then allow player to choose where to put bomb in deck
+            ShowHand();
+            if (!game.ActivePlayer.IsUnderAttack)
+            {
+                MessageBox.Show("Your turn is now over.");
+            }
+            game.EndTurn();
+            Update();
         }
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
+            //todo Finsh Implementing PlayBtn_Click
             game.ActivePlayer.PlaySelectedCards();
+            ShowHand();
             NopeTrack.Visibility = Visibility.Visible;
         }
 
         private void NopeBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
-        private void showHand()
+        private void ShowHand()
         {
+            //todo Make player hand either scroll-able or stacked so the cards don't run off the screen
             Hand activePlayerHand = game.ActivePlayer.Hand;
+            playerHand.Children.Clear();
+            int row = 0;
+            int column = 0;
             foreach (KeyValuePair<int, Card> card in activePlayerHand.Cards)
             {
-               
+                BitmapImage img = card.Value.CardImage;
+                Image cImg = new Image();
+                cImg.Uid = card.Value.Id.ToString();
+                cImg.MouseDown += PlayerCard_MouseDown;
+                playerHand.Children.Add(cImg);
+                cImg.Source = img;
+                Grid.SetRow(cImg, row);
+                Grid.SetColumn(cImg, column);
+                Grid.SetZIndex(cImg, row);
+
+                if (column == 5)
+                {
+                    column = 0;
+                    row++;
+                }
+                else { column++; }
             }
+        }
+
+        private void ShowSelected()
+        {
+            Hand activePlayerHand = game.ActivePlayer.Hand;
+            playerHand.Children.Clear();
+            int row = 0;
+            int column = 0;
+            foreach (KeyValuePair<int, Card> card in activePlayerHand.Cards)
+            {
+                BitmapImage img = card.Value.CardImage;
+                Image cImg = new Image();
+                playerHand.Children.Add(cImg);
+                cImg.Source = img;
+                Grid.SetRow(cImg, row);
+                Grid.SetColumn(cImg, column);
+                Grid.SetZIndex(cImg, row);
+
+                if (column == 5)
+                {
+                    column = 0;
+                    row++;
+                }
+                else { column++; }
+            }
+        }
+
+        private void Update()
+        {
+            //todo Clear board between turns
+            //todo Ask player, by name, if they are ready to begin their turn
+            ShowHand();
+            if (game.ActivePlayer.Hand.HasSelectedCard)
+            {
+                ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
+            }
+        }
+
+        private void PlayerCard_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Image _img = sender as Image;
+            game.ActivePlayer.Hand.SelectedCard.IsSelected = false;
+            int.TryParse(_img.Uid, out int num);
+            game.ActivePlayer.Hand.Cards[num].IsSelected = true;
+            ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
+
         }
     }
 }
