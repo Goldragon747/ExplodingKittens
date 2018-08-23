@@ -63,6 +63,10 @@
       <Project>{b250cb50-fedc-4ca9-9823-d3cb1b4be3dc}</Project>
       <Name>ExplodingKittensDAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExplodingKittensLib\ExplodingKittensLib.csproj">
+      <Project>{149a6ed1-3e91-46be-b751-430346a68fb8}</Project>
+      <Name>ExplodingKittensLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
