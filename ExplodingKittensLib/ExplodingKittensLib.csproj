@@ -88,6 +88,7 @@
     <Compile Include="Models\Players\WPFPlayer.cs" />
     <Compile Include="Models\Utilities.cs" />
     <Compile Include="Models\WPFDeck.cs" />
+    <Compile Include="Models\WPFGame.cs" />
     <Compile Include="Models\Writers\ConsoleWriter.cs" />
     <Compile Include="Models\Writers\IOutputWriter.cs" />
     <Compile Include="Models\Writers\MemoryWriter.cs" />
