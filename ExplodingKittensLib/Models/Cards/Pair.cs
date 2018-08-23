@@ -5,6 +5,7 @@ namespace ExplodingKittensLib.Models.Cards
 {
 	public class Pair : Card
 	{
+        //todo all cards should inherit this class
 		public Pair(Game game, int id, string name)
 			: base(game, id, name)
 		{
