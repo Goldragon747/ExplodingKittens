@@ -21,12 +21,14 @@ namespace ExplodingKittensLib.Models.Commands
 		public DeckCommand()
 		{
 		}
-
 		public DeckCommand(Deck deck)
 		{
 			Deck = deck;
 		}
-
+        /// <summary>
+        /// Prints the deck
+        /// </summary>
+        /// <returns></returns>
 		public ActionResponse Execute()
 		{
 			return Deck.Print();

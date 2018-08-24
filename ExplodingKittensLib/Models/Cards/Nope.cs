@@ -15,13 +15,21 @@ namespace ExplodingKittensLib.Models.Cards
         {
         }
 
-        public override ActionResponse Play()
+        /// <summary>
+        /// Informs that a Nope has happened
+        /// </summary>
+        /// <returns></returns>
+		public override ActionResponse Play()
 		{
 			ActionResponse res = new ActionResponse();
 			res.AddMessage("Nope!\n");
 			return res;
 		}
-
+        /// <summary>
+        /// Prevents the wrong ActionReponse from being done
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns></returns>
 		public override ActionResponse Play(Player player)
 		{
 			throw new System.NotImplementedException();

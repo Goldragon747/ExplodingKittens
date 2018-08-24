@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace ExplodingKittens.Tests.Cards
 {
-    //todo fix tests
+    //todo fix SkipShould test 2 left
     //[TestClass]
     //public class SkipShould
     //{

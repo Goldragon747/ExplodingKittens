@@ -194,3 +194,7 @@ ModelManifest.xml
 \.vs/ExplodingKittens/DesignTimeBuild/\.dtbcache
 
 ExplodingKittensDal/packages\.config
+
+\.vs/slnx\.sqlite
+
+\.vs/VSWorkspaceState\.json

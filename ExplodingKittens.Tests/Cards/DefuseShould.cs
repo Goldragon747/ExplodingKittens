@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace ExplodingKittens.Tests.Cards
 {
-    //todo fix tests
+    //todo fix DefuseShould test 3 left
     //[TestClass]
     //public class DefuseShould
     //{
