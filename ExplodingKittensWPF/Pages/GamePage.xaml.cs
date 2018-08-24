@@ -81,8 +81,10 @@ namespace ExplodingKittensWPF.Pages
                 cImg.MouseDown += PlayerCard_MouseDown;
                 playerHand.Children.Add(cImg);
                 cImg.Source = img;
+                cImg.Margin = new Thickness(5);
                 Grid.SetRow(cImg, row);
                 Grid.SetColumn(cImg, column);
+                Grid.SetRowSpan(cImg, 3);
                 Grid.SetZIndex(cImg, row);
 
                 if (column == 5)
@@ -106,8 +108,10 @@ namespace ExplodingKittensWPF.Pages
                 Image cImg = new Image();
                 playerHand.Children.Add(cImg);
                 cImg.Source = img;
+                cImg.Margin = new Thickness(5);
                 Grid.SetRow(cImg, row);
                 Grid.SetColumn(cImg, column);
+                Grid.SetRowSpan(cImg, 3);
                 Grid.SetZIndex(cImg, row);
 
                 if (column == 5)
@@ -124,10 +128,10 @@ namespace ExplodingKittensWPF.Pages
             //todo Clear board between turns
             //todo Ask player, by name, if they are ready to begin their turn
             ShowHand();
-            if (game.ActivePlayer.Hand.HasSelectedCard)
-            {
-                ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
-            }
+            //if (game.ActivePlayer.Hand.HasSelectedCard)
+            //{
+            //    ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
+            //}
         }
 
         private void PlayerCard_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -136,7 +140,125 @@ namespace ExplodingKittensWPF.Pages
             game.ActivePlayer.Hand.SelectedCard.IsSelected = false;
             int.TryParse(_img.Uid, out int num);
             game.ActivePlayer.Hand.Cards[num].IsSelected = true;
-            ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
+            //ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
+
+        }
+
+        private void DrawBtn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/card_draw_hover.png"));
+        }
+
+        private void DrawBtn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/card_draw.png"));
+        }
+
+        private void PlayOverlay_Back_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PlayOverlay.Visibility = Visibility.Collapsed;
+        }
+
+        private void PlayOverlay_Back_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_back_hover.png"));
+        }
+
+        private void PlayOverlay_Back_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_back.png"));
+        }
+        //TODO add test for disabling steal buttons for 2 and 3 card combos
+        private bool stealIsValid = true;
+        private void PlayOverlay_Steal_Random_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (stealIsValid)
+            {
+                ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/steal_random_hover.png"));
+            }
+        }
+
+        private void PlayOverlay_Steal_Random_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (stealIsValid)
+            {
+                ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/steal_random.png"));
+            }
+        }
+
+        private void PlayOverlay_Steal_Random_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void PlayOverlay_Steal_Specific_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (stealIsValid)
+            {
+                ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/steal_specific_hover.png"));
+            }
+        }
+
+        private void PlayOverlay_Steal_Specific_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (stealIsValid)
+            {
+                ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/steal_specific.png"));
+            }
+        }
+
+        private void PlayOverlay_Steal_Specific_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void PlayOverlay_Play_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_play_hover.png"));
+        }
+
+        private void PlayOverlay_Play_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_play.png"));
+        }
+
+        private void PlayOverlay_Play_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void PlayOverlay_Nope_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope_hover.png"));
+        }
+
+        private void PlayOverlay_Nope_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png"));
+        }
+
+        private void PlayOverlay_Nope_1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void PlayOverlay_Nope_2_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void PlayOverlay_Nope_3_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void PlayOverlay_Nope_4_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void PlayOverlay_Nope_5_MouseDown(object sender, MouseButtonEventArgs e)
+        {
 
         }
     }
