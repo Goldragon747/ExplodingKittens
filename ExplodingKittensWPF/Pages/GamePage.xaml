@@ -52,17 +52,9 @@
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </StackPanel>
-                <!--<StackPanel x:Name="NopeTrack" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label VerticalContentAlignment="Center" FontSize="16">Nope Track:</Label>
-                    <Button>P1</Button>
-                    <Button>P2</Button>
-                    <Button>P3</Button>
-                    <Button>P4</Button>
-                    <Button>P5</Button>
-                </StackPanel>-->
             </StackPanel>
         </Grid>
-        <Grid x:Name="PlayOverlay" Visibility="Hidden">
+        <Grid x:Name="PlayOverlay"><!--Visibility="Hidden">-->
             <Image Source="/ExplodingKittensWPF;component/Assets/GameScreen/Backgrounds/transparent_background.png" Stretch="Fill"></Image>
             <Image x:Name="PlayOverlay_Back" HorizontalAlignment="Right" VerticalAlignment="Top" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_back.png" Height="50" MouseDown="PlayOverlay_Back_MouseDown" MouseEnter="PlayOverlay_Back_MouseEnter" MouseLeave="PlayOverlay_Back_MouseLeave"/>
             <Image x:Name="PlayOverlay_Card" Source="/ExplodingKittensWPF;component/Assets/Cards/card_back.jpg" Width="350"/>

@@ -28,8 +28,14 @@ namespace ExplodingKittensWPF.Pages
             Update();
         }
 
+        private void PlayGame()
+        {
+
+        }
+
         private void AddNopeTrackBtns(int numOfPlayers)
         {
+            //todo M - The appropriate number of btns needs to be added with their styles
             //NopeTrack2.Children.Clear();
             //for (int i = 0; i < numOfPlayers; i++)
             //{
@@ -38,33 +44,6 @@ namespace ExplodingKittensWPF.Pages
             //    b.Click += NopeBtn_Click;
             //    NopeTrack2.Children.Add(b);
             //}
-        }
-
-        private void DrawBtn_Click(object sender, RoutedEventArgs e)
-        {
-            game.ActivePlayer.DrawCard();
-            //todo Add check to see if they drew an exploding kitten and it they had a defuse
-            //todo If exploding kiten /w defuse, then allow player to choose where to put bomb in deck
-            ShowHand();
-            if (!game.ActivePlayer.IsUnderAttack)
-            {
-                MessageBox.Show("Your turn is now over.");
-            }
-            game.EndTurn();
-            Update();
-        }
-
-        private void PlayBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //todo Finsh Implementing PlayBtn_Click
-            game.ActivePlayer.PlaySelectedCards();
-            ShowHand();
-            NopeTrack2.Visibility = Visibility.Visible;
-        }
-
-        private void NopeBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void ShowHand()
@@ -132,6 +111,15 @@ namespace ExplodingKittensWPF.Pages
             ShowHand();
         }
 
+        private void ClearBoard()
+        {
+            playerHand.Children.Clear();
+            //PlayOverlay_Back
+            //PlayOverlay_Play
+            //PlayOverlay_Steal_Random
+            //PlayOverlay_Steal_Specific
+        }
+
         private void StartPlayerTurn()
         {
             bool underAttack = game.ActivePlayer.IsUnderAttack;
@@ -150,10 +138,44 @@ namespace ExplodingKittensWPF.Pages
         }
         /*On turn start
          * - Screen should be either cleared or hidden
-         * - The Game should prompt the user by name if they are ready to began
+         * - The Game should prompt the user by name if they are ready to began their turn
          * - Once ready the screen should display as normal with players hand, last played card and number of turns
          * 
-         */ 
+         * On card drawn, 2 turns
+         * - card is added to player hand
+         * 
+         * On card drawn, 1 turn
+         * - card is added to player hand
+         * - The Game should prompt the user by name if they are ready to end their turn
+         */
+
+
+        private void DrawBtn_Click(object sender, RoutedEventArgs e)
+        {
+            game.ActivePlayer.DrawCard();
+            //todo Add check to see if they drew an exploding kitten and it they had a defuse
+            //todo If exploding kiten /w defuse, then allow player to choose where to put bomb in deck
+            ShowHand();
+            if (!game.ActivePlayer.IsUnderAttack)
+            {
+                MessageBox.Show("Your turn is now over.");
+            }
+            game.EndTurn();
+            Update();
+        }
+
+        private void PlayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //todo Finsh Implementing PlayBtn_Click
+            game.ActivePlayer.PlaySelectedCards();
+            ShowHand();
+            NopeTrack2.Visibility = Visibility.Visible;
+        }
+
+        private void NopeBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void PlayerCard_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -247,7 +269,7 @@ namespace ExplodingKittensWPF.Pages
 
         private void PlayOverlay_Play_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+
         }
 
         private void PlayOverlay_Nope_MouseEnter(object sender, MouseEventArgs e)
@@ -284,5 +306,8 @@ namespace ExplodingKittensWPF.Pages
         {
 
         }
+
+
+
     }
 }
