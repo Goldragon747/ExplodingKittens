@@ -15,8 +15,8 @@ namespace ExplodingKittensLib.Models
         //public LinkedList<Player> Players { get; set; }
         public List<Commands.ICommand> CommandList { get; set; }
 
-        public ConsoleGame(int numberOfPlayers, bool isConsoleApp)
-            : this(numberOfPlayers, new ConsoleWriter(), isConsoleApp)
+        public ConsoleGame(int numberOfPlayers)//, bool isConsoleApp)
+            : this(numberOfPlayers, new ConsoleWriter())//, isConsoleApp)
         {
         }
 
@@ -24,8 +24,8 @@ namespace ExplodingKittensLib.Models
         /// Create the only instance of the game class
         /// </summary>
         /// <param name="numberOfPlayers">The number of players in the game (between 2 and 5 inclusive)</param>
-        public ConsoleGame(int numberOfPlayers, IOutputWriter writer, bool isConsoleApp)
-            : base(numberOfPlayers, isConsoleApp)
+        public ConsoleGame(int numberOfPlayers, IOutputWriter writer)//, bool isConsoleApp)
+            : base(numberOfPlayers)//, isConsoleApp)
         {
             if (numberOfPlayers < 2)
                 throw new ArgumentException("The number of players must be at least two.");
@@ -33,7 +33,7 @@ namespace ExplodingKittensLib.Models
                 throw new ArgumentException("The number of players must be at most five.");
 
             Writer = writer;
-            Setup(numberOfPlayers, isConsoleApp);
+            Setup(numberOfPlayers);//, isConsoleApp);
             ListHands();
             Writer.WriteLine(Deck.ToString());
             CommandList = GetCommandList();

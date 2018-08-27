@@ -48,14 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExplodingKittensService.cs" />
-    <Compile Include="Models\EKCard.cs" />
-    <Compile Include="Models\EKCardModelList.cs" />
-    <Compile Include="Models\EKGame.cs" />
-    <Compile Include="Models\EKGameModelList.cs" />
-    <Compile Include="Models\EKHand.cs" />
-    <Compile Include="Models\EKHandModelList.cs" />
-    <Compile Include="Models\EKPlayer.cs" />
-    <Compile Include="Models\EKPlayerModelList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
