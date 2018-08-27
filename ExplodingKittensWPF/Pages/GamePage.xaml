@@ -19,7 +19,7 @@
             <StackPanel>
                 <Grid>
                     <Image Source="/ExplodingKittensWPF;component/Assets/GameScreen/Decoration/game_title_bar4.png" HorizontalAlignment="Center"></Image>
-                    <Label FontSize="40" Width="600px" HorizontalAlignment="Left" FontFamily="Bebas Kai" Foreground="White" Margin="50,0,0,0">PLAYER 1</Label>
+                    <Label x:Name="PlayerName" FontSize="40" Width="600px" HorizontalAlignment="Left" FontFamily="Bebas Kai" Foreground="White" Margin="50,0,0,0">PLAYER 1</Label>
                     <Label x:Name="turnsRemaining" FontSize="40" HorizontalAlignment="Right" Foreground="White" FontFamily="Bebas Kai" Margin="0,0,50,0">1 Turn Remaining</Label>
                     <Image x:Name="DrawBtn" Margin="0 -14 0 0" MouseDown="DrawBtn_Click" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/card_draw.png" Width="200" MouseEnter="DrawBtn_MouseEnter" MouseLeave="DrawBtn_MouseLeave" />
                 </Grid>
@@ -52,17 +52,17 @@
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </StackPanel>
-                <StackPanel x:Name="NopeTrack" Orientation="Horizontal" HorizontalAlignment="Center">
+                <!--<StackPanel x:Name="NopeTrack" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Label VerticalContentAlignment="Center" FontSize="16">Nope Track:</Label>
                     <Button>P1</Button>
                     <Button>P2</Button>
                     <Button>P3</Button>
                     <Button>P4</Button>
                     <Button>P5</Button>
-                </StackPanel>
+                </StackPanel>-->
             </StackPanel>
         </Grid>
-        <Grid x:Name="PlayOverlay">
+        <Grid x:Name="PlayOverlay" >
             <Image Source="/ExplodingKittensWPF;component/Assets/GameScreen/Backgrounds/transparent_background.png" Stretch="Fill"></Image>
             <Image x:Name="PlayOverlay_Back" HorizontalAlignment="Right" VerticalAlignment="Top" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_back.png" Height="50" MouseDown="PlayOverlay_Back_MouseDown" MouseEnter="PlayOverlay_Back_MouseEnter" MouseLeave="PlayOverlay_Back_MouseLeave"/>
             <Image x:Name="PlayOverlay_Card" Source="/ExplodingKittensWPF;component/Assets/Cards/card_back.jpg" Width="350"/>
@@ -72,9 +72,9 @@
                     <Image x:Name="PlayOverlay_Steal_Random" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/steal_random.png" Width="145" Margin="0,0,5,0" MouseEnter="PlayOverlay_Steal_Random_MouseEnter" MouseLeave="PlayOverlay_Steal_Random_MouseLeave" MouseDown="PlayOverlay_Steal_Random_MouseDown"></Image>
                     <Image x:Name="PlayOverlay_Steal_Specific" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/steal_specific.png" Width="145" Margin="5,0,0,0" MouseEnter="PlayOverlay_Steal_Specific_MouseEnter" MouseLeave="PlayOverlay_Steal_Specific_MouseLeave" MouseDown="PlayOverlay_Steal_Specific_MouseDown"></Image>
                 </StackPanel>
-                <Image x:Name="PlayOverlay_Play" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_play.png" Width="300" VerticalAlignment="Bottom" Margin="0,111,0,0" MouseEnter="PlayOverlay_Play_MouseEnter" MouseLeave="PlayOverlay_Play_MouseLeave" MouseDown="PlayOverlay_Play_MouseDown"></Image>
+                <Image x:Name="PlayOverlay_Play" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_play.png" Width="300" VerticalAlignment="Bottom" Margin="0,111,0,0" MouseEnter="PlayOverlay_Play_MouseEnter" MouseLeave="PlayOverlay_Play_MouseLeave" MouseDown="PlayBtn_Click"></Image>
             </StackPanel>
-            <StackPanel Width="300" HorizontalAlignment="left" Height="466" Margin="75,0,0,0">
+            <StackPanel x:Name="NopeTrack2" Width="300" HorizontalAlignment="left" Height="466" Margin="75,0,0,0">
                 <Label HorizontalAlignment="Center" FontFamily="Bebas Kai" Foreground="White" FontSize="48">ASK: Any Nopes?</Label>
                 <Grid Margin="0,0,0,20">
                     <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 1</Label>

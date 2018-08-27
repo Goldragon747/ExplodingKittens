@@ -38,6 +38,16 @@ namespace ExplodingKittensLib.Models
 			//CommandList = GetCommandList();
 		}
 
+        public void AddPlayerNames(string[] names)
+        {
+            for (int i = 0; i < names.Length; i++)
+            {
+                Player temp = new Player(i, this);
+                temp.Name = names[i];
+                Players.AddLast(temp);
+            }
+        }
+
 		/// <summary>
 		/// The game has finished when there's only one player left
 		/// </summary>
