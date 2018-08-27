@@ -64,29 +64,29 @@
                     <Image x:Name="PlayOverlay_Steal_Random" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/steal_random.png" Width="145" Margin="0,0,5,0" MouseEnter="PlayOverlay_Steal_Random_MouseEnter" MouseLeave="PlayOverlay_Steal_Random_MouseLeave" MouseDown="PlayOverlay_Steal_Random_MouseDown"></Image>
                     <Image x:Name="PlayOverlay_Steal_Specific" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/steal_specific.png" Width="145" Margin="5,0,0,0" MouseEnter="PlayOverlay_Steal_Specific_MouseEnter" MouseLeave="PlayOverlay_Steal_Specific_MouseLeave" MouseDown="PlayOverlay_Steal_Specific_MouseDown"></Image>
                 </StackPanel>
-                <Image x:Name="PlayOverlay_Play" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_play.png" Width="300" VerticalAlignment="Bottom" Margin="0,111,0,0" MouseEnter="PlayOverlay_Play_MouseEnter" MouseLeave="PlayOverlay_Play_MouseLeave" MouseDown="PlayBtn_Click"></Image>
+                <Image x:Name="PlayOverlay_Play" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_play.png" Width="300" VerticalAlignment="Bottom" Margin="0,111,0,0" MouseEnter="PlayOverlay_Play_MouseEnter" MouseLeave="PlayOverlay_Play_MouseLeave" MouseDown="PlayOverlay_Play_MouseDown"></Image>
             </StackPanel>
-            <StackPanel x:Name="NopeTrack2" Width="300" HorizontalAlignment="left" Height="466" Margin="75,0,0,0">
+            <StackPanel x:Name="NopeTrack" Width="300" HorizontalAlignment="left" Height="466" Margin="75,0,0,0">
                 <Label HorizontalAlignment="Center" FontFamily="Bebas Kai" Foreground="White" FontSize="48">ASK: Any Nopes?</Label>
                 <Grid Margin="0,0,0,20">
                     <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 1</Label>
-                    <Image x:Name="PlayOverlay_Nope_1" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_1_MouseDown"/>
+                    <Image x:Name="PlayOverlay_Nope_1" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_MouseDown"/>
                 </Grid>
                 <Grid Margin="0,0,0,20">
                     <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 2</Label>
-                    <Image x:Name="PlayOverlay_Nope_2" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_2_MouseDown"/>
+                    <Image x:Name="PlayOverlay_Nope_2" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_MouseDown"/>
                 </Grid>
                 <Grid Margin="0,0,0,20">
                     <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 3</Label>
-                    <Image x:Name="PlayOverlay_Nope_3" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_3_MouseDown"/>
+                    <Image x:Name="PlayOverlay_Nope_3" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_MouseDown"/>
                 </Grid>
                 <Grid Margin="0,0,0,20">
                     <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 4</Label>
-                    <Image x:Name="PlayOverlay_Nope_4" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_4_MouseDown"/>
+                    <Image x:Name="PlayOverlay_Nope_4" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_MouseDown"/>
                 </Grid>
                 <Grid Margin="0,0,0,7">
                     <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 5</Label>
-                    <Image x:Name="PlayOverlay_Nope_5" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_5_MouseDown"/>
+                    <Image x:Name="PlayOverlay_Nope_5" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_MouseDown"/>
                 </Grid>
                 <Image x:Name="PlayOverlay_NoNopes" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nonope.png" MouseEnter="PlayOverlay_NoNopes_MouseEnter" MouseLeave="PlayOverlay_NoNopes_MouseLeave" MouseDown="PlayOverlay_NoNopes_MouseDown"></Image>
             </StackPanel>
