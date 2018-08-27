@@ -11,78 +11,88 @@ namespace ServiceLayer
 {
     public class ExplodingKittensService
     {
-        //public EKCardModelList GetAllCards()
-        //{
-        //    EKCardModelList cardList = new EKCardModelList();
-        //    using (var db = new Pro250_KittensEntities())
-        //    {
-        //        var query = db.Cards.Select(x => x);
-        //        var Cards_List = query.ToList();
-        //        Cards_List.ForEach(cardDetail =>
-        //           cardList.CardList.Add(
-        //                new Card()
-        //                {
-        //                    CardID = cardDetail.CardID,
-        //                    Flavor_Text = cardDetail.Flavor_Text,
-        //                    Text = cardDetail.Text,
-        //                    Title = cardDetail.Title
-
-        //                }));
-        //    }
-        //    return cardList;
-        //}
-
-
-        //public bool IsCardInHand(int cardId, int playerId)
-        //{
-        //    using (var db = new Pro250_KittensEntities())
-        //    {
-        //        var getHandQuery = db.Hands.Where(x => x.PlayerID == playerId).ToList();
-        //        for (int i = 0; i < getHandQuery.Count; i++)
-        //        {
-        //            if (getHandQuery[i].CardID == cardId)
-        //            {
-        //                return true;
-        //            }
-        //        }
-        //        return false;
-        //    }
-        //}
-        //public void addCardToTable(int cardID, string flavorText, string text, string title)
-        //{
-        //    using (var db = new Pro250_KittensEntities())
-        //    {
-        //        db.Cards.Add(new Card()
-        //        {
-        //            CardID = cardID,
-        //            Flavor_Text = flavorText,
-        //            Text = text,
-        //            Title = title
-        //        });
-        //        db.SaveChanges();
-        //    }
-        //}
         public void SaveGame(ExplodingKittensLib.Models.Game myGame)
         {
             var currentPlayers = myGame.Players;
+            int activePlayerIndex = -1;
             using(var db = new Pro250_KittensEntities1())
             {
+              
                 //Save Players
                 for (int i = 0; i < currentPlayers.Count; i++)
                 {
+                    if(currentPlayers.ElementAt(i).IsActive == true)
+                    {
+                        activePlayerIndex = i;
+                    }
                     savePlayer(currentPlayers.ElementAt(i), i, myGame.ID);
                 }
+                //SaveGame
+                saveGameToTable(myGame, activePlayerIndex);
                 //Saves Hands
                 for (int i = 0; i < currentPlayers.Count; i++)
                 {
                     SaveHand(currentPlayers.ElementAt(i));
                 }
-                //Save DrawDeck
-                //saveDeck(myGame.Deck.DrawPile, );
-                //Save PlayDeck
-
+                //Save Decks
+                savePlayDeck(myGame.Deck.PlayPile, myGame.ID);
+                saveDrawDeck(myGame.Deck.DrawPile, myGame.ID);
             }
             
+        }
+        public Game loadGame(ExplodingKittensLib.Models.Game myGame)
+        {
+           // ExplodingKittensLib.Models.Game loadedGame = new ExplodingKittensLib.Models.Game();
+            loadCards();
+            loadPlayers(myGame);
+            return new Game();
+        }
+        public void loadCards()
+        {
+
+        }
+        public Stack<Player> loadPlayers(ExplodingKittensLib.Models.Game myGame)
+        {
+            using(var db = new Pro250_KittensEntities1())
+            {
+                IQueryable<Player> playersList = db.Players.Where(x => x.GameID == myGame.ID);
+                Stack<Player> playerObjectsStack = new Stack<Player>();
+                List<int> cardIDList = new List<int>();
+                foreach (Player newPlayer in playersList)
+                {
+                    for (int i = 0; i < newPlayer.Player_Hand.Count; i++)
+                    {
+                        //New Hand and Player
+                        ExplodingKittensLib.Models.Hand myHand = new ExplodingKittensLib.Models.Hand();
+                        ExplodingKittensLib.Models.Players.Player myPlayer = new ExplodingKittensLib.Models.Players.Player(newPlayer.PlayerID, myGame);
+                        //Add to CardID List to get the hand information
+                        cardIDList.Add(newPlayer.Player_Hand.ElementAt(i).CardID);
+                        //Set active Player
+                        if (myGame.ActivePlayer.Id == newPlayer.PlayerID)
+                        {
+                            myPlayer.IsActive = true;
+                        }
+                    }                
+                }
+            }
+        }
+        public void saveGameToTable(ExplodingKittensLib.Models.Game myGame, int activePlayerIndex)
+        {
+            using(var db = new Pro250_KittensEntities1())
+            {
+                var gameQuery = db.Games.Where(x => x.GameID == myGame.ID).First();
+                if(gameQuery != null)
+                {
+                    db.Games.Remove(gameQuery);
+                }
+                db.Games.Add(new Game
+                {
+                    GameID = myGame.ID,
+                    Current_Player = activePlayerIndex,
+                    Game_Name = myGame.Name,
+                    
+                });
+            }
         }
         public void savePlayer(ExplodingKittensLib.Models.Players.Player myPlayer, int playerPosition, int gameID)
         {
@@ -103,6 +113,7 @@ namespace ServiceLayer
                 db.SaveChanges();
             }
         }
+
         public void SaveHand(ExplodingKittensLib.Models.Players.Player myPlayer)
         {
             using (var db = new Pro250_KittensEntities1())
@@ -116,14 +127,52 @@ namespace ServiceLayer
                         CardID = myPlayer.Hand.Cards[i].Id,
                         PlayerID = myPlayer.Id
                     });
-                }               
+                }
+                db.SaveChanges();
             }
         }
-        public void saveDeck(Stack<Card> drawDeck, int gameID)
+        public void savePlayDeck(Stack<Card> playDeck, int gameID)
         {
             using (var db = new Pro250_KittensEntities1())
             {
-                var getPlayDeckQuery = db.PlayDecks.Where(x => x.GameID == gameID);
+                var getPlayDeckQuery = db.PlayDecks.Where(x => x.GameID == gameID).First();
+                if(getPlayDeckQuery != null)
+                {
+                    db.PlayDecks.Remove(getPlayDeckQuery);
+                }
+                for (int i = 0; i < playDeck.Count; i++)
+                {
+                    db.PlayDecks.Add(new PlayDeck
+                    {
+                        CardID = playDeck.ElementAt(i).Id,
+                        GameID = gameID
+
+                    });
+                    db.SaveChanges();
+                }
+              
+            }
+        }
+        public void saveDrawDeck(Stack<Card> drawDeck, int gameID)
+        {
+            using (var db = new Pro250_KittensEntities1())
+            {
+                var getDrawDeckQuery = db.DrawDecks.Where(x => x.GameID == gameID).First();
+                if (getDrawDeckQuery != null)
+                {
+                    db.DrawDecks.Remove(getDrawDeckQuery);
+                }
+                for (int i = 0; i < drawDeck.Count; i++)
+                {
+                    db.DrawDecks.Add(new DrawDeck
+                    {
+                        CardID = drawDeck.ElementAt(i).Id,
+                        GameID = gameID
+
+                    });
+                    db.SaveChanges();
+                }
+
             }
         }
     }
