@@ -208,5 +208,9 @@
     <Resource Include="Assets\GameScreen\Buttons\game_back.png" />
     <Resource Include="Assets\GameScreen\Buttons\game_back_hover.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Buttons\button_nonope.png" />
+    <Resource Include="Assets\GameScreen\Buttons\button_nonope_hover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -92,10 +92,11 @@
                     <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 4</Label>
                     <Image x:Name="PlayOverlay_Nope_4" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_4_MouseDown"/>
                 </Grid>
-                <Grid Margin="0,0,0,20">
+                <Grid Margin="0,0,0,7">
                     <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 5</Label>
                     <Image x:Name="PlayOverlay_Nope_5" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_5_MouseDown"/>
                 </Grid>
+                <Image x:Name="PlayOverlay_NoNopes" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nonope.png" MouseEnter="PlayOverlay_NoNopes_MouseEnter" MouseLeave="PlayOverlay_NoNopes_MouseLeave" MouseDown="PlayOverlay_NoNopes_MouseDown"></Image>
             </StackPanel>
         </Grid>
     </Grid>

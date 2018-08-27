@@ -261,5 +261,20 @@ namespace ExplodingKittensWPF.Pages
         {
 
         }
+
+        private void PlayOverlay_NoNopes_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nonope_hover.png"));
+        }
+
+        private void PlayOverlay_NoNopes_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nonope.png"));
+        }
+
+        private void PlayOverlay_NoNopes_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
