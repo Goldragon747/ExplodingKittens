@@ -58,6 +58,8 @@ namespace ServiceLayer
                 IQueryable<Player> playersList = db.Players.Where(x => x.GameID == myGame.ID);
                 Stack<Player> playerObjectsStack = new Stack<Player>();
                 List<int> cardIDList = new List<int>();
+                ExplodingKittensLib.Models.WPFDeck myWPFDeck = new ExplodingKittensLib.Models.WPFDeck(myGame, myGame.Players.Count);
+
                 foreach (Player newPlayer in playersList)
                 {
                     for (int i = 0; i < newPlayer.Player_Hand.Count; i++)
@@ -72,8 +74,9 @@ namespace ServiceLayer
                         {
                             myPlayer.IsActive = true;
                         }
-                    }                
+                    }
                 }
+                myWPFDeck.
             }
         }
         public void saveGameToTable(ExplodingKittensLib.Models.Game myGame, int activePlayerIndex)
