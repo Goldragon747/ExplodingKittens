@@ -70,19 +70,21 @@ namespace ServiceLayer
                 //Save Players
                 for (int i = 0; i < currentPlayers.Count; i++)
                 {
-                    //savePlayer(currentPlayers.ElementAt(i), i, myGame.ID);
+                    savePlayer(currentPlayers.ElementAt(i), i, myGame.ID);
                 }
                 //Saves Hands
                 for (int i = 0; i < currentPlayers.Count; i++)
                 {
-                    //SaveHand(currentPlayers.ElementAt(i));
+                    SaveHand(currentPlayers.ElementAt(i));
                 }
                 //Save DrawDeck
-                //saveDeck(myGame.Deck.DrawPile);
+                //saveDeck(myGame.Deck.DrawPile, );
+                //Save PlayDeck
+
             }
             
         }
-        public void savePlayer(ExplodingKittensLib.Models.Players.WPFPlayer myPlayer, int playerPosition, int gameID)
+        public void savePlayer(ExplodingKittensLib.Models.Players.Player myPlayer, int playerPosition, int gameID)
         {
             using (var db = new Pro250_KittensEntities1())
             {
@@ -101,7 +103,7 @@ namespace ServiceLayer
                 db.SaveChanges();
             }
         }
-        public void SaveHand(ExplodingKittensLib.Models.Players.WPFPlayer myPlayer)
+        public void SaveHand(ExplodingKittensLib.Models.Players.Player myPlayer)
         {
             using (var db = new Pro250_KittensEntities1())
             {
