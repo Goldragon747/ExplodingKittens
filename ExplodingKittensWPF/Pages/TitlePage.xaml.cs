@@ -111,7 +111,7 @@ namespace ExplodingKittensWPF.Pages
             {
                 players[3] = title_textbox_player_4.Text == "" ? "Player 4" : title_textbox_player_4.Text;
             }
-            if(playerCount > 3)
+            if(playerCount > 4)
             {
                 players[4] = title_textbox_player_5.Text == "" ? "Player 5" : title_textbox_player_5.Text;
             }
@@ -121,6 +121,11 @@ namespace ExplodingKittensWPF.Pages
         private void title_instructions_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new InstructionsPage());
+        }
+
+        private void title_load_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new LoadPage());
         }
     }
 }
