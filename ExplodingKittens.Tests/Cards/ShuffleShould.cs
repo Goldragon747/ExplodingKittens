@@ -5,7 +5,7 @@ using Moq;
 
 namespace ExplodingKittens.Tests.Cards
 {
-    //todo fix tests
+    //todo fix ShuffleShould test 2 left
     //[TestClass]
     //public class ShuffleShould
     //{

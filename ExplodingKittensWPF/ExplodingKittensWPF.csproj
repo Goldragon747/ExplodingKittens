@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -125,7 +126,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\GameScreen\game_bg.png" />
     <Resource Include="Assets\TitleScreen\title_bg.png" />
     <Resource Include="Assets\TitleScreen\title_expansions.png" />
     <Resource Include="Assets\TitleScreen\title_imploding_checked.png" />
@@ -141,9 +141,6 @@
     <Resource Include="Assets\TitleScreen\title_play_hover.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Cards\demo-card.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +154,59 @@
       <Project>{149A6ED1-3E91-46BE-B751-430346A68FB8}</Project>
       <Name>ExplodingKittensLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Backgrounds\game_bg_back.png" />
+    <Resource Include="Assets\GameScreen\Backgrounds\game_bg_blue.png" />
+    <Resource Include="Assets\GameScreen\Backgrounds\game_bg_green.png" />
+    <Resource Include="Assets\GameScreen\Backgrounds\game_bg_orange.png" />
+    <Resource Include="Assets\GameScreen\Backgrounds\game_bg_pink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Buttons\button_nope.png" />
+    <Resource Include="Assets\GameScreen\Buttons\button_nope_hover.png" />
+    <Resource Include="Assets\GameScreen\Buttons\card_draw.png" />
+    <Resource Include="Assets\GameScreen\Buttons\card_draw_hover.png" />
+    <Resource Include="Assets\GameScreen\Buttons\game_play.png" />
+    <Resource Include="Assets\GameScreen\Buttons\game_play_hover.png" />
+    <Resource Include="Assets\GameScreen\Buttons\steal_label.png" />
+    <Resource Include="Assets\GameScreen\Buttons\steal_random.png" />
+    <Resource Include="Assets\GameScreen\Buttons\steal_random_disabled.png" />
+    <Resource Include="Assets\GameScreen\Buttons\steal_random_hover.png" />
+    <Resource Include="Assets\GameScreen\Buttons\steal_specific.png" />
+    <Resource Include="Assets\GameScreen\Buttons\steal_specific_disabled.png" />
+    <Resource Include="Assets\GameScreen\Buttons\steal_specific_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Backgrounds\transparent_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Decoration\card_discard_default.png" />
+    <Resource Include="Assets\GameScreen\Decoration\line_break.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Cards\card_back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\InstructionsScreen\instructions_back.png" />
+    <Resource Include="Assets\InstructionsScreen\instructions_back_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Decoration\game_title_bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Decoration\game_title_bar2.png" />
+    <Resource Include="Assets\GameScreen\Decoration\game_title_bar3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Decoration\game_title_bar4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Backgrounds\game_bg_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Buttons\game_back.png" />
+    <Resource Include="Assets\GameScreen\Buttons\game_back_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

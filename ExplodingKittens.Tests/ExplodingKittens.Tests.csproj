@@ -88,16 +88,16 @@
     <Compile Include="Writers\MemoryWriterShould.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExplodingKittens\ExplodingKittens.csproj">
-      <Project>{f8cc3100-2bda-4a31-827c-4000a2646352}</Project>
-      <Name>ExplodingKittens</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExplodingKittensLib\ExplodingKittensLib.csproj">
+      <Project>{149a6ed1-3e91-46be-b751-430346a68fb8}</Project>
+      <Name>ExplodingKittensLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

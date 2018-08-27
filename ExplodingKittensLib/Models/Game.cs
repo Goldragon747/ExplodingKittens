@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace ExplodingKittensLib.Models
 {
-	public abstract class Game
+	public class Game
 	{
 		public Deck Deck { get; set; }
 		//public IOutputWriter Writer { get; set; }

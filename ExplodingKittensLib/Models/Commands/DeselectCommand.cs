@@ -27,7 +27,10 @@ namespace ExplodingKittensLib.Models.Commands
 			CurrentPlayer = player;
 			CurrentCardIndex = index;
 		}
-
+        /// <summary>
+        /// Prevents the wrong ActionReponse from being done
+        /// </summary>
+        /// <returns></returns>
 		public ActionResponse Execute()
 		{
 			if (CurrentCardIndex <= 0)

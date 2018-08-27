@@ -5,8 +5,8 @@ using NUnit.Framework;
 
 namespace ExplodingKittens.Tests.Cards
 {
-    //todo fix tests
-	[TestClass]
+    //todo fix SeeTheFutureShould test 2 left
+    [TestClass]
 	public class SeeTheFutureShould
 	{
 		//[TestMethod]

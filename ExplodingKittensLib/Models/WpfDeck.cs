@@ -175,33 +175,39 @@ namespace ExplodingKittensLib.Models
         }
         public override Stack<Card> GetDefuseCards()
         {
-            Stack<Card> cards = new Stack<Card>();
-            if (NumberOfPlayers != 2)//todo Figure out where the randomization should be done and do it
+            List<Card> cards = new List<Card>();
+            Defuse one = new Defuse(Game, id++);
+            one.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_1.jpg", UriKind.Absolute));
+            Defuse two = new Defuse(Game, id++);
+            two.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_2.jpg", UriKind.Absolute));
+            Defuse three = new Defuse(Game, id++);
+            three.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_3.jpg", UriKind.Absolute));
+            Defuse four = new Defuse(Game, id++);
+            four.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_4.jpg", UriKind.Absolute));
+            Defuse five = new Defuse(Game, id++);
+            five.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_5.jpg", UriKind.Absolute));
+            Defuse six = new Defuse(Game, id++);
+            six.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_6.jpg", UriKind.Absolute));
+            cards.Add(one);
+            cards.Add(two);
+            cards.Add(three);
+            cards.Add(four);
+            cards.Add(five);
+            cards.Add(six);
+            if (NumberOfPlayers == 2)
             {
-                Defuse one = new Defuse(Game, id++);
-                one.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_1.jpg", UriKind.Absolute));
-                Defuse two = new Defuse(Game, id++);
-                two.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_2.jpg", UriKind.Absolute));
-                Defuse three = new Defuse(Game, id++);
-                three.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_3.jpg", UriKind.Absolute));
-                Defuse four = new Defuse(Game, id++);
-                four.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_4.jpg", UriKind.Absolute));
-                Defuse five = new Defuse(Game, id++);
-                five.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_5.jpg", UriKind.Absolute));
-                Defuse six = new Defuse(Game, id++);
-                six.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_defuse_6.jpg", UriKind.Absolute));
-                cards.Push(one);
-                cards.Push(two);
-                cards.Push(three);
-                cards.Push(four);
-                cards.Push(five);
-                cards.Push(six);
+                Random rand = new Random();
+                int num = rand.Next(6);
+                cards.RemoveAt(num);
+                num = rand.Next(5);
+                cards.RemoveAt(num);
             }
-            return cards;
+            Stack<Card> result = new Stack<Card>(cards);
+            return result;
         }
         public Stack<Card> GetExplodingKittenCards(int id)
         {
-            Stack<Card> cards = new Stack<Card>();
+            List<Card> cards = new List<Card>();
             ExplodingKitten one = new ExplodingKitten(Game, id++);
             one.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_exploding_kitten_1.jpg", UriKind.Absolute));
             ExplodingKitten two = new ExplodingKitten(Game, id++);
@@ -210,11 +216,18 @@ namespace ExplodingKittensLib.Models
             three.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_exploding_kitten_3.jpg", UriKind.Absolute));
             ExplodingKitten four = new ExplodingKitten(Game, id++);
             four.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_exploding_kitten_4.jpg", UriKind.Absolute));
-            cards.Push(one);
-            cards.Push(two);
-            cards.Push(three);
-            cards.Push(four);
-            return cards;
+            cards.Add(one);
+            cards.Add(two);
+            cards.Add(three);
+            cards.Add(four);
+            Random rand = new Random();
+            while (cards.Count > (NumberOfPlayers - 1))
+            {
+                int num = rand.Next(cards.Count);
+                cards.RemoveAt(num);
+            }
+            Stack<Card> result = new Stack<Card>(cards);
+            return result;
         }
 
         private void AddIntialCards()
