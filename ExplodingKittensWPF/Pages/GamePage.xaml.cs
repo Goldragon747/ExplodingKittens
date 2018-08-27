@@ -21,8 +21,7 @@ namespace ExplodingKittensWPF.Pages
         public GamePage(int numOfPlayers, string[] playerNames)
         {
             InitializeComponent();
-            game = new Game(numOfPlayers, false);
-            game.AddPlayerNames(playerNames);
+            game = new Game(numOfPlayers, playerNames);
             NopeTrack2.Visibility = Visibility.Hidden;
             PlayOverlay.Visibility = Visibility.Hidden;
             AddNopeTrackBtns(numOfPlayers);
@@ -131,11 +130,30 @@ namespace ExplodingKittensWPF.Pages
             //todo Clear board between turns
             //todo Ask player, by name, if they are ready to begin their turn
             ShowHand();
-            //if (game.ActivePlayer.Hand.HasSelectedCard)
-            //{
-            //    ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
-            //}
         }
+
+        private void StartPlayerTurn()
+        {
+            bool underAttack = game.ActivePlayer.IsUnderAttack;
+            do
+            {
+                if (underAttack) { TurnsRemaining.Content = "2 Turns Remaining"; }
+
+                //Do play stuff
+
+                if (underAttack && game.NextPlayer.IsUnderAttack)
+                {
+                    underAttack = false;
+                }
+            }
+            while (underAttack);
+        }
+        /*On turn start
+         * - Screen should be either cleared or hidden
+         * - The Game should prompt the user by name if they are ready to began
+         * - Once ready the screen should display as normal with players hand, last played card and number of turns
+         * 
+         */ 
 
         private void PlayerCard_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
