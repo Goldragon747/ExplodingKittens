@@ -22,21 +22,23 @@ namespace ExplodingKittensWPF.Pages
         {
             InitializeComponent();
             game = new Game(numOfPlayers, false);
-            NopeTrack.Visibility = Visibility.Hidden;
+            game.AddPlayerNames(playerNames);
+            NopeTrack2.Visibility = Visibility.Hidden;
+            PlayOverlay.Visibility = Visibility.Hidden;
             AddNopeTrackBtns(numOfPlayers);
             Update();
         }
 
         private void AddNopeTrackBtns(int numOfPlayers)
         {
-            NopeTrack.Children.Clear();
-            for (int i = 0; i < numOfPlayers; i++)
-            {
-                Button b = new Button();
-                b.Content = $"P{i + 1}";
-                b.Click += NopeBtn_Click;
-                NopeTrack.Children.Add(b);
-            }
+            //NopeTrack2.Children.Clear();
+            //for (int i = 0; i < numOfPlayers; i++)
+            //{
+            //    Button b = new Button();
+            //    b.Content = $"P{i + 1}";
+            //    b.Click += NopeBtn_Click;
+            //    NopeTrack2.Children.Add(b);
+            //}
         }
 
         private void DrawBtn_Click(object sender, RoutedEventArgs e)
@@ -58,7 +60,7 @@ namespace ExplodingKittensWPF.Pages
             //todo Finsh Implementing PlayBtn_Click
             game.ActivePlayer.PlaySelectedCards();
             ShowHand();
-            NopeTrack.Visibility = Visibility.Visible;
+            NopeTrack2.Visibility = Visibility.Visible;
         }
 
         private void NopeBtn_Click(object sender, RoutedEventArgs e)
@@ -125,6 +127,7 @@ namespace ExplodingKittensWPF.Pages
 
         private void Update()
         {
+            PlayerName.Content = game.ActivePlayer.Name;
             //todo Clear board between turns
             //todo Ask player, by name, if they are ready to begin their turn
             ShowHand();
@@ -136,7 +139,9 @@ namespace ExplodingKittensWPF.Pages
 
         private void PlayerCard_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            PlayOverlay.Visibility = Visibility.Visible;
             Image _img = sender as Image;
+            PlayOverlay_Card.Source = _img.Source;
             game.ActivePlayer.Hand.SelectedCard.IsSelected = false;
             int.TryParse(_img.Uid, out int num);
             game.ActivePlayer.Hand.Cards[num].IsSelected = true;
