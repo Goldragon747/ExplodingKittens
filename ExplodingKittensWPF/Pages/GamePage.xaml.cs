@@ -8,6 +8,7 @@ using ExplodingKittensLib.Models;
 using ExplodingKittensLib.Models.Cards;
 using ExplodingKittensLib.Models.Players;
 using System.Windows.Input;
+using ExplodingKittensWPF.UserControls;
 
 namespace ExplodingKittensWPF.Pages
 {
@@ -24,32 +25,30 @@ namespace ExplodingKittensWPF.Pages
             game = new Game(numOfPlayers, playerNames);
             NopeTrack.Visibility = Visibility.Hidden;
             PlayOverlay.Visibility = Visibility.Hidden;
-            AddNopeTrackBtns(numOfPlayers);
             StartPlayerTurn();
         }
 
-        private void PlayGame()
+        private void AddNopeTrackBtns()
         {
-
-        }
-
-        private void AddNopeTrackBtns(int numOfPlayers)
-        {
-            //todo M - The appropriate number of btns needs to be added with their styles
-            //todo when adding the Nope user controls, add a margin Margin="0,0,0,20"
-            //NopeTrack2.Children.Clear();
-            //for (int i = 0; i < numOfPlayers; i++)
-            //{
-            //    Button b = new Button();
-            //    b.Content = $"P{i + 1}";
-            //    b.Click += NopeBtn_Click;
-            //    NopeTrack2.Children.Add(b);
-            //}
-        }
+            NopeTrack.Children.Clear();
+            Player p = game.ActivePlayer;
+            for (int i = 0; i < game.Players.Count; i++)
+            {
+                if (!p.IsActive)
+                {
+                    PlayerNope nope = new PlayerNope();
+                    nope.PlayerName = p.Name;
+                    nope.Id = p.Id;
+                    nope.MouseDown += PlayOverlay_Nope_MouseDown;
+                    nope.Margin = new Thickness(0, 0, 0, 20);
+                    NopeTrack.Children.Add(nope);
+                }
+                p = game.GetNextPlayer(p);
+            }
+    }
 
         private void ShowHand()
         {
-            //todo Make player hand either scroll-able or stacked so the cards don't run off the screen
             Hand activePlayerHand = game.ActivePlayer.Hand;
             playerHand.Children.Clear();
             int row = 0;
@@ -104,14 +103,6 @@ namespace ExplodingKittensWPF.Pages
             }
         }
 
-        private void Update()
-        {
-            PlayerName.Content = game.ActivePlayer.Name;
-            //todo Clear board between turns
-            //todo Ask player, by name, if they are ready to begin their turn
-            ShowHand();
-        }
-
         private void ClearBoard()
         {
             playerHand.Children.Clear();
@@ -126,10 +117,13 @@ namespace ExplodingKittensWPF.Pages
             bool underAttack = game.ActivePlayer.IsUnderAttack;
             do
             {
+                PlayerName.Content = game.ActivePlayer.Name;
                 if (underAttack) { TurnsRemaining.Content = "2 Turns Remaining"; }
+                else { TurnsRemaining.Content = "1 Turn Remaining"; }
 
+                MessageBox.Show($"{game.ActivePlayer.Name}, get ready for your turn.");//todo MessageBox
+                ShowHand();
                 //Do play stuff
-                Update();
 
                 if (underAttack && game.NextPlayer.IsUnderAttack)
                 {
@@ -151,22 +145,36 @@ namespace ExplodingKittensWPF.Pages
          * - The Game should prompt the user by name if they are ready to end their turn
          */
 
-        //TODO add test for disabling steal buttons for 2 and 3 card combos
         private bool stealIsValid = true;
 
         #region Mouse Downs
         private void DrawBtn_Click(object sender, RoutedEventArgs e)
         {
-            game.ActivePlayer.DrawCard();
-            //todo Add check to see if they drew an exploding kitten and it they had a defuse
-            //todo If exploding kiten /w defuse, then allow player to choose where to put bomb in deck
+            WPFPlayer p = (WPFPlayer)game.ActivePlayer;
+            p.DrawCard();
+            if (game.Deck.PlayPile.Peek().GetType() == typeof(ExplodingKitten))
+            {
+                Card bomb = game.Deck.PlayPile.Pop();
+                Card defuse = p.Hand.GetDefuse();
+                if (defuse.GetType() != typeof(NullCard))
+                {
+                    p.PlayCard(defuse);
+                    MessageBox.Show($"Fwew, you drew an Exploding Kitten, but you had a defuse.");//todo MessageBox
+                    //todo If exploding kiten /w defuse, then allow player to choose where to put bomb in deck
+                }
+                else
+                {
+                    MessageBox.Show($"Oh no! You drew an Exploding Kitten, but you didn't have a defuse.");//todo MessageBox
+                }
+            }
             ShowHand();
             if (!game.ActivePlayer.IsUnderAttack)
             {
-                MessageBox.Show("Your turn is now over.");
+                MessageBox.Show("Your turn is now over.");//todo MessageBox
             }
             game.EndTurn();
-            Update();
+            ClearBoard();
+            StartPlayerTurn();
         }
 
         private void PlayerCard_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -177,7 +185,30 @@ namespace ExplodingKittensWPF.Pages
             game.ActivePlayer.Hand.SelectedCard.IsSelected = false;
             int.TryParse(_img.Uid, out int num);
             game.ActivePlayer.Hand.Cards[num].IsSelected = true;
-            //ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
+
+            WPFPlayer p = (WPFPlayer)game.ActivePlayer;
+            Card selectedCard = null;
+            foreach (KeyValuePair<int, Card> card in p.Hand.Cards)
+            {
+                if (_img.Uid == card.Value.Id.ToString())
+                {
+                    selectedCard = card.Value;
+                    break;
+                }
+            }
+            int num = 0;
+            foreach (KeyValuePair<int, Card> card in p.Hand.Cards)
+            {
+                if (card.Value.GetType() == selectedCard.GetType()){ num++; }
+            }
+            if(num < 2)
+            {
+                //todo disable steal 2 and 3
+            }
+            else if (num < 3)
+            {
+                //todo disable steal 3
+            }
 
         }
 
@@ -198,26 +229,55 @@ namespace ExplodingKittensWPF.Pages
 
         private void PlayOverlay_Play_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //todo Finsh Implementing PlayBtn_Click
-            game.ActivePlayer.PlaySelectedCards();
-            ShowHand();
-            NopeTrack.Visibility = Visibility.Visible;
+            WPFPlayer p = (WPFPlayer)game.ActivePlayer;
+            Image _img = sender as Image;
+            Card selectedCard = null;
+            foreach (KeyValuePair<int, Card> card in p.Hand.Cards)
+            {
+                if (_img.Uid == card.Value.Id.ToString())
+                {
+                    selectedCard = card.Value;
+                    break;
+                }
+            }
+            if (selectedCard.GetType() == typeof(Favor) || selectedCard.GetType() == typeof(Pair))
+            {
+                p.SelectCard(selectedCard.Id);
+                //Todo choose player thing; Make sure to deselect card after
+            }
+            else
+            {
+                p.PlayCard(selectedCard);
+                ClearBoard();
+                NopeTrack.Visibility = Visibility.Visible;
+            }
         }
 
         private void PlayOverlay_Nope_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //Todo which player clicked
-            Player p = new Player(-3, game); //todo replace
+            AddNopeTrackBtns();
+            PlayerNope playerNope = sender as PlayerNope;
+            Player p = game.GetSelectedPlayer(playerNope.Id);
             Card c = p.Hand.GetNope();
             if (c.GetType() == typeof(NullCard))
             {
-                MessageBox.Show($"Sorry, {p.Name}, but you don't have any Nope cards.");
+                MessageBox.Show($"Sorry, {p.Name}, but you don't have any Nope cards.");//todo MessageBox
+            }
+            else
+            {
+                p.PlayCard(c);
+                MessageBox.Show($"{p.Name} noped your card, {game.ActivePlayer.Name}");//todo MessageBox
+                NopeTrack.Visibility = Visibility.Hidden;
+                PlayOverlay.Visibility = Visibility.Hidden;
+                ShowHand();
             }
         }
 
         private void PlayOverlay_NoNopes_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            NopeTrack.Visibility = Visibility.Hidden;
+            PlayOverlay.Visibility = Visibility.Hidden;
+            ShowHand();
         }
         #endregion
 

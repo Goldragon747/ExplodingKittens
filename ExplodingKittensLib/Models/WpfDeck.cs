@@ -265,7 +265,7 @@ namespace ExplodingKittensLib.Models
             return result;
         }
 
-        private Card FindCardById(int id)
+        public Card FindCardById(int id)
         {
             Card result = null;
             foreach (Card card in DrawPile)
