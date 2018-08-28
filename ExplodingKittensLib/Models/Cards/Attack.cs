@@ -26,8 +26,12 @@ namespace ExplodingKittensLib.Models.Cards
 			ActionResponse res = new ActionResponse();
 			res.AddMessage(string.Format("Player {0} is under attack!", Game.NextPlayer.Id));
 
-			Game.ActivePlayer.IsUnderAttack = false;
-			Game.NextPlayer.IsUnderAttack = true;
+
+            if (Game.GetType() == typeof(ConsoleGame))
+            {
+                Game.ActivePlayer.IsUnderAttack = false;
+			    Game.NextPlayer.IsUnderAttack = true;
+            }
 			Game.EndTurn();
 
 			return res;
