@@ -21,49 +21,30 @@ namespace ExplodingKittensWPF.Pages
         public GamePage(int numOfPlayers, string[] playerNames)
         {
             InitializeComponent();
-            game = new Game(numOfPlayers, false);
+            game = new Game(numOfPlayers, playerNames);
             NopeTrack.Visibility = Visibility.Hidden;
+            PlayOverlay.Visibility = Visibility.Hidden;
             AddNopeTrackBtns(numOfPlayers);
-            Update();
+            StartPlayerTurn();
+        }
+
+        private void PlayGame()
+        {
+
         }
 
         private void AddNopeTrackBtns(int numOfPlayers)
         {
-            NopeTrack.Children.Clear();
-            for (int i = 0; i < numOfPlayers; i++)
-            {
-                Button b = new Button();
-                b.Content = $"P{i + 1}";
-                b.Click += NopeBtn_Click;
-                NopeTrack.Children.Add(b);
-            }
-        }
-
-        private void DrawBtn_Click(object sender, RoutedEventArgs e)
-        {
-            game.ActivePlayer.DrawCard();
-            //todo Add check to see if they drew an exploding kitten and it they had a defuse
-            //todo If exploding kiten /w defuse, then allow player to choose where to put bomb in deck
-            ShowHand();
-            if (!game.ActivePlayer.IsUnderAttack)
-            {
-                MessageBox.Show("Your turn is now over.");
-            }
-            game.EndTurn();
-            Update();
-        }
-
-        private void PlayBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //todo Finsh Implementing PlayBtn_Click
-            game.ActivePlayer.PlaySelectedCards();
-            ShowHand();
-            NopeTrack.Visibility = Visibility.Visible;
-        }
-
-        private void NopeBtn_Click(object sender, RoutedEventArgs e)
-        {
-
+            //todo M - The appropriate number of btns needs to be added with their styles
+            //todo when adding the Nope user controls, add a margin Margin="0,0,0,20"
+            //NopeTrack2.Children.Clear();
+            //for (int i = 0; i < numOfPlayers; i++)
+            //{
+            //    Button b = new Button();
+            //    b.Content = $"P{i + 1}";
+            //    b.Click += NopeBtn_Click;
+            //    NopeTrack2.Children.Add(b);
+            //}
         }
 
         private void ShowHand()
@@ -125,24 +106,122 @@ namespace ExplodingKittensWPF.Pages
 
         private void Update()
         {
+            PlayerName.Content = game.ActivePlayer.Name;
             //todo Clear board between turns
             //todo Ask player, by name, if they are ready to begin their turn
             ShowHand();
-            //if (game.ActivePlayer.Hand.HasSelectedCard)
-            //{
-            //    ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
-            //}
+        }
+
+        private void ClearBoard()
+        {
+            playerHand.Children.Clear();
+            PlayOverlay_Back.Visibility = Visibility.Hidden;
+            PlayOverlay_Play.Visibility = Visibility.Hidden;
+            PlayOverlay_Steal_Random.Visibility = Visibility.Hidden;
+            PlayOverlay_Steal_Specific.Visibility = Visibility.Hidden;
+        }
+
+        private void StartPlayerTurn()
+        {
+            bool underAttack = game.ActivePlayer.IsUnderAttack;
+            do
+            {
+                if (underAttack) { TurnsRemaining.Content = "2 Turns Remaining"; }
+
+                //Do play stuff
+                Update();
+
+                if (underAttack && game.NextPlayer.IsUnderAttack)
+                {
+                    underAttack = false;
+                }
+            }
+            while (underAttack);
+        }
+        /*On turn start
+         * - Screen should be either cleared or hidden
+         * - The Game should prompt the user by name if they are ready to began their turn
+         * - Once ready the screen should display as normal with players hand, last played card and number of turns
+         * 
+         * On card drawn, 2 turns
+         * - card is added to player hand
+         * 
+         * On card drawn, 1 turn
+         * - card is added to player hand
+         * - The Game should prompt the user by name if they are ready to end their turn
+         */
+
+        //TODO add test for disabling steal buttons for 2 and 3 card combos
+        private bool stealIsValid = true;
+
+        #region Mouse Downs
+        private void DrawBtn_Click(object sender, RoutedEventArgs e)
+        {
+            game.ActivePlayer.DrawCard();
+            //todo Add check to see if they drew an exploding kitten and it they had a defuse
+            //todo If exploding kiten /w defuse, then allow player to choose where to put bomb in deck
+            ShowHand();
+            if (!game.ActivePlayer.IsUnderAttack)
+            {
+                MessageBox.Show("Your turn is now over.");
+            }
+            game.EndTurn();
+            Update();
         }
 
         private void PlayerCard_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            PlayOverlay.Visibility = Visibility.Visible;
             Image _img = sender as Image;
+            PlayOverlay_Card.Source = _img.Source;
             game.ActivePlayer.Hand.SelectedCard.IsSelected = false;
             int.TryParse(_img.Uid, out int num);
             game.ActivePlayer.Hand.Cards[num].IsSelected = true;
             //ActiveCard.Content = game.ActivePlayer.Hand.SelectedCard.Name;
 
         }
+
+        private void PlayOverlay_Back_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PlayOverlay.Visibility = Visibility.Collapsed;
+        }
+
+        private void PlayOverlay_Steal_Random_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void PlayOverlay_Steal_Specific_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void PlayOverlay_Play_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //todo Finsh Implementing PlayBtn_Click
+            game.ActivePlayer.PlaySelectedCards();
+            ShowHand();
+            NopeTrack.Visibility = Visibility.Visible;
+        }
+
+        private void PlayOverlay_Nope_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //Todo which player clicked
+            Player p = new Player(-3, game); //todo replace
+            Card c = p.Hand.GetNope();
+            if (c.GetType() == typeof(NullCard))
+            {
+                MessageBox.Show($"Sorry, {p.Name}, but you don't have any Nope cards.");
+            }
+        }
+
+        private void PlayOverlay_NoNopes_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Hover Events
 
         private void DrawBtn_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -154,11 +233,6 @@ namespace ExplodingKittensWPF.Pages
             ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/card_draw.png"));
         }
 
-        private void PlayOverlay_Back_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            PlayOverlay.Visibility = Visibility.Collapsed;
-        }
-
         private void PlayOverlay_Back_MouseEnter(object sender, MouseEventArgs e)
         {
             ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_back_hover.png"));
@@ -168,8 +242,7 @@ namespace ExplodingKittensWPF.Pages
         {
             ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_back.png"));
         }
-        //TODO add test for disabling steal buttons for 2 and 3 card combos
-        private bool stealIsValid = true;
+
         private void PlayOverlay_Steal_Random_MouseEnter(object sender, MouseEventArgs e)
         {
             if (stealIsValid)
@@ -184,11 +257,6 @@ namespace ExplodingKittensWPF.Pages
             {
                 ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/steal_random.png"));
             }
-        }
-
-        private void PlayOverlay_Steal_Random_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
 
         private void PlayOverlay_Steal_Specific_MouseEnter(object sender, MouseEventArgs e)
@@ -207,11 +275,6 @@ namespace ExplodingKittensWPF.Pages
             }
         }
 
-        private void PlayOverlay_Steal_Specific_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void PlayOverlay_Play_MouseEnter(object sender, MouseEventArgs e)
         {
             ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_play_hover.png"));
@@ -220,11 +283,6 @@ namespace ExplodingKittensWPF.Pages
         private void PlayOverlay_Play_MouseLeave(object sender, MouseEventArgs e)
         {
             ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/game_play.png"));
-        }
-
-        private void PlayOverlay_Play_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            
         }
 
         private void PlayOverlay_Nope_MouseEnter(object sender, MouseEventArgs e)
@@ -237,31 +295,6 @@ namespace ExplodingKittensWPF.Pages
             ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png"));
         }
 
-        private void PlayOverlay_Nope_1_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void PlayOverlay_Nope_2_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void PlayOverlay_Nope_3_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void PlayOverlay_Nope_4_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void PlayOverlay_Nope_5_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void PlayOverlay_NoNopes_MouseEnter(object sender, MouseEventArgs e)
         {
             ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nonope_hover.png"));
@@ -271,6 +304,7 @@ namespace ExplodingKittensWPF.Pages
         {
             ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nonope.png"));
         }
+        #endregion
 
         private void PlayOverlay_NoNopes_MouseDown(object sender, MouseButtonEventArgs e)
         {

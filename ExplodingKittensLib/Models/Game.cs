@@ -15,7 +15,7 @@ namespace ExplodingKittensLib.Models
 		public LinkedList<Player> Players { get; set; }
         public string Name { get; set; }
         public int ID { get; set; }
-                                           //public List<Commands.ICommand> CommandList { get; set; }
+        //public List<Commands.ICommand> CommandList { get; set; }
 
         //public Game(int numberOfPlayers, bool isConsoleApp)
         //	: this(numberOfPlayers, isConsoleApp, new ConsoleWriter())
@@ -23,212 +23,244 @@ namespace ExplodingKittensLib.Models
         //}
 
         /// <summary>
-        /// Create the only instance of the game class
+        /// Create an instance of the game class for a console game
         /// </summary>
         /// <param name="numberOfPlayers">The number of players in the game (between 2 and 5 inclusive)</param>
-        public Game(int numberOfPlayers, bool isConsoleApp)//, IOutputWriter writer)
-		{
-			//if (numberOfPlayers < 2)
-			//	throw new ArgumentException("The number of players must be at least two.");
-			//if (numberOfPlayers > 5)
-			//	throw new ArgumentException("The number of players must be at most five.");
+        public Game(int numberOfPlayers)//, bool isConsoleApp)//, IOutputWriter writer)
+        {
+            //if (numberOfPlayers < 2)
+            //	throw new ArgumentException("The number of players must be at least two.");
+            //if (numberOfPlayers > 5)
+            //	throw new ArgumentException("The number of players must be at most five.");
 
-			//Writer = writer;
-			Setup(numberOfPlayers, isConsoleApp);
-			//ListHands();
-			//Writer.WriteLine(Deck.ToString());
-			//CommandList = GetCommandList();
-		}
+            //Writer = writer;
+            Setup(numberOfPlayers);//, isConsoleApp);
+                                   //ListHands();
+                                   //Writer.WriteLine(Deck.ToString());
+                                   //CommandList = GetCommandList();
+        }
 
-		/// <summary>
-		/// The game has finished when there's only one player left
-		/// </summary>
-		public bool HasFinished
-		{
-			get { return (Players.Count == 1); }
-		}
+        /// <summary>
+        /// Create an instance of the game class for a wpf game
+        /// </summary>
+        /// <param name="numberOfPlayers">The number of players in the game (between 2 and 5 inclusive)</param>
+        public Game(int numberOfPlayers, string[] playerNames)//,  bool isConsoleApp)//, IOutputWriter writer)
+        {
+            Setup(numberOfPlayers, playerNames);//, isConsoleApp);
+        }
 
-		/// <summary>
-		/// Get the player whose turn it is
-		/// </summary>
-		public Player ActivePlayer
-		{
-			get { return Players.Where(player => player.IsActive).First(); }
-		}
+        /// <summary>
+        /// Add the players, new up the deck and deal the cards
+        /// </summary>
+        /// <param name="numberOfPlayers">The number of players in the game</param>
+        protected void Setup(int numberOfPlayers)//, bool isConsoleApp)
+        {
+            AddPlayers(numberOfPlayers);
+            Deck = new ConsoleDeck(this, numberOfPlayers);
+            Deal();
+        }
 
-		/// <summary>
-		/// Get the player whose being asked for a favor
-		/// </summary>
-		public Player PlayerBeingAskedForFavor
-		{
-			get
-			{
-				return Players.Where(player => player.IsAskedForFavor).DefaultIfEmpty(new NullPlayer()).First();
-			}
-		}
+        /// <summary>
+        /// Add the players, new up the deck and deal the cards
+        /// </summary>
+        /// <param name="numberOfPlayers">The number of players in the game</param>
+        protected void Setup(int numberOfPlayers, string[] playerNames)
+        {
+            AddPlayers(numberOfPlayers, playerNames);
+            Deck = new WPFDeck(this, numberOfPlayers);
+            Deal();
+        }
 
-		/// <summary>
-		/// Get the player whose being stolen from
-		/// </summary>
-		public Player PlayerBeingStolenFrom
-		{
-			get
-			{
-				return Players.Where(player => player.IsBeingStolenFrom).DefaultIfEmpty(new NullPlayer()).First();
-			}
-		}
+        /// <summary>
+        /// Add the players to the game and set the starting player
+        /// </summary>
+        /// <param name="numberOfPlayers">The number of players in the game</param>
+        protected void AddPlayers(int numberOfPlayers)
+        {
+            Player[] arrPlayers = new Player[numberOfPlayers];
 
-		/// <summary>
-		/// Get the previous player
-		/// </summary>
-		public Player PreviousPlayer
-		{
-			get { return (Players.Find(ActivePlayer).Previous ?? Players.Last).Value; }
-		}
-
-		/// <summary>
-		/// Get the next player
-		/// </summary>
-		public Player NextPlayer
-		{
-			get { return (Players.Find(ActivePlayer).Next ?? Players.First).Value; }
-		}
-
-		public Player GetNextPlayer(Player player)
-		{
-			return (Players.Find(player).Next ?? Players.First).Value;
-		}
-
-		public void EndTurn()
-		{
-			Player currentPlayer = ActivePlayer;
-
-			if (currentPlayer.IsUnderAttack)
-				currentPlayer.IsUnderAttack = false;
-			else
-			{
-				NextPlayer.IsActive = true;
-				currentPlayer.IsActive = false;
-			}
-		}
-
-		/// <summary>
-		/// Complete the game by writing the winning message
-		/// </summary>
-		public virtual void EndGame()
-		{
-            //todo What happens here?
-			//Writer.WriteLine(string.Format("Congratulations player {0}, you won the game!", Players.First.Value.Id));
-		}
-
-		/// <summary>
-		/// Get the player who has been selected by another player (for giving a card to or playing a card on)
-		/// </summary>
-		/// <param name="playerIndex"></param>
-		/// <returns></returns>
-		public Player GetSelectedPlayer(int playerIndex)
-		{
-			return Players.Where(p => (p.Id == playerIndex)).DefaultIfEmpty(new NullPlayer()).First();
-		}
-
-		/// <summary>
-		/// Remove a player from the game when thay pick up an exploding kitten they can't defuse
-		/// </summary>
-		/// <param name="player"></param>
-		public ActionResponse EliminatePlayer(Player player)
-		{
-			NextPlayer.IsActive = true;
-			Players.Remove(player);
-
-			return new ActionResponse(new Message(Severity.Info, string.Format("Player {0} has been eliminated!", player.Id)));
-		}
-
-		public virtual void Deal()
-		{
-			Deck.Shuffle();
-			DealInitialCards();
-			DealDefuseCards();
-            Deck.AddExplodingKittenCards();
-			Deck.Shuffle();
-		}
-
-		/// <summary>
-		/// Deal a defuse card to each player then add the remaining cards to the deck and shuffle
-		/// </summary>
-		protected void DealDefuseCards()
-		{
-			Stack<Card> defuseCards = Deck.GetDefuseCards();
-
-			foreach (Player player in Players)
-			{
-				Card card = defuseCards.Pop();
-				player.Hand.Cards.Add(card.Id, card);
-			}
-
-			foreach (Card defuseCard in defuseCards)
-			{
-				Deck.DrawPile.Push(defuseCard);
-			}
-		}
-
-		protected void DealInitialCards()
-		{
-			int initialCards = 7;
-			foreach (Player player in Players)
-			{
-				for (int dealIndex = 0; dealIndex < initialCards; dealIndex++)
-				{
-					if (Deck.DrawPile.Count > 0)
-					{
-						Card card = Deck.DrawPile.Pop();
-						player.Hand.Cards.Add(card.Id, card);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Add the players, new up the deck and deal the cards
-		/// </summary>
-		/// <param name="numberOfPlayers">The number of players in the game</param>
-		protected void Setup(int numberOfPlayers, bool isConsoleApp)
-		{
-			AddPlayers(numberOfPlayers);
-            if (isConsoleApp)
+            for (int playerIndex = 0; playerIndex < numberOfPlayers; playerIndex++)
             {
-			    Deck = new ConsoleDeck(this, numberOfPlayers);
+                arrPlayers[playerIndex] = new Player(playerIndex + 1, this);
             }
+
+            Players = new LinkedList<Player>(arrPlayers);
+
+            RandomlyChooseStartingPlayer();
+        }
+
+        /// <summary>
+        /// Add the players to the game, with names, and set the starting player
+        /// </summary>
+        /// <param name="numberOfPlayers">The number of players in the game</param>
+        protected void AddPlayers(int numberOfPlayers, string[] playerNames)
+        {
+            Player[] arrPlayers = new Player[numberOfPlayers];
+
+            for (int playerIndex = 0; playerIndex < numberOfPlayers; playerIndex++)
+            {
+                arrPlayers[playerIndex] = new Player(playerIndex + 1, this);
+                arrPlayers[playerIndex].Name = playerNames[playerIndex];
+            }
+
+            Players = new LinkedList<Player>(arrPlayers);
+
+            RandomlyChooseStartingPlayer();
+        }
+
+        public void EndTurn()
+        {
+            Player currentPlayer = ActivePlayer;
+
+            if (currentPlayer.IsUnderAttack)
+                currentPlayer.IsUnderAttack = false;
             else
             {
-                Deck = new WPFDeck(this, numberOfPlayers);
+                NextPlayer.IsActive = true;
+                currentPlayer.IsActive = false;
             }
-            Deal();
-		}
+        }
 
-		/// <summary>
-		/// Add the players to the game and set the starting player
-		/// </summary>
-		/// <param name="numberOfPlayers">The number of players in the game</param>
-		protected void AddPlayers(int numberOfPlayers)
-		{
-			Player[] arrPlayers = new Player[numberOfPlayers];
+        public virtual void Deal()
+        {
+            Deck.Shuffle();
+            DealInitialCards();
+            DealDefuseCards();
+            Deck.AddExplodingKittenCards();
+            Deck.Shuffle();
+        }
 
-			for (int playerIndex = 0; playerIndex < numberOfPlayers; playerIndex++)
-			{
-				arrPlayers[playerIndex] = new Player(playerIndex + 1, this);
-			}
+        /// <summary>
+        /// Deal a defuse card to each player then add the remaining cards to the deck and shuffle
+        /// </summary>
+        protected void DealDefuseCards()
+        {
+            Stack<Card> defuseCards = Deck.GetDefuseCards();
 
-			Players = new LinkedList<Player>(arrPlayers);
+            foreach (Player player in Players)
+            {
+                Card card = defuseCards.Pop();
+                player.Hand.Cards.Add(card.Id, card);
+            }
 
-			RandomlyChooseStartingPlayer();
-		}
+            foreach (Card defuseCard in defuseCards)
+            {
+                Deck.DrawPile.Push(defuseCard);
+            }
+        }
 
-		protected void RandomlyChooseStartingPlayer()
-		{
-			int randomPlayerIndex = new Random().Next(1, Players.Count + 1);
+        protected void DealInitialCards()
+        {
+            int initialCards = 7;
+            foreach (Player player in Players)
+            {
+                for (int dealIndex = 0; dealIndex < initialCards; dealIndex++)
+                {
+                    if (Deck.DrawPile.Count > 0)
+                    {
+                        Card card = Deck.DrawPile.Pop();
+                        player.Hand.Cards.Add(card.Id, card);
+                    }
+                }
+            }
+        }
 
-			Players.Where(p => p.Id == randomPlayerIndex).FirstOrDefault().IsActive = true;
-		}
+        protected void RandomlyChooseStartingPlayer()
+        {
+            int randomPlayerIndex = new Random().Next(1, Players.Count + 1);
+
+            Players.Where(p => p.Id == randomPlayerIndex).FirstOrDefault().IsActive = true;
+        }
+
+        /// <summary>
+        /// The game has finished when there's only one player left
+        /// </summary>
+        public bool HasFinished
+        {
+            get { return (Players.Count == 1); }
+        }
+
+        /// <summary>
+        /// Get the player whose turn it is
+        /// </summary>
+        public Player ActivePlayer
+        {
+            get { return Players.Where(player => player.IsActive).First(); }
+        }
+
+        /// <summary>
+        /// Get the player whose being asked for a favor
+        /// </summary>
+        public Player PlayerBeingAskedForFavor
+        {
+            get
+            {
+                return Players.Where(player => player.IsAskedForFavor).DefaultIfEmpty(new NullPlayer()).First();
+            }
+        }
+
+        /// <summary>
+        /// Get the player whose being stolen from
+        /// </summary>
+        public Player PlayerBeingStolenFrom
+        {
+            get
+            {
+                return Players.Where(player => player.IsBeingStolenFrom).DefaultIfEmpty(new NullPlayer()).First();
+            }
+        }
+
+        /// <summary>
+        /// Get the previous player
+        /// </summary>
+        public Player PreviousPlayer
+        {
+            get { return (Players.Find(ActivePlayer).Previous ?? Players.Last).Value; }
+        }
+
+        /// <summary>
+        /// Get the next player
+        /// </summary>
+        public Player NextPlayer
+        {
+            get { return (Players.Find(ActivePlayer).Next ?? Players.First).Value; }
+        }
+
+        public Player GetNextPlayer(Player player)
+        {
+            return (Players.Find(player).Next ?? Players.First).Value;
+        }
+
+        /// <summary>
+        /// Complete the game by writing the winning message
+        /// </summary>
+        public virtual void EndGame()
+        {
+            //todo What happens here?
+            //Writer.WriteLine(string.Format("Congratulations player {0}, you won the game!", Players.First.Value.Id));
+        }
+
+        /// <summary>
+        /// Get the player who has been selected by another player (for giving a card to or playing a card on)
+        /// </summary>
+        /// <param name="playerIndex"></param>
+        /// <returns></returns>
+        public Player GetSelectedPlayer(int playerIndex)
+        {
+            return Players.Where(p => (p.Id == playerIndex)).DefaultIfEmpty(new NullPlayer()).First();
+        }
+
+        /// <summary>
+        /// Remove a player from the game when thay pick up an exploding kitten they can't defuse
+        /// </summary>
+        /// <param name="player"></param>
+        public ActionResponse EliminatePlayer(Player player)
+        {
+            NextPlayer.IsActive = true;
+            Players.Remove(player);
+
+            return new ActionResponse(new Message(Severity.Info, string.Format("Player {0} has been eliminated!", player.Id)));
+        }
 
         ///// <summary>
         ///// Print a message stating which player's turn it is

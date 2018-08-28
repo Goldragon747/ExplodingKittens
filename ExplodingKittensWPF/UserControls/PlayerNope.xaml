@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="ExplodingKittensWPF.UserControls.PlayerNope"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ExplodingKittensWPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="300">
+    <Grid >
+        <Label x:Name="PlayerNameLabel" FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 1</Label>
+        <Image x:Name="PlayOverlay_Nope" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nope.png" Height="50" HorizontalAlignment="Right" MouseEnter="PlayOverlay_Nope_MouseEnter" MouseLeave="PlayOverlay_Nope_MouseLeave" MouseDown="PlayOverlay_Nope_MouseDown"/>
+    </Grid>
+</UserControl>

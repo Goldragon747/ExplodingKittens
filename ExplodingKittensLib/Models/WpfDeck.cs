@@ -253,5 +253,30 @@ namespace ExplodingKittensLib.Models
                 DrawPile.Push(card);
             }
         }
+        
+        public Hand GetCardStack(List<int> cardIds)
+        {
+            Hand result = new Hand();
+            foreach (int id in cardIds)
+            {
+                Card temp = FindCardById(id);
+                result.Cards.Add(id, temp);
+            }
+            return result;
+        }
+
+        private Card FindCardById(int id)
+        {
+            Card result = null;
+            foreach (Card card in DrawPile)
+            {
+                if (card.Id == id)
+                {
+                    result = card;
+                    break;
+                }
+            }
+            return result;
+        }
     }
 }
