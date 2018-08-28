@@ -18,6 +18,8 @@ namespace ExplodingKittensWPF.Pages
     public partial class GamePage : Page
     {
         private Game game;
+        private bool stealIsValid = true;
+        private Image sCard;
 
         public GamePage(int numOfPlayers, string[] playerNames)
         {
@@ -45,7 +47,7 @@ namespace ExplodingKittensWPF.Pages
                 }
                 p = game.GetNextPlayer(p);
             }
-    }
+        }
 
         private void ShowHand()
         {
@@ -145,12 +147,13 @@ namespace ExplodingKittensWPF.Pages
          * - The Game should prompt the user by name if they are ready to end their turn
          */
 
-        private bool stealIsValid = true;
 
         #region Mouse Downs
         private void DrawBtn_Click(object sender, RoutedEventArgs e)
         {
-            WPFPlayer p = (WPFPlayer)game.ActivePlayer;
+            WPFPlayer p = new WPFPlayer(game.ActivePlayer.Id, game, game.ActivePlayer.Name);
+            p.Hand = game.ActivePlayer.Hand;
+            p.IsUnderAttack = game.ActivePlayer.IsUnderAttack;
             p.DrawCard();
             if (game.Deck.PlayPile.Peek().GetType() == typeof(ExplodingKitten))
             {
@@ -167,6 +170,8 @@ namespace ExplodingKittensWPF.Pages
                     MessageBox.Show($"Oh no! You drew an Exploding Kitten, but you didn't have a defuse.");//todo MessageBox
                 }
             }
+            game.ActivePlayer.Hand = p.Hand;
+            game.ActivePlayer.IsUnderAttack = p.IsUnderAttack;
             ShowHand();
             if (!game.ActivePlayer.IsUnderAttack)
             {
@@ -183,12 +188,11 @@ namespace ExplodingKittensWPF.Pages
             Image _img = sender as Image;
             PlayOverlay_Card.Source = _img.Source;
             game.ActivePlayer.Hand.SelectedCard.IsSelected = false;
-            int.TryParse(_img.Uid, out int num);
-            game.ActivePlayer.Hand.Cards[num].IsSelected = true;
+            int.TryParse(_img.Uid, out int temp);
+            game.ActivePlayer.Hand.Cards[temp].IsSelected = true;
 
-            WPFPlayer p = (WPFPlayer)game.ActivePlayer;
             Card selectedCard = null;
-            foreach (KeyValuePair<int, Card> card in p.Hand.Cards)
+            foreach (KeyValuePair<int, Card> card in game.ActivePlayer.Hand.Cards)
             {
                 if (_img.Uid == card.Value.Id.ToString())
                 {
@@ -197,11 +201,11 @@ namespace ExplodingKittensWPF.Pages
                 }
             }
             int num = 0;
-            foreach (KeyValuePair<int, Card> card in p.Hand.Cards)
+            foreach (KeyValuePair<int, Card> card in game.ActivePlayer.Hand.Cards)
             {
-                if (card.Value.GetType() == selectedCard.GetType()){ num++; }
+                if (card.Value.GetType() == selectedCard.GetType()) { num++; }
             }
-            if(num < 2)
+            if (num < 2)
             {
                 //todo disable steal 2 and 3
             }
@@ -209,7 +213,7 @@ namespace ExplodingKittensWPF.Pages
             {
                 //todo disable steal 3
             }
-
+            sCard = _img;
         }
 
         private void PlayOverlay_Back_MouseDown(object sender, MouseButtonEventArgs e)
@@ -229,12 +233,17 @@ namespace ExplodingKittensWPF.Pages
 
         private void PlayOverlay_Play_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            WPFPlayer p = (WPFPlayer)game.ActivePlayer;
-            Image _img = sender as Image;
+            WPFPlayer p = new WPFPlayer(game.ActivePlayer.Id, game, game.ActivePlayer.Name);
+            //Player p = game.ActivePlayer;
+            p.Hand = game.ActivePlayer.Hand;
+            p.IsUnderAttack = game.ActivePlayer.IsUnderAttack;
+            Image _img = new Image();
+            _img.Source = PlayOverlay_Card.Source;
+            _img.Uid = PlayOverlay_Card.Uid;
             Card selectedCard = null;
-            foreach (KeyValuePair<int, Card> card in p.Hand.Cards)
+            foreach (KeyValuePair<int, Card> card in game.ActivePlayer.Hand.Cards)
             {
-                if (_img.Uid == card.Value.Id.ToString())
+                if (sCard.Uid == card.Value.Id.ToString())
                 {
                     selectedCard = card.Value;
                     break;
@@ -249,8 +258,11 @@ namespace ExplodingKittensWPF.Pages
             {
                 p.PlayCard(selectedCard);
                 ClearBoard();
+                AddNopeTrackBtns();
                 NopeTrack.Visibility = Visibility.Visible;
             }
+            game.ActivePlayer.Hand = p.Hand;
+            game.ActivePlayer.IsUnderAttack = p.IsUnderAttack;
         }
 
         private void PlayOverlay_Nope_MouseDown(object sender, MouseButtonEventArgs e)
@@ -277,6 +289,10 @@ namespace ExplodingKittensWPF.Pages
         {
             NopeTrack.Visibility = Visibility.Hidden;
             PlayOverlay.Visibility = Visibility.Hidden;
+            PlayOverlay_Back.Visibility = Visibility.Visible;
+            PlayOverlay_Play.Visibility = Visibility.Visible;
+            PlayOverlay_Steal_Random.Visibility = Visibility.Visible;
+            PlayOverlay_Steal_Specific.Visibility = Visibility.Visible;
             ShowHand();
         }
         #endregion

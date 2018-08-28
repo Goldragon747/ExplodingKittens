@@ -24,8 +24,11 @@ namespace ExplodingKittensLib.Models.Cards
 		{
 			string messageText = string.Format("Player {0}'s turn was skipped.", Game.NextPlayer.Id);
 
-			Game.NextPlayer.IsActive = true;
-			Game.ActivePlayer.IsActive = false;
+            if (Game.GetType() == typeof(ConsoleGame))
+            {
+			    Game.NextPlayer.IsActive = true;
+			    Game.ActivePlayer.IsActive = false;
+            }
 
 			return new ActionResponse(new Message(Enums.Severity.Info, messageText));
 		}
