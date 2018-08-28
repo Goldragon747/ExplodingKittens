@@ -28,6 +28,11 @@ namespace ExplodingKittensLib.Models
             return Cards.Values.Where(card => card is Defuse).DefaultIfEmpty(new NullCard()).First();
         }
 
+        public Card GetBomb()
+        {
+            return Cards.Values.Where(card => card is ExplodingKitten).DefaultIfEmpty(new NullCard()).First();
+        }
+
         public Card SelectedCard
 		{
 			get

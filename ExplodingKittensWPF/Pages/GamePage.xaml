@@ -23,7 +23,7 @@
                     <Label x:Name="TurnsRemaining" FontSize="40" HorizontalAlignment="Right" Foreground="White" FontFamily="Bebas Kai" Margin="0,0,50,0">1 Turn Remaining</Label>
                     <Image x:Name="DrawBtn" Margin="0 -14 0 0" MouseDown="DrawBtn_Click" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/card_draw.png" Width="200" MouseEnter="DrawBtn_MouseEnter" MouseLeave="DrawBtn_MouseLeave" />
                 </Grid>
-                <Label Foreground="White" FontFamily="Bebas Kai" FontSize="48" Content="I AM A MESSAGE" HorizontalAlignment="Center" Margin="0,36,0,0"></Label>
+                <!--<Label Foreground="White" FontFamily="Bebas Kai" FontSize="48" Content="I AM A MESSAGE" HorizontalAlignment="Center" Margin="0,36,0,0"></Label>-->
                 <StackPanel x:Name="HandDisplay">
                     <Grid x:Name="playerHand">
                         <Grid.RowDefinitions>

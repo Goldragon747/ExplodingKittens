@@ -20,18 +20,22 @@ namespace ExplodingKittensWPF.Pages
         private Game game;
         private bool stealIsValid = true;
         private Image sCard;
+        private int bombId;
 
         public GamePage(int numOfPlayers, string[] playerNames)
         {
             InitializeComponent();
             game = new Game(numOfPlayers, playerNames);
+
             NopeTrack.Visibility = Visibility.Hidden;
             PlayOverlay.Visibility = Visibility.Hidden;
+            PlayerSelectPanel.Visibility = Visibility.Hidden;
             StartPlayerTurn();
         }
 
         private void AddNopeTrackBtns()
         {
+            Image img = PlayOverlay_NoNopes;
             NopeTrack.Children.Clear();
             Player p = game.ActivePlayer;
             for (int i = 0; i < game.Players.Count; i++)
@@ -47,10 +51,40 @@ namespace ExplodingKittensWPF.Pages
                 }
                 p = game.GetNextPlayer(p);
             }
+            NopeTrack.Children.Add(img);
+        }
+
+        private void AddPlayerSelectPanelBtns()
+        {
+            PlayerSelectPanel.Children.Clear();
+            Player p = game.ActivePlayer;
+            for (int i = 0; i < game.Players.Count; i++)
+            {
+                if (!p.IsActive)
+                {
+                    PlayerSelect select = new PlayerSelect();
+                    select.PlayerName = p.Name;
+                    select.Id = p.Id;
+                    select.MouseDown += PlayerSelectPanel_MouseDown;
+                    select.Margin = new Thickness(0, 0, 0, 20);
+                    PlayerSelectPanel.Children.Add(select);
+                }
+                p = game.GetNextPlayer(p);
+            }
         }
 
         private void ShowHand()
         {
+            PlayOverlay_Back.Visibility = Visibility.Visible;
+            PlayOverlay_Play.Visibility = Visibility.Visible;
+            PlayOverlay_Steal_Random.Visibility = Visibility.Visible;
+            PlayOverlay_Steal_Specific.Visibility = Visibility.Visible;
+            bool underAttack = false;
+            if (game.ActivePlayer != null)
+                 underAttack = game.ActivePlayer.IsUnderAttack;
+            PlayerName.Content = game.ActivePlayer.Name;
+            if (underAttack) { TurnsRemaining.Content = "2 Turns Remaining"; }
+            else { TurnsRemaining.Content = "1 Turn Remaining"; }
             Hand activePlayerHand = game.ActivePlayer.Hand;
             playerHand.Children.Clear();
             int row = 0;
@@ -117,22 +151,13 @@ namespace ExplodingKittensWPF.Pages
         private void StartPlayerTurn()
         {
             bool underAttack = game.ActivePlayer.IsUnderAttack;
-            do
-            {
-                PlayerName.Content = game.ActivePlayer.Name;
-                if (underAttack) { TurnsRemaining.Content = "2 Turns Remaining"; }
-                else { TurnsRemaining.Content = "1 Turn Remaining"; }
+            PlayerName.Content = game.ActivePlayer.Name;
+            if (underAttack) { TurnsRemaining.Content = "2 Turns Remaining"; }
+            else { TurnsRemaining.Content = "1 Turn Remaining"; }
 
-                MessageBox.Show($"{game.ActivePlayer.Name}, get ready for your turn.");//todo MessageBox
-                ShowHand();
-                //Do play stuff
+            MessageBox.Show($"{game.ActivePlayer.Name}, get ready for your turn.");//todo MessageBox
+            ShowHand();
 
-                if (underAttack && game.NextPlayer.IsUnderAttack)
-                {
-                    underAttack = false;
-                }
-            }
-            while (underAttack);
         }
         /*On turn start
          * - Screen should be either cleared or hidden
@@ -154,32 +179,57 @@ namespace ExplodingKittensWPF.Pages
             WPFPlayer p = new WPFPlayer(game.ActivePlayer.Id, game, game.ActivePlayer.Name);
             p.Hand = game.ActivePlayer.Hand;
             p.IsUnderAttack = game.ActivePlayer.IsUnderAttack;
+            int num = p.Hand.Cards.Count;
+            bool bombnext = game.Deck.DrawPile.Peek().GetType() == typeof(ExplodingKitten);
+            bool hasDefuse = p.Hand.GetDefuse().GetType() == typeof(Defuse);
             p.DrawCard();
-            if (game.Deck.PlayPile.Peek().GetType() == typeof(ExplodingKitten))
+            if (bombnext)
             {
-                Card bomb = game.Deck.PlayPile.Pop();
+                //Card bomb = game.Deck.PlayPile.Pop();
                 Card defuse = p.Hand.GetDefuse();
-                if (defuse.GetType() != typeof(NullCard))
+                Card bomb = p.Hand.GetBomb();
+                if (hasDefuse)
                 {
-                    p.PlayCard(defuse);
+                    bombId = bomb.Id;
+                    p.Hand.Cards.Remove(defuse.Id);
+                    p.Hand.Cards.Remove(bomb.Id);
                     MessageBox.Show($"Fwew, you drew an Exploding Kitten, but you had a defuse.");//todo MessageBox
-                    //todo If exploding kiten /w defuse, then allow player to choose where to put bomb in deck
+                    //game.ActivePlayer.Hand.Cards.Add(bomb.Id, bomb);
+                    //game.ActivePlayer.SelectCard(bomb.Id);
+                    //ExplodePanel_Slider.Maximum = game.Deck.DrawPile.Count;
+
+                    //ExplodePanel.Visibility = Visibility.Visible;
+                    //PlayOverlay.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     MessageBox.Show($"Oh no! You drew an Exploding Kitten, but you didn't have a defuse.");//todo MessageBox
+                    if (game.Players.Count == 1)
+                    {
+                        this.NavigationService.Navigate(new VictoryPage(game.Players.First.Value.Name));
+                    }
                 }
             }
-            game.ActivePlayer.Hand = p.Hand;
-            game.ActivePlayer.IsUnderAttack = p.IsUnderAttack;
-            ShowHand();
-            if (!game.ActivePlayer.IsUnderAttack)
+            //game.ActivePlayer.Hand = p.Hand;
+            //game.ActivePlayer.IsUnderAttack = p.IsUnderAttack;
+            if (!game.HasFinished)
             {
-                MessageBox.Show("Your turn is now over.");//todo MessageBox
+                ShowHand();
+                if (!game.ActivePlayer.IsUnderAttack)
+                {
+                    MessageBox.Show("Your turn is now over.");//todo MessageBox
+                }
+                if (!bombnext)
+                {
+                    game.ActivePlayer.Hand = p.Hand;
+                    game.ActivePlayer.IsUnderAttack = p.IsUnderAttack;
+                }
+                game.EndTurn();
+                ClearBoard();
+                StartPlayerTurn();
             }
-            game.EndTurn();
-            ClearBoard();
-            StartPlayerTurn();
+
+
         }
 
         private void PlayerCard_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -252,22 +302,37 @@ namespace ExplodingKittensWPF.Pages
             if (selectedCard.GetType() == typeof(Favor) || selectedCard.GetType() == typeof(Pair))
             {
                 p.SelectCard(selectedCard.Id);
-                //Todo choose player thing; Make sure to deselect card after
+                AddPlayerSelectPanelBtns();
+                PlayerSelectPanel.Visibility = Visibility.Visible;
             }
-            else
+            else if (selectedCard.GetType() == typeof(Attack))
             {
                 p.PlayCard(selectedCard);
+                Player prev = game.PreviousPlayer;
+                game.ActivePlayer.IsActive = false;
+                prev.IsActive = true;
                 ClearBoard();
                 AddNopeTrackBtns();
                 NopeTrack.Visibility = Visibility.Visible;
             }
+            else
+            {
+                p.PlayCard(selectedCard);
+                Player prev = game.PreviousPlayer;
+                game.ActivePlayer.IsActive = false;
+                prev.IsActive = true;
+                ClearBoard();
+                AddNopeTrackBtns();
+                NopeTrack.Visibility = Visibility.Visible;
+            }
+            game.EndTurn();
             game.ActivePlayer.Hand = p.Hand;
             game.ActivePlayer.IsUnderAttack = p.IsUnderAttack;
         }
 
         private void PlayOverlay_Nope_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            AddNopeTrackBtns();
+            //AddNopeTrackBtns();
             PlayerNope playerNope = sender as PlayerNope;
             Player p = game.GetSelectedPlayer(playerNope.Id);
             Card c = p.Hand.GetNope();
@@ -281,6 +346,10 @@ namespace ExplodingKittensWPF.Pages
                 MessageBox.Show($"{p.Name} noped your card, {game.ActivePlayer.Name}");//todo MessageBox
                 NopeTrack.Visibility = Visibility.Hidden;
                 PlayOverlay.Visibility = Visibility.Hidden;
+                PlayOverlay_Back.Visibility = Visibility.Visible;
+                PlayOverlay_Play.Visibility = Visibility.Visible;
+                PlayOverlay_Steal_Random.Visibility = Visibility.Visible;
+                PlayOverlay_Steal_Specific.Visibility = Visibility.Visible;
                 ShowHand();
             }
         }
@@ -293,12 +362,20 @@ namespace ExplodingKittensWPF.Pages
             PlayOverlay_Play.Visibility = Visibility.Visible;
             PlayOverlay_Steal_Random.Visibility = Visibility.Visible;
             PlayOverlay_Steal_Specific.Visibility = Visibility.Visible;
-            ShowHand();
+            if (game.Deck.PlayPile.Peek().GetType() == typeof(Attack))
+            {
+                game.EndTurn();
+                game.ActivePlayer.IsUnderAttack = true;
+                StartPlayerTurn();
+            }
+            else
+            {
+                ShowHand();
+            }
         }
         #endregion
 
         #region Hover Events
-
         private void DrawBtn_MouseEnter(object sender, MouseEventArgs e)
         {
             ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/card_draw_hover.png"));
@@ -382,14 +459,31 @@ namespace ExplodingKittensWPF.Pages
         }
         #endregion
 
-        private void PlayOverlay_NoNopes_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void ExplodePanel_Place_Bomb_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            ExplodePanel.Visibility = Visibility.Hidden;
+            int position = (int)ExplodePanel_Slider.Value;
+            List<Card> pile = new List<Card>();
+            WPFDeck temp = new WPFDeck(game, game.Players.Count);
+            Card bomb = temp.FindCardById(bombId);
+            bomb.IsSelected = false;
+            game.ActivePlayer.Hand.Cards.Remove(bomb.Id);
+            for (int i = 0; i < game.Deck.DrawPile.Count + 1; i++)
+            {
+                if (i == position)
+                {
+                    pile.Add(bomb);
+                }
+                else
+                {
+                    pile.Add(game.Deck.DrawPile.Pop());
+                }
+            }
+            pile.Reverse();
+            game.Deck.DrawPile = new Stack<Card>(pile);
+            game.EndTurn();
+            ClearBoard();
+            StartPlayerTurn();
         }
 
         private void ExplodePanel_Place_Bomb_MouseEnter(object sender, MouseEventArgs e)
@@ -405,7 +499,19 @@ namespace ExplodingKittensWPF.Pages
 
         private void PlayerSelectPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            //Todo Make sure to deselect card after
+            PlayerSelect playerSelect = sender as PlayerSelect;
+            Player p = game.GetSelectedPlayer(playerSelect.Id);
+            Card c = game.ActivePlayer.Hand.SelectedCard;
+            c.IsSelected = false;
+            game.Deck.PlayPile.Push(c);
+            game.ActivePlayer.Hand.Cards.Remove(c.Id);
+            Card taken = p.Hand.RemoveRandomCard();
+            game.ActivePlayer.Hand.Cards.Add(taken.Id, taken);
+            PlayerSelectPanel.Visibility = Visibility.Hidden;
+            ClearBoard();
+            AddNopeTrackBtns();
+            NopeTrack.Visibility = Visibility.Visible;
         }
 
         private void PlayerSelectPanel_MouseEnter(object sender, MouseEventArgs e)

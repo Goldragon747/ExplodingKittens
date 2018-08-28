@@ -10,6 +10,7 @@
 
     <Grid>
         <Image Stretch="Fill" Source="/ExplodingKittensWPF;component/Assets/VictoryScreen/victory.png"/>
+        <Label x:Name="victor" Margin="0 0 0 420" Foreground="White" FontFamily="Bebas Kai" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
         <Button x:Name="victory_back" Width="200" Height="48" FontFamily="Bebas Kai" FontSize="24" Margin="0,350,0,0" Background="#FF8F0D0D" Foreground="White" PreviewMouseDown="victory_back_PreviewMouseDown">BACK TO MAIN MENU</Button>
     </Grid>
 </Page>

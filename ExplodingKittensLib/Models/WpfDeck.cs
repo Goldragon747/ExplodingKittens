@@ -208,13 +208,13 @@ namespace ExplodingKittensLib.Models
         public Stack<Card> GetExplodingKittenCards(int id)
         {
             List<Card> cards = new List<Card>();
-            ExplodingKitten one = new ExplodingKitten(Game, id++);
+            ExplodingKitten one = new ExplodingKitten(Game, 100);
             one.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_exploding_kitten_1.jpg", UriKind.Absolute));
-            ExplodingKitten two = new ExplodingKitten(Game, id++);
+            ExplodingKitten two = new ExplodingKitten(Game, 101);
             two.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_exploding_kitten_2.jpg", UriKind.Absolute));
-            ExplodingKitten three = new ExplodingKitten(Game, id++);
+            ExplodingKitten three = new ExplodingKitten(Game, 102);
             three.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_exploding_kitten_3.jpg", UriKind.Absolute));
-            ExplodingKitten four = new ExplodingKitten(Game, id++);
+            ExplodingKitten four = new ExplodingKitten(Game, 103);
             four.CardImage = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensLib;Component/Images/card_exploding_kitten_4.jpg", UriKind.Absolute));
             cards.Add(one);
             cards.Add(two);

@@ -21,10 +21,10 @@
                     <Label Foreground="White" FontSize="16px" HorizontalAlignment="Left" Width="300"># of Players:</Label>
                     <Label Foreground="White" FontSize="16px" HorizontalAlignment="Right" Width="20" Content="{Binding ElementName=title_slider_players, Path=Value}"></Label>
                 </StackPanel>
-                <Slider x:Name="title_slider_players" TickFrequency="1" TickPlacement="TopLeft" Width="320" IsSnapToTickEnabled="True" Maximum="5" Minimum="2" ValueChanged="title_slider_players_ValueChanged" AutoToolTipPlacement="TopLeft" ToolTip="2 3 4 5" ></Slider>
+                <Slider x:Name="title_slider_players" TickFrequency="1" TickPlacement="TopLeft" Width="320" IsSnapToTickEnabled="True" Maximum="5" Minimum="2" Value="3" ValueChanged="title_slider_players_ValueChanged" AutoToolTipPlacement="TopLeft" ToolTip="2 3 4 5" ></Slider>
                 <TextBox x:Name="title_textbox_player_1" Text="Player 1" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
                 <TextBox x:Name="title_textbox_player_2" Text="Player 2" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
-                <TextBox x:Name="title_textbox_player_3" Text="Player 3" Visibility="Collapsed" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
+                <TextBox x:Name="title_textbox_player_3" Text="Player 3" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
                 <TextBox x:Name="title_textbox_player_4" Text="Player 4" Visibility="Collapsed" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
                 <TextBox x:Name="title_textbox_player_5" Text="Player 5" Visibility="Collapsed" Width="320" Height="25" FontSize="16px" Margin="0 10 0 0"></TextBox>
             </StackPanel>

@@ -20,9 +20,10 @@ namespace ExplodingKittensWPF.Pages
     /// </summary>
     public partial class VictoryPage : Page
     {
-        public VictoryPage()
+        public VictoryPage(string name)
         {
             InitializeComponent();
+            victor.Content = name + " WINS!";
         }
 
         private void victory_back_PreviewMouseDown(object sender, MouseButtonEventArgs e)

@@ -185,7 +185,7 @@ namespace ExplodingKittensLib.Models
         /// </summary>
         public Player ActivePlayer
         {
-            get { return Players.Where(player => player.IsActive).First(); }
+            get { return Players.Count != 1 ? Players.Where(player => player.IsActive).First() : null; }
         }
 
         /// <summary>

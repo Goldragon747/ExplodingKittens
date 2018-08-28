@@ -61,6 +61,9 @@
     <Compile Include="UserControls\PlayerNope.xaml.cs">
       <DependentUpon>PlayerNope.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PlayerSelect.xaml.cs">
+      <DependentUpon>PlayerSelect.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,6 +97,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\PlayerNope.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerSelect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

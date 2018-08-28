@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="ExplodingKittensWPF.UserControls.PlayerSelect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ExplodingKittensWPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="300">
+    <Grid>
+        <Label x:Name="PlayerNameLabel" FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 1</Label>
+        <Image x:Name="PlayerSelectPanel_1" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_select.png" Height="50" HorizontalAlignment="Right" MouseDown="PlayerSelectPanel_MouseDown" MouseEnter="PlayerSelectPanel_MouseEnter" MouseLeave="PlayerSelectPanel_MouseLeave"/>
+    </Grid>
+</UserControl>
