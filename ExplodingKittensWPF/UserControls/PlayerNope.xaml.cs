@@ -31,11 +31,12 @@ namespace ExplodingKittensWPF.UserControls
                 PlayerNameLabel.Content = value;
             }
         }
+        public int Id { get; set; }
+
 
         public PlayerNope()
         {
             InitializeComponent();
-
         }
 
         private void PlayOverlay_Nope_MouseDown(object sender, MouseButtonEventArgs e) { }

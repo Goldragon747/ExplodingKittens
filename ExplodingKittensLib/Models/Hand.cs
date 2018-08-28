@@ -23,7 +23,12 @@ namespace ExplodingKittensLib.Models
 			return Cards.Values.Where(card => card is Nope).DefaultIfEmpty(new NullCard()).First();
 		}
 
-		public Card SelectedCard
+        public Card GetDefuse()
+        {
+            return Cards.Values.Where(card => card is Defuse).DefaultIfEmpty(new NullCard()).First();
+        }
+
+        public Card SelectedCard
 		{
 			get
 			{

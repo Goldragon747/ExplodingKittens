@@ -78,7 +78,7 @@ namespace ExplodingKittensLib.Models.Players
 
         public override ActionResponse PlaySelectedCards()
         {
-            //todo fill out PlaySelectedCards method
+            
             return null;
         }
 
@@ -95,13 +95,6 @@ namespace ExplodingKittensLib.Models.Players
         public override ActionResponse PlayCard(Card card, Player player)
         {
             ActionResponse res = new ActionResponse();
-
-            if (Id == player.Id)
-                return new ActionResponse(new Message(Enums.Severity.Error, "You can't play a card on yourself."));
-            if (IsAskedForFavor)
-                return new ActionResponse(new Message(Enums.Severity.Error, "You can't play a card when you're being asked for a favor."));
-            if (IsBeingStolenFrom)
-                return new ActionResponse(new Message(Enums.Severity.Error, "You can't play a card when you're being stolen from."));
 
             try
             {

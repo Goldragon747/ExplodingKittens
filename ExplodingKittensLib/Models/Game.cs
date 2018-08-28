@@ -236,7 +236,7 @@ namespace ExplodingKittensLib.Models
         /// </summary>
         public virtual void EndGame()
         {
-            //todo What happens here?
+            
             //Writer.WriteLine(string.Format("Congratulations player {0}, you won the game!", Players.First.Value.Id));
         }
 
