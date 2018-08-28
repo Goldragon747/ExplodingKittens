@@ -306,5 +306,40 @@ namespace ExplodingKittensWPF.Pages
         }
         #endregion
 
+        private void PlayOverlay_NoNopes_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void ExplodePanel_Place_Bomb_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void ExplodePanel_Place_Bomb_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_place_bomb_hover.png"));
+        }
+
+        private void ExplodePanel_Place_Bomb_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_place_bomb.png"));
+        }
+
+
+        private void PlayerSelectPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void PlayerSelectPanel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_select_hover.png"));
+        }
+
+        private void PlayerSelectPanel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_select.png"));
+        }
     }
 }

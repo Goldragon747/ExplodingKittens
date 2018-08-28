@@ -90,6 +90,40 @@
                 </Grid>
                 <Image x:Name="PlayOverlay_NoNopes" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_nonope.png" MouseEnter="PlayOverlay_NoNopes_MouseEnter" MouseLeave="PlayOverlay_NoNopes_MouseLeave" MouseDown="PlayOverlay_NoNopes_MouseDown"></Image>
             </StackPanel>
+            <StackPanel x:Name="ExplodePanel" Visibility="Collapsed" Width="300" HorizontalAlignment="left" Height="466" Margin="75,0,0,0">
+                <Label HorizontalAlignment="Center" FontFamily="Bebas Kai" Foreground="White" FontSize="32">YOU ALMOST WENT BOOM!</Label>
+                <Label HorizontalAlignment="Center" FontFamily="Bebas Kai" Foreground="White" FontSize="18" Margin="0,50,0,0">Slide the slider to where in the</Label>
+                <Label HorizontalAlignment="Center" FontFamily="Bebas Kai" Foreground="White" FontSize="18" Margin="0,0,0,50">deck you want to place this bomb...</Label>
+                <Grid  Width="300">
+                    <Label HorizontalAlignment="Left" Width="50"  FontFamily="Bebas Kai" Foreground="White" FontSize="18">Top</Label>
+                    <Label HorizontalAlignment="Right" Width="55"  FontFamily="Bebas Kai" Foreground="White" FontSize="18">Bottom</Label>
+                </Grid>
+                <Slider x:Name="ExplodePanel_Slider" TickFrequency="1" TickPlacement="TopLeft" Width="300" IsSnapToTickEnabled="True" Maximum="58" Minimum="0" AutoToolTipPlacement="TopLeft"></Slider>
+                <Image x:Name="ExplodePanel_Place_Bomb" Width="300" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_place_bomb.png" Margin="0,139,0,0" MouseEnter="ExplodePanel_Place_Bomb_MouseEnter" MouseLeave="ExplodePanel_Place_Bomb_MouseLeave" MouseDown="ExplodePanel_Place_Bomb_MouseDown"></Image>
+            </StackPanel>
+            <StackPanel x:Name="PlayerSelectPanel" Visibility="Visible" Width="300" HorizontalAlignment="left" Height="466" Margin="75,0,0,0">
+                <Label HorizontalAlignment="Center" FontFamily="Bebas Kai" Foreground="White" FontSize="48">Select a player:</Label>
+                <Grid Margin="0,0,0,20">
+                    <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 1</Label>
+                    <Image x:Name="PlayerSelectPanel_1" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_select.png" Height="50" HorizontalAlignment="Right" MouseDown="PlayerSelectPanel_MouseDown" MouseEnter="PlayerSelectPanel_MouseEnter" MouseLeave="PlayerSelectPanel_MouseLeave"/>
+                </Grid>
+                <Grid Margin="0,0,0,20">
+                    <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 2</Label>
+                    <Image x:Name="PlayerSelectPanel_2" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_select.png" Height="50" HorizontalAlignment="Right" MouseDown="PlayerSelectPanel_MouseDown" MouseEnter="PlayerSelectPanel_MouseEnter" MouseLeave="PlayerSelectPanel_MouseLeave"/>
+                </Grid>
+                <Grid Margin="0,0,0,20">
+                    <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 3</Label>
+                    <Image x:Name="PlayerSelectPanel_3" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_select.png" Height="50" HorizontalAlignment="Right" MouseDown="PlayerSelectPanel_MouseDown" MouseEnter="PlayerSelectPanel_MouseEnter" MouseLeave="PlayerSelectPanel_MouseLeave"/>
+                </Grid>
+                <Grid Margin="0,0,0,20">
+                    <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 4</Label>
+                    <Image x:Name="PlayerSelectPanel_4" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_select.png" Height="50" HorizontalAlignment="Right" MouseDown="PlayerSelectPanel_MouseDown" MouseEnter="PlayerSelectPanel_MouseEnter" MouseLeave="PlayerSelectPanel_MouseLeave"/>
+                </Grid>
+                <Grid Margin="0,0,0,7">
+                    <Label FontFamily="Bebas Kai" Foreground="White" FontSize="32" HorizontalAlignment="Left">PLAYER 5</Label>
+                    <Image x:Name="PlayerSelectPanel_5" Source="/ExplodingKittensWPF;component/Assets/GameScreen/Buttons/button_select.png" Height="50" HorizontalAlignment="Right" MouseDown="PlayerSelectPanel_MouseDown" MouseEnter="PlayerSelectPanel_MouseEnter" MouseLeave="PlayerSelectPanel_MouseLeave"/>
+                </Grid>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

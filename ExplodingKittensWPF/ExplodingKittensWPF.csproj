@@ -226,5 +226,16 @@
     <Resource Include="Assets\GameScreen\Buttons\button_nonope.png" />
     <Resource Include="Assets\GameScreen\Buttons\button_nonope_hover.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Buttons\button_place_bomb.png" />
+    <Resource Include="Assets\GameScreen\Buttons\button_place_bomb_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GameScreen\Buttons\button_select.png" />
+    <Resource Include="Assets\GameScreen\Buttons\button_select_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\VictoryScreen\victory.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

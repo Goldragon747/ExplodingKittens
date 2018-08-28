@@ -26,7 +26,7 @@ namespace ExplodingKittensWPF
             InitializeComponent();
             //string[] names = new string[] { "Sam", "Lizzie", "Michael", "Gabe" };
             //ExplodingKittensFrame.Navigate(new GamePage(3, names));
-            ExplodingKittensFrame.Navigate(new TitlePage());
+            ExplodingKittensFrame.Navigate(new VictoryPage());
             //ExplodingKittensFrame.Navigate(new VictoryPage());
         }
     }
