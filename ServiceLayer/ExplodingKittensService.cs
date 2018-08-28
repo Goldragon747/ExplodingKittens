@@ -40,44 +40,46 @@ namespace ServiceLayer
             }
             
         }
-        public Game loadGame(ExplodingKittensLib.Models.Game myGame)
-        {
-           // ExplodingKittensLib.Models.Game loadedGame = new ExplodingKittensLib.Models.Game();
-            loadCards();
-            loadPlayers(myGame);
-            return new Game();
-        }
-        public void loadCards()
-        {
-
-        }
-        public Stack<Player> loadPlayers(ExplodingKittensLib.Models.Game myGame)
+        public ExplodingKittensLib.Models.Game loadGame(ExplodingKittensLib.Models.Game myGame)
         {
             using(var db = new Pro250_KittensEntities1())
             {
                 IQueryable<Player> playersList = db.Players.Where(x => x.GameID == myGame.ID);
-                Stack<Player> playerObjectsStack = new Stack<Player>();
+                LinkedList<ExplodingKittensLib.Models.Players.Player> playerObjectsList = new LinkedList<ExplodingKittensLib.Models.Players.Player>();
                 List<int> cardIDList = new List<int>();
                 ExplodingKittensLib.Models.WPFDeck myWPFDeck = new ExplodingKittensLib.Models.WPFDeck(myGame, myGame.Players.Count);
 
                 foreach (Player newPlayer in playersList)
                 {
+                    //New Hand and Player
+                    ExplodingKittensLib.Models.Hand myHand = new ExplodingKittensLib.Models.Hand();
+                    ExplodingKittensLib.Models.Players.Player myPlayer = new ExplodingKittensLib.Models.Players.Player(newPlayer.PlayerID, myGame);
                     for (int i = 0; i < newPlayer.Player_Hand.Count; i++)
-                    {
-                        //New Hand and Player
-                        ExplodingKittensLib.Models.Hand myHand = new ExplodingKittensLib.Models.Hand();
-                        ExplodingKittensLib.Models.Players.Player myPlayer = new ExplodingKittensLib.Models.Players.Player(newPlayer.PlayerID, myGame);
+                    {     
                         //Add to CardID List to get the hand information
-                        cardIDList.Add(newPlayer.Player_Hand.ElementAt(i).CardID);
-                        //Set active Player
-                        if (myGame.ActivePlayer.Id == newPlayer.PlayerID)
-                        {
-                            myPlayer.IsActive = true;
-                        }
+                        cardIDList.Add(newPlayer.Player_Hand.ElementAt(i).CardID);                      
                     }
+                    //Set active Player
+                    if (myGame.ActivePlayer.Id == newPlayer.PlayerID)
+                    {
+                        myPlayer.IsActive = true;
+                    }
+                    else
+                    {
+                        myPlayer.IsActive = false;
+                    }
+                    myHand = myWPFDeck.GetCardStack(cardIDList);
+                    myPlayer.Id = newPlayer.PlayerID;
+                    myPlayer.Hand = myHand;
+                    myPlayer.IsAskedForFavor = false;
+                    myPlayer.IsBeingStolenFrom = false;
+                    myPlayer.IsUnderAttack = false;
+                    myPlayer.Name = newPlayer.Player_Name;
+                    playerObjectsList.AddFirst(myPlayer);                  
                 }
-                myWPFDeck.
+                myGame.Players = playerObjectsList;
             }
+            return myGame;
         }
         public void saveGameToTable(ExplodingKittensLib.Models.Game myGame, int activePlayerIndex)
         {
